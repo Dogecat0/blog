@@ -5,8 +5,11 @@
 # Site
 title: Zhicheng's Blog
 subtitle: 'A Chronicles of a Self-taught Programmer: Learn to Debug Life'
-description: Welcome to my blog! This blog chronicles my personal exploration into the worlds of coding and life itself. 
-             Here, I share the things I encounter while learning to program. Think of it as me trying to debug life while getting better at debugging code. 
+description: |
+             Welcome to my blog!
+             This blog chronicles my personal exploration into the worlds of coding and life itself.
+             Here, I share the things I encounter while learning to program.
+             Think of it as me trying to debug life while getting better at debugging code.
              Fueled by my own insatiable curiosity (and ChatGPT's endless patience), bolstered by my humble attitude of learning (with millions of searches on Google),
              I'm pretty confident this debugging process will be wrapped up by the end of this century.
 keywords:
@@ -100,7 +103,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-landscape
+theme: my_theme
     
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
