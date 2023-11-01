@@ -50,7 +50,6 @@ sidebar: right
 widgets:
 - category
 - tag
-- tagcloud
 - archive
 - recent_posts
 
@@ -101,7 +100,6 @@ The theme provides 5 built-in widgets:
 
 - category
 - tag
-- tagcloud
 - archives
 - recent_posts
 
