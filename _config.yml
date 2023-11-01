@@ -76,6 +76,12 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Search
+search:
+  path: search.xml
+  field: post
+  content: true
+
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
@@ -110,3 +116,4 @@ theme: my_theme
 deploy:
   type: 'git'
   repo: 'git@github.com:Dogecat0/Dogecat0.github.io.git'
+
