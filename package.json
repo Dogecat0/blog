@@ -24,7 +24,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^1.0.0",
     "install": "^0.13.0",
-    "npm": "^10.2.1",
+    "npm": "^10.2.2",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
     "postcss-load-config": "^4.0.1",
