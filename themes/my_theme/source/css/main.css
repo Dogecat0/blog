@@ -33,9 +33,6 @@
 
 @layer share {
     /* Post share */
-    .article-share-link {
-        @apply capitalize my-5 px-3 py-1 hover:bg-opacity-60 bg-accent
-    }
     .article-share-box {
         @apply absolute bg-accent-light p-4 shadow-lg invisible;
     }
@@ -59,7 +56,7 @@
         @apply bg-primary font-pop font-light;
     }
     .container {
-        @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-secondary ;
+        @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-secondary ;
     }
     .sub-container {
         @apply flex flex-row items-center justify-between py-5;
