@@ -2,13 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer compoonents {
+@layer base {
+    h2 {
+        @apply text-lg font-normal py-3
+    }
+    p {
+        @apply leading-8 my-3
+    }
+    p a {
+        @apply text-accent hover:opacity-70 hover:underline
+    }
+    li {
+        @apply leading-6 my-3 list-disc list-inside
+    }
+
+}
+
+@layer search {
+    /* Search */
+    .site-search {
+        @apply text-primary
+    }
+    .search-result-list {
+        @apply flex flex-col bg-secondary p-5 m-5 absolute z-50
+    }
+    .search-result-title{
+        @apply font-medium capitalize
+    }
+}
+
+@layer share {
+    /* Post share */
+    .article-share-link {
+        @apply capitalize my-5 px-3 py-1 hover:bg-opacity-60 bg-accent
+    }
+    .article-share-box {
+        @apply absolute bg-accent-light p-4 shadow-lg invisible;
+    }
+    .article-share-box.on {
+        @apply visible;
+    } 
+    .article-share-input {
+        @apply border p-2 w-full;
+    }
+    .article-share-links {
+        @apply flex justify-around mt-4;
+    }
+    .article-share-links a {
+        @apply text-2xl mx-2 hover:text-opacity-80;
+    }
+}
+
+@layer components {
     /* Global */
     .body {
         @apply bg-primary font-pop font-light;
     }
     .container {
-        @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-secondary ;
+        @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-secondary ;
     }
     .sub-container {
         @apply flex flex-row items-center justify-between py-5;
@@ -34,7 +85,6 @@
     .footer-info {
         @apply flex items-stretch justify-between py-5;
     }
-
     .post-container {
         @apply max-w-5xl
     }
@@ -42,16 +92,7 @@
         @apply bg-tertiary px-5 mx-5
     }
 
-    /* Search */
-    .site-search {
-        @apply text-primary
-    }
-    .search-result-list {
-        @apply flex flex-col bg-secondary p-5 m-5 absolute z-50
-    }
-    .search-result-title{
-        @apply font-medium capitalize
-    }
+
 
     /* Post */
     .article-meta {
@@ -73,26 +114,6 @@
         @apply flex items-center justify-between
     }
 
-    /* Post share */
-    .article-share-link {
-        @apply capitalize my-5 px-3 py-1 hover:bg-opacity-60 bg-accent
-    }
-    .article-share-box {
-        @apply absolute bg-accent-light p-4 shadow-lg invisible;
-    }
-    .article-share-box.on {
-        @apply visible;
-    } 
-    .article-share-input {
-        @apply border p-2 w-full;
-    }
-    .article-share-links {
-        @apply flex justify-around mt-4;
-    }
-    .article-share-links a {
-        @apply text-2xl mx-2 hover:text-opacity-80;
-    }
-
     /* Post tag */
     .post-tag {
         @apply px-5
@@ -101,9 +122,8 @@
         @apply flex space-x-3
     }
     .article-tag-list-item {
-        @apply hover:underline
+        @apply hover:underline list-none
     }
-
 
     .widget-wrap {
         @apply py-5 my-5
@@ -113,14 +133,5 @@
     }
     .widget {
         @apply pt-2 pb-5 my-5
-    }
-    .tag-list-item {
-        @apply hover:underline
-    }
-    .archive-list-item {
-        @apply hover:underline
-    }
-    .recent-post-list-item {
-        @apply hover:underline
     }
 }
