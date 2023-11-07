@@ -1,6 +1,6 @@
 ---
 title: JavaScript Full-Stack Series - 00 - Introduction
-date: 2023-11-07 00:13:27
+date: 2023-11-06 00:13:27
 tags: [Full Stack, JavaScript]
 --- 
 
