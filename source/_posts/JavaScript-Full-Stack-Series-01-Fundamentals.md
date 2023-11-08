@@ -4,6 +4,10 @@ date: 2023-11-07 20:08:19
 tags: [Full Stack, JavaScript]
 ---
 
+## Intro
+
+This is the first blog post of the JavaScript Full-Stack Series. In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned.
+
 ## New concept:
 
 - Callback function: A callback function is a fuction passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. More details: [Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) 
