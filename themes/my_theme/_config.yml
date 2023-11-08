@@ -6,7 +6,7 @@ rss: /atom.xml
 banner: "images/banner.jpg"
 
 # Content
-excerpt_link: Read More
+excerpt_link: Read More >>
 fancybox: true
 
 # # Footer
