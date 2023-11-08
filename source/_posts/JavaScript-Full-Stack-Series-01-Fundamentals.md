@@ -11,14 +11,12 @@ This is the first blog post of the JavaScript Full-Stack Series. In this post, I
 ## New concept:
 
 - Callback function: A callback function is a fuction passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. More details: [Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) 
-- Event handler: Event are signals fired inside the browser window that notify of changes in the browser or operating system. Programmers can create evetn handler code that will run when an event fires, allowing web pages to responde appropriately to change. More details: [Event handler](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- Event handler: Event are signals fired inside the browser window that notify of changes in the browser or operating system. Programmers can create event handler code that will run when an event fires, allowing web pages to responde appropriately to change. More details: [Event handler](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
 
 (* Comparative thinkging: In Python, you can create an event handler using [Django signals](https://docs.djangoproject.com/en/4.2/topics/signals/) which has the similar mechanism.)
-
 - AJAX (Asynchronous JavaScript and XML): AJAX is a set of web development techniques using many web technologies on the client side to create asynchronous web applications. With AJAX, web applications can send and retrieve data from a server asynchronously (in the background) without interfering with the display and behavior of the existing page. More details: [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
 
 (* Comparative thinkging: [HTMX](https://htmx.org/docs/) is a modern JavaScript library that allows you to access AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML, using attributes without writing JavaScript.)
-
 - SPA (Single Page Application)
 - JavaScript libraries: jQuey, AngularJS, React, Vue.js, Backbone.js, etc.
 
