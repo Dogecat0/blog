@@ -6,7 +6,7 @@ tags: [Full Stack, JavaScript]
 
 ## Intro
 
-This is the first blog post of the JavaScript Full-Stack Series. In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned.
+In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned so far.
 
 ## New concept:
 
