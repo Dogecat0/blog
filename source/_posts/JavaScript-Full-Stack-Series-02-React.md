@@ -19,4 +19,5 @@ Main rules of JSX:
     - Return a single root element
     - Use camelCase for HTML attributes
     - Close all tags
-<br />
+
+TBC...
