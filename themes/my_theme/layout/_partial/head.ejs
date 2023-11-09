@@ -30,10 +30,11 @@
   <% if (theme.favicon){ %>
     <%- favicon_tag(theme.favicon) %>
   <% } %>
-  <% if (config.highlight.enable){ %>
-    <%- css('https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css') %>
-  <% } %>
   <%- css('css/output.css') %>
+  <% if (config.prismjs.enable){ %>
+    <link rel="stylesheet" href="<%- url_for("/css/prism.css") %>">
+    <script src="<%- url_for('/js/prism.js') %>"></script>
+  <% } %>
   <% if (theme.fancybox){ %>
     <%- css('fancybox/jquery.fancybox.min.css') %>
   <% } %>
