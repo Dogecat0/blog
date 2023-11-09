@@ -5,11 +5,11 @@ tags: [Full Stack, JavaScript]
 excerpt: In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned so far...
 ---
 
-## Intro
+## 🔎 Intro
 
 In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned so far.
 
-## New concept:
+## 💡 New concepts
 
 - Callback function: A callback function is a fuction passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. More details: [Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) 
 - Event handler: Event are signals fired inside the browser window that notify of changes in the browser or operating system. Programmers can create event handler code that will run when an event fires, allowing web pages to responde appropriately to change. More details: [Event handler](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
@@ -21,7 +21,7 @@ In this post, I will be covering the fundamentals of web apps, which is the part
 - SPA (Single Page Application)
 - JavaScript libraries: jQuey, AngularJS, React, Vue.js, Backbone.js, etc.
 
-## Reviewed concept:
+## 👨‍💻 Reviewed concepts
 
 - HTML (HyperText Markup Language): HTML is the code that is used to structure a web page and its content. [More details](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
 - CSS (Cascading Style Sheet): CSS is the code taht styles web content. [More details](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
@@ -30,7 +30,7 @@ In this post, I will be covering the fundamentals of web apps, which is the part
 - DOM (Document Objcet Model): DOM connects web pages to scripts or programming languages by representing the structure of a document—such as the HTML representing a web page—in memory. The DOM represents a document with a logical tree. [More details](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 - Full-stack web development
 
-## Course exercise:
+## 📝 Course exercise:
 
 1. Review HTML
 2. Review CSS
