@@ -7,7 +7,7 @@ excerpt: I've been building a Python based website for a while now which mainly 
 
 ## Intro
 
-I've been building a Python based website for a while now which mainly focuses on backend development using Django (The project is currently still under development, link to the demo repo: [INOMAD](https://github.com/Dogecat0/inomad-demo)).
+I've been building a Python based website for a while now which mainly focuses on backend development using Django (The project is currently still under development, Here is the link to [INOMAD](https://github.com/Dogecat0/inomad-demo) demo repo).
 
 This Django project is my first web development project and a self-taught one. Although there has been some involvement of JavaScript in the project, I've never really had the chance to learn JavaScript in-depth, which seems to be a quite essential language for mordern web development. So, I've decided to start a full-stack course and also begin this series of blog posts about my learning journey. I believe it will help me reinforce the web development concepts I've learned so far, as well as learn new tools in a more structured way.
 

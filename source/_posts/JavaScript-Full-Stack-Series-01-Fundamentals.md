@@ -23,11 +23,11 @@ In this post, I will be covering the fundamentals of web apps, which is the part
 
 ## Reviewed concept:
 
-- HTML (HyperText Markup Language): HTML is the code that is used to structure a web page and its content. (More details: [HTML](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics))
-- CSS (Cascading Style Sheet): CSS is the code taht styles web content. (More details: [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics))
-- HTML forms: HTML forms are one of the main points of interaction between a user and a web site or application. Forms allow users to enter data, which is generally sent to a web server for processing and storage. (More details: [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form))
+- HTML (HyperText Markup Language): HTML is the code that is used to structure a web page and its content. [More details](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
+- CSS (Cascading Style Sheet): CSS is the code taht styles web content. [More details](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+- HTML forms: HTML forms are one of the main points of interaction between a user and a web site or application. Forms allow users to enter data, which is generally sent to a web server for processing and storage. [More details](https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form)
 - HTTP request
-- DOM (Document Objcet Model): DOM connects web pages to scripts or programming languages by representing the structure of a document—such as the HTML representing a web page—in memory. The DOM represents a document with a logical tree (More details: [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model))
+- DOM (Document Objcet Model): DOM connects web pages to scripts or programming languages by representing the structure of a document—such as the HTML representing a web page—in memory. The DOM represents a document with a logical tree. [More details](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 - Full-stack web development
 
 ## Course exercise:
