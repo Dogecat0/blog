@@ -1,5 +1,5 @@
 ---
-title: JavaScript Full-Stack Series - 00 - Introduction
+title: JavaScript-Full-Stack-Series-00-Introduction
 date: 2023-11-06 00:13:27
 tags: [Full Stack, JavaScript]
 excerpt: I've been building a Python based website for a while now which mainly focuses on backend development using Django. Although there has been some involvement of JavaScript in the project, I've never really had the chance to learn JavaScript in-depth, which seems to be a quite essential language for mordern web development. So...
