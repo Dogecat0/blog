@@ -2,12 +2,12 @@
 title: JavaScript-Full-Stack-Series-02-JavaScript
 date: 2023-11-09 23:22:22
 tags: [JavaScript, Full Stack]
-excerpt: This post covers the basics of JavaScript...
 ---
 
 ## 🔎 Intro
 
 This post covers the basics of JavaScript together with the new concepts and lessons learned during this part of the course.
+<!-- more -->
 
 ## 💡 New concepts
 

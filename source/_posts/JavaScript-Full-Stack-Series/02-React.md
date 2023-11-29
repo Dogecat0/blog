@@ -2,12 +2,12 @@
 title: JavaScript-Full-Stack-Series-02-React
 date: 2023-11-08 23:05:34
 tags: [JavaScript, Full Stack, React]
-excerpt: This post will cover React and related concepts like Vite, Components, JSX, etc which comprise the part1-a of the course...
 ---
 
 ## 🔎 Intro
 
 This post will cover React and related concepts like Vite, Components, JSX, etc which comprise the part1-a of the course together with some of my thoughts and lessons learned.
+<!-- more -->
 
 ## 💡 New concepts
 

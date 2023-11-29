@@ -2,12 +2,12 @@
 title: JavaScript-Full-Stack-Series-02-Comoplex_State_and_Debugging
 date: 2023-11-12 22:32:56
 tags: [JavaScript, Full Stack, React]
-excerpt: This blog covers some more complex React state related knowledge, demonstrating some ways to debug React apps...
 ---
 
 ## 🔎 Intro
 
 This blog covers some more complex React state related knowledge, as well as some ways to debug React apps. This part of the course covers quite a bit of new concpets and theoretical details, which requires more time to digest and practice. 
+<!-- more -->
 
 ## 💡 New concepts
 

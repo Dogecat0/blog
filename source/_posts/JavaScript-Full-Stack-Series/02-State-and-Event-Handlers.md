@@ -2,12 +2,12 @@
 title: JavaScript-Full-Stack-Series-02-State_and_Event_Handlers
 date: 2023-11-12 16:45:58
 tags: [JavaScript, Full Stack, React]
-excerpt: This blog covers some more React component basics, demonstrating helper functions, JavaScript destructuring for cleaner code, and dynamic page rendering in React applications....
 ---
 
 ## 🔎 Intro
 
 This blog covers some more React component basics, demonstrating helper functions, JavaScript destructuring for cleaner code, and dynamic page rendering in React applications.
+<!-- more -->
 
 ## 💡 New concepts
 

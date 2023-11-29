@@ -2,12 +2,11 @@
 title: JavaScript-Full-Stack-Series-03-Rendering_Collections-and-Modules
 date: 2023-11-28 18:56:56
 tags: [JavaScript, Full Stack, React, Collections]
-excerpt: In this post, we will learn the concepts and lessons about how to render collections in React.
 ---
 
 ## 🔎 Intro
 This blog covers how to render collections in React, how to use the `map` method to iterate over an array of objects and more related concepts.
-
+<!-- more -->
 
 ## 💡 New concepts
 
