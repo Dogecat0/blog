@@ -5,6 +5,7 @@ tags: [JavaScript, Full Stack, React, Collections]
 ---
 
 ## 🔎 Intro
+
 This blog covers how to render collections in React, how to use the `map` method to iterate over an array of objects and more related concepts.
 <!-- more -->
 
