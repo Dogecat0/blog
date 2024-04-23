@@ -4,7 +4,7 @@ date: 2024-04-23 22:11:21
 tags: [Inomad, Django, ProductModel]
 ---
 
-As the business model of Inomad is updating constantly especially the product lines druing the scaling-up stage, the product model also requires to be updated frequently. The product model is the core of the e-commerce platform, it is the foundation of the product management system.
+As the business model of Inomad is updating constantly especially the product lines during the scaling-up stage, the product model also requires to be updated frequently. The product model is the core of the e-commerce platform, it is the foundation of the product management system.
 
 <!-- more -->
 
