@@ -100,4 +100,6 @@ def manage_product(request, product_id=None):
     return render(request, 'product/manage_product.html', {'form': form, 'formset': formset})
 ```
 
+## Summary
+
 This product model setup allows for a flexible and scalable way to manage complex product relationships in Django, making it easier to handle intricate product hierarchies and compositions for products like those in the manufacturing industry that require parent/component relationships.
