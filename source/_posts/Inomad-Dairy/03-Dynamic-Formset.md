@@ -4,6 +4,8 @@ date: 2024-04-30 12:28:17
 tags: [Inomad, Django, Form, Formset, JavaScript]
 ---
 
+## 🔎 Intro
+
 When developing web applications that require flexible and dynamic user inputs, utilizing formsets in Django alongside JavaScript can significantly enhance user experience and functionality. 
 <!-- more -->
 

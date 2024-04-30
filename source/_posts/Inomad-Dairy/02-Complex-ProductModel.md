@@ -4,6 +4,8 @@ date: 2024-04-29 00:09:44
 tags: [Inomad, Django, ProductModel]
 ---
 
+## 🔎 Intro
+
 In this blog post, I'll walk through how to model complex relationships between products using Django, specifically focusing on a scenario where products can be composed of other products, and vice versa.
 
 <!-- more -->

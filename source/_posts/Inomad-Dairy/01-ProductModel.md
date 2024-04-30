@@ -4,6 +4,8 @@ date: 2024-04-23 22:11:21
 tags: [Inomad, Django, ProductModel]
 ---
 
+## 🔎 Intro
+
 As the business model of Inomad is updating constantly especially the product lines during the scaling-up stage, the product model also requires to be updated frequently.
 <!-- more -->
 
