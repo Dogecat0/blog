@@ -1,5 +1,5 @@
 ---
-title: 02-Investing-or-Paying-off-Mortgage
+title: Investment-02-Investing-or-Paying-off-Mortgage
 date: 2024-05-21 16:02:35
 tags: [Investment, Mortgage]
 ---
