@@ -4,13 +4,13 @@ date: 2024-05-21 16:02:35
 tags: [Investment, Mortgage]
 ---
 
-## 🔎 Intro
+## **🔎 Intro**
 
 In the last post, I quickly compared the outcomes of investing in the stock market or paying off the mortgage early over a 2-year and 5-year period. In this post, I'll explore the option of investing in stocks and paying off the mortage simultaneously, and see how the numbers stack up for 2-year period.
 
 <!-- more -->
 
-## Assumptions
+## **Assumptions**
 
 - Monthly Cash Available: £2,000
 - Monthly Mortgage Payment: £2,000
@@ -22,9 +22,9 @@ In the last post, I quickly compared the outcomes of investing in the stock mark
 
 We'll use two scenarios this time to do our analysis:
 
-## Scenario 1: Invest in stocks with £2,000 monthly and withdraw £11,000 towards the mortgage at the end of year.
+## **Scenario 1: Invest in stocks with £2,000 monthly and withdraw £11,000 towards the mortgage at the end of year.**
 
-### Investment Growth:
+### **Investment Growth:**
 
 - Year 1:
 
@@ -38,7 +38,7 @@ Year-end Investment Value = £24,000 * 1.085 - £11,000 = £15,040
 Year-end Investment Value = £15,040 * (1 + 0.085/12)**12 + £2,000 * ((1 + 0.085/12)**12 - 1)/(0.085/12) - £11,000 &approx £30,139
 ```
 
-### Mortgage Reduction:
+### **Mortgage Reduction:**
 
 ```
 Monthly interest rate: 5.8%/12 = 0.0048333
@@ -101,9 +101,9 @@ total_interest_1, total_interest_2
 Total interest paid over 2 years: $10,197.47
 
 
-## Scenario 2: Invest in stocks with £1,100 monthly and use £900 towards the mortgage at each month.
+## **Scenario 2: Invest in stocks with £1,100 monthly and use £900 towards the mortgage at each month.**
 
-### Investment Growth:
+### **Investment Growth:**
 
 - Year 2:
 
@@ -112,7 +112,7 @@ Year-end Investment Value = £1,100 * ((1 + 0.085/12)**24 - 1)/(0.085/12) &appro
 
 ```
 ​
-### Mortgage Reduction:
+### **Mortgage Reduction:**
 
 ```
 Month 1:
@@ -127,13 +127,13 @@ Continue this calculation for 24 months to get the peirod-end principal using th
 
 Total interest paid over 2 years: $9,608.45
 
-## Conclusion
+## **Conclusion**
 
-### Scenario 1: 
+### **Scenario 1: **
 - Total interest paid over 2 years: £10,197.47
 - Investment value after 2 years: £30,139
 
-### Scenario 2:
+### **Scenario 2:**
 - Scenario 2: Total interest paid over 2 years: £9,608.45
 - Investment value after 2 years: £27,480
 
@@ -141,7 +141,7 @@ In this case, the second scenario is better as it results in lower interest paid
 
 So in summary, scenario 1 is gaining more in total at £2,659 - £589.02 = £2069.98 in 2-year period. 
 
-## Intersting Insights
+## **Intersting Insights**
 
 Again this whole analysis was generated using GPT4o. Although the accuracy and the numbers are not 100% accurate, the insights are very interesting and the short of amount of time it took to generate this analysis is very impressive. This could be further developed to provide more accurate and detailed analysis for sure but more importantly, it can be used as a tool to generate ideas and insights for personal finance.
 

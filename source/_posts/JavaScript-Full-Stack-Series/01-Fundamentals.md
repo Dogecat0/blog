@@ -4,12 +4,12 @@ date: 2023-11-07 20:08:19
 tags: [Full Stack, JavaScript]
 ---
 
-## 🔎 Intro
+## **🔎 Intro**
 
 In this post, I will be covering the fundamentals of web apps, which is the part0 of the course and list the concepts I've reviewed and learned so far.
 <!-- more -->
 
-## 💡 New concepts
+## **💡 New concepts**
 
 - Callback function: 
 A callback function is a fuction passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action. More details: [Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) 
@@ -25,7 +25,7 @@ AJAX is a set of web development techniques using many web technologies on the c
 - JavaScript libraries: 
 jQuey, AngularJS, React, Vue.js, Backbone.js, etc.
 
-## 👨‍💻 Reviewed concepts
+## **👨‍💻 Reviewed concepts**
 
 - HTML (HyperText Markup Language):
  HTML is the code that is used to structure a web page and its content. [More details](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
@@ -38,7 +38,7 @@ HTML forms are one of the main points of interaction between a user and a web si
 DOM connects web pages to scripts or programming languages by representing the structure of a document—such as the HTML representing a web page—in memory. The DOM represents a document with a logical tree. [More details](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 - Full-stack web development
 
-## 📝 Course exercise:
+## **📝 Course exercise:**
 
 1. Review HTML
 2. Review CSS

@@ -4,17 +4,17 @@ date: 2024-04-30 12:28:17
 tags: [Inomad, Django, Form, Formset, JavaScript]
 ---
 
-## 🔎 Intro
+## **🔎 Intro**
 
 When developing web applications that require flexible and dynamic user inputs, utilizing formsets in Django alongside JavaScript can significantly enhance user experience and functionality. 
 <!-- more -->
 
 
-## Introduction
+## **Introduction**
 
 When developing web applications that require flexible and dynamic user inputs, utilizing formsets in Django alongside JavaScript can significantly enhance user experience and functionality. This approach allows users to dynamically add or remove form instances, making the interface adaptable to various use cases. Below, I'll share insights from implementing dynamic formsets for product components and images in a Django application.
 
-## Implementing Dynamic Formsets in Django
+## **Implementing Dynamic Formsets in Django**
 
 Formsets in Django are a powerful feature that facilitates the management of multiple forms on a single page. This is particularly useful for scenarios where you need to handle multiple instances of a form, like adding multiple product components or images before submitting them all at once. [More details](https://docs.djangoproject.com/en/5.0/topics/forms/formsets/)
 
@@ -36,7 +36,7 @@ To handle dynamic additions and deletions of form fields, you often also need in
 </div>
 ```
 
-## Integrating JavaScript for Dynamic Form Management
+## **Integrating JavaScript for Dynamic Form Management**
 
 Use JavaScript to handle user actions like adding a new form or removing an existing one. This involves cloning the hidden template and updating attributes to maintain unique form identifiers.
 
@@ -60,7 +60,7 @@ if (parseInt(totalForms.value) >= maxForms) {
 }
 ```
 
-## Handling Deletions
+## **Handling Deletions**
 
 Provide users the ability to remove forms, which involves adjusting the total form count and potentially handling the re-indexing of form IDs to maintain continuity.
 
@@ -74,7 +74,7 @@ document.addEventListener('click', function(event) {
     }
 });
 ```
-## Summary
+## **Summary**
 
 Integrating dynamic form elements into Django projects enhances user interactions and flexibility, allowing for a more responsive and intuitive interface. Using JavaScript alongside Django's formsets makes managing complex forms straightforward, improving both the developer's and the user's experience.
 

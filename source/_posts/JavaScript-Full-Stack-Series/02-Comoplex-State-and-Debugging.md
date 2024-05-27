@@ -4,12 +4,12 @@ date: 2023-11-12 22:32:56
 tags: [JavaScript, Full Stack, React]
 ---
 
-## 🔎 Intro
+## **🔎 Intro**
 
 This blog covers some more complex React state related knowledge, as well as some ways to debug React apps. This part of the course covers quite a bit of new concpets and theoretical details, which requires more time to digest and practice. 
 <!-- more -->
 
-## 💡 New concepts
+## **💡 New concepts**
 
 - Batching:
  React batches state updates to improve performance. This means that multiple setState() calls in a single component are batched together by React into a single update for the DOM. React processes state updates after event handlers have finished running.
@@ -55,12 +55,12 @@ Why use spread operator in React?
 - It is used to make a copy of an object or an array. to make sure the original state is not mutated.
 - By creating a new boject or array, you ensure that React recognizes the change in the state and re-renders the component accordingly.
 
-## 👨‍💻 Reviewed concepts
+## **👨‍💻 Reviewed concepts**
 
 - Event Handling:
 Event handlers must always be a function or a reference to a function. The button will not work if the event handler is set to a variable of any other type.
 
-## 📝 Course exercise:
+## **📝 Course exercise:**
 
 1. Create a React app that displays the statistics of a feedback form. [Link to the repo](https://github.com/Dogecat0/fullstack_open/tree/main/part1/unicafe)
 2. Create a React app that displays random anecdotes and the most voted one. [Link to the repo](https://github.com/Dogecat0/fullstack_open/tree/main/part1/anecdotes)
