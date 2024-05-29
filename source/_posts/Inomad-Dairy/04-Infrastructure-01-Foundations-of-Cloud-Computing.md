@@ -1,5 +1,5 @@
 ---
-title: 04-Infrastructure-Foundations_of_Cloud_Computing
+title: Inomad-Dairy-04-Infrastructure-01-Foundations_of_Cloud_Computing
 date: 2024-05-27 22:30:34
 tags: [Inomad, Infrastructure, Cloud Computing]
 ---
