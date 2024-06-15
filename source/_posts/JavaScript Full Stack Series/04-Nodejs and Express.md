@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-04-Nodejs-and-Express
+title: JavaScript Full Stack Series-04-Nodejs and Express
 date: 2023-12-06 12:02:52
 tags: [JavaScript, Full Stack, Nodejs, Express]
 ---
@@ -27,4 +27,4 @@ REST Client allows you to send HTTP request and view the response in Visual Stud
 
 ## **👨‍💻 Reviewed concepts**
 
-- [REST](https://dogecat0.github.io/2023/12/03/JavaScript-Full-Stack-Series/03-Altering-Data-from-Server.html)
+- [REST](https://dogecat0.github.io/2023/12/03/JavaScript Full Stack Series/03-Altering-Data-from-Server.html)

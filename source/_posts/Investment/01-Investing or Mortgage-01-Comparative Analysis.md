@@ -1,6 +1,6 @@
 ---
 layout: investment
-title: Investment-01-Investing-or-Paying-off-Mortgage
+title: Investment-01-Investing or Mortgage-01-Comparative Analysis
 date: 2024-05-20 21:49:31
 tags: [Investment, Mortgage]
 ---

@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-02-State_and_Event_Handlers
+title: JavaScript Full Stack Series-02-State and Event Handlers
 date: 2023-11-12 16:45:58
 tags: [JavaScript, Full Stack, React]
 ---

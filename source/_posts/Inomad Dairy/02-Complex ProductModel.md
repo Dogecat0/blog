@@ -1,5 +1,5 @@
 ---
-title: Inomad-Dairy-02-Complex-ProductModel
+title: Inomad Dairy-02-Complex ProductModel
 date: 2024-04-29 00:09:44
 tags: [Inomad, Django, ProductModel]
 ---

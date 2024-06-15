@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-01-Fundamentals
+title: JavaScript Full Stack Series-01-Fundamentals
 date: 2023-11-07 20:08:19
 tags: [Full Stack, JavaScript]
 ---

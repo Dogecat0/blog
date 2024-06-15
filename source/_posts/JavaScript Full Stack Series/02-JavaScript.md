@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-02-JavaScript
+title: JavaScript Full Stack Series-02-JavaScript
 date: 2023-11-09 23:22:22
 tags: [JavaScript, Full Stack]
 ---

@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-03-Adding-Styles
+title: JavaScript Full Stack Series-03-Adding Styles
 date: 2023-12-04 20:05:00
 tags: [JavaScript, Full Stack, React, CSS]
 ---
@@ -13,7 +13,7 @@ This will be simple blog that covers how to add styles to React applications wit
 ## **👨‍💻 Reviewed concepts**
 
 - CSS:
-CSS stands for Cascading Style Sheets. It is a style sheet language used for describing the presentation of a document written in a markup language such as HTML. [More details](https://dogecat0.github.io/2023/11/07/JavaScript-Full-Stack-Series/01-Fundamentals.html)
+CSS stands for Cascading Style Sheets. It is a style sheet language used for describing the presentation of a document written in a markup language such as HTML. [More details](https://dogecat0.github.io/2023/11/07/JavaScript Full Stack Series/01-Fundamentals.html)
 
 ## **📚 Lessons learned**
 

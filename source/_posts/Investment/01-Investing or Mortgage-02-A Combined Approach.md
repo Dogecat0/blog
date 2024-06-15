@@ -1,5 +1,5 @@
 ---
-title: Investment-02-Investing-or-Paying-off-Mortgage
+title: Investment-01-Investing or Mortgage-02-A Combined Approach
 date: 2024-05-21 16:02:35
 tags: [Investment, Mortgage]
 ---

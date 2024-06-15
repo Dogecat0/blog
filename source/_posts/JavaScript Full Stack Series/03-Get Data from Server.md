@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-03-Get-Data-from-Server
+title: JavaScript Full Stack Series-03-Get Data from Server
 date: 2023-11-30 12:33:18
 tags: [JavaScript, Full Stack, React, axios]
 ---

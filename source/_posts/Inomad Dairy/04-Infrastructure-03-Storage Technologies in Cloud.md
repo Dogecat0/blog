@@ -1,5 +1,5 @@
 ---
-title: Inomad-Dairy-04-Infrastructure-03-Storage_Technologies_in_Cloud
+title: Inomad Dairy-04-Infrastructure-03-Storage Technologies in Cloud
 date: 2024-05-29 22:01:28
 tags: [Inomad, Infrastructure, Cloud Computing, Storage]
 ---

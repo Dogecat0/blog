@@ -1,5 +1,5 @@
 ---
-title: Inomad-Dairy-04-Infrastructure-04-CDN_and_Networking
+title: Inomad Dairy-04-Infrastructure-04-CDN and Networking
 date: 2024-05-29 22:39:43
 tags: [Inomad, Infrastructure, Cloud Computing, CDN, Networking]
 ---

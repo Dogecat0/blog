@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-03-Altering-Data-from-Server
+title: JavaScript Full Stack Series-03-Altering Data from Server
 date: 2023-12-03 15:26:20
 tags: [JavaScript, Full Stack, React, REST]
 ---
@@ -22,7 +22,7 @@ REST stands for Representational State Transfer. It is a software architectural 
 - 'S'OLID:
 Single responsibility principle, is a computer-programming principle that states that every module, class or function in a computer program should have responsibility over a single part of that program's functionality, which it should encapsulate. [More details](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 - Promise:
-The promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value. [More details](https://dogecat0.github.io/2023/11/30/JavaScript-Full-Stack-Series/03-Get-Data-from-Server.html)
+The promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value. [More details](https://dogecat0.github.io/2023/11/30/JavaScript Full Stack Series/03-Get-Data-from-Server.html)
 In front-end development, we often use promises to handle asynchronous operations such as network requests by using fetch method. [More details](https://javascript.info/promise-chaining#bigger-example-fetch)
 - then():
 The then() method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise. [More details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)

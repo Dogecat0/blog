@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-02-React
+title: JavaScript Full Stack Series-02-React
 date: 2023-11-08 23:05:34
 tags: [JavaScript, Full Stack, React]
 ---

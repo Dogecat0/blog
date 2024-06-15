@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-03-Forms
+title: JavaScript Full Stack Series-03-Forms
 date: 2023-11-29 09:42:00
 tags: [JavaScript, Full Stack, React, Forms]
 ---

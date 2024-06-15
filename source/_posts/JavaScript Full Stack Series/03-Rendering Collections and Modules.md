@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-03-Rendering_Collections-and-Modules
+title: JavaScript Full Stack Series-03-Rendering Collections and Modules
 date: 2023-11-28 18:56:56
 tags: [JavaScript, Full Stack, React, Collections]
 ---
@@ -18,8 +18,8 @@ Refactoring is the process of restructuring existing computer code—changing th
 
 ## **👨‍💻 Reviewed concepts**
 
-- [Destructuring assignment](https://dogecat0.github.io/2023/11/09/JavaScript-Full-Stack-Series/02-JavaScript.html) 
-- [Event Handler](https://dogecat0.github.io/2023/11/12/JavaScript-Full-Stack-Series/02-State-and-Event-Handlers.html)
+- [Destructuring assignment](https://dogecat0.github.io/2023/11/09/JavaScript Full Stack Series/02-JavaScript.html) 
+- [Event Handler](https://dogecat0.github.io/2023/11/12/JavaScript Full Stack Series/02-State-and-Event-Handlers.html)
 
 ## **📝 Course exercise**
 

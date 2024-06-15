@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Full-Stack-Series-02-Comoplex_State_and_Debugging
+title: JavaScript Full Stack Series-02-Comoplex State and Debugging
 date: 2023-11-12 22:32:56
 tags: [JavaScript, Full Stack, React]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Inomad-Dairy-03-Dynamic-Formset
+title: Inomad Dairy-03-Dynamic Formset
 date: 2024-04-30 12:28:17
 tags: [Inomad, Django, Form, Formset, JavaScript]
 ---

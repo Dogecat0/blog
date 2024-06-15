@@ -1,5 +1,5 @@
 ---
-title: Inomad-Dairy-04-Infrastructure-02-Technologies_in_Cloud_Computing
+title: Inomad Dairy-04-Infrastructure-02-Technologies in Cloud Computing
 date: 2024-05-29 17:47:42
 tags: [Inomad, Infrastructure, Cloud Computing Technologies]
 ---
