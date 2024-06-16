@@ -50,15 +50,15 @@ As a salaried average person, I've decided to go with the most reliable method:a
 
 For now I will hold all the companies I've invested in. Based on my current ability, I've adjusted the percentage of each company in the portfolio to keep the portfolio balanced. Of course with the learning journey continues, I will continue to monitor the performance of each company and make adjustments if necessary.
 
-- Microsoft (MSFT): 16%
-- Nvidia (NVDA): 15%
-- Amazon (AMZN): 13%
+- Microsoft (MSFT): 17%
+- Nvidia (NVDA): 14%
+- Amazon (AMZN): 12%
 - Alphabet Class A (GOOGL): 12%
 - CrowdStrike (CRWD): 11%
+- Broadcom (AVGO): 11%
 - Costco Wholesale (COST): 10%
-- Broadcom (AVGO): 9%
 - Mastercard (MA): 7%
-- Barclays (BARC): 6%
+- Barclays (BARC): 5%
 - Vistra Corp (VST): 1%
 
 ## **📝 Next Steps**
@@ -67,5 +67,5 @@ Learn, learn and learn. I think there are couple of things I need to learn more 
 
 - How to pick up the right companies to invest in
 - How to analyze the financial status of a company
-- How to use GPT to help me with the analysis and make better decisions
 - How to manage and monitor the portfolio to help make adjustments if necessary
+- To help achive the above all, learn how to use GPT to help me with the analysis and make better decisions
