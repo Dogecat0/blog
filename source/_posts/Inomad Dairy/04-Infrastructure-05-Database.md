@@ -12,7 +12,7 @@ In this post, I will explore the role of databases in modern cloud infrastructur
 
 Databases play a crucial role in modern cloud infrastructure by providing a structured and efficient way to store, manage, and retrieve data for web applications and services. Databases are essential components of cloud-based solutions, enabling organizations to store and access data securely and efficiently.
 
-## **🔗 Relational Databases (RDBMS) **
+## **🔗 Relational Databases (RDBMS)**
 
 ## 1. SQL-based Databases:
 - MySQL: Open-source, widely used for web applications. It supports various storage engines like InnoDb and MyISAM.
