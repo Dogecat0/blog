@@ -15,11 +15,8 @@ Development technologies play a crucial role in modern cloud infrastructure by p
 ## **🔗 Programming Languages**
 
 - Python: Widely used for its simplicity and readability. Strong support in automation, scripting, and integrating with cloud services.
-
 - Java: Robust, platform-independent, and widely used in large-scale enterprise applications. Supports multithreading and high-performance systems.
-
 - Go: Known for its performance and efficiency in cloud-native applications. It's statically typed and compiled, which help inbuilding reliable and efficient software.
-
 - JavaScript/Node.js: Essential for serverless architectures and building APIs. Offers a non-blocking I/O model, making it efficient for real-time applications.
 
 ## **📦 Frameworks and Libraries**
