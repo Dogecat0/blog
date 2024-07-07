@@ -1,5 +1,5 @@
 ---
-title: Inomad Diary-04-infrastructure-08-Security Compliance and Governance
+title: Inomad Diary-04-Infrastructure-01-Readings-Security Compliance and Governance
 date: 2024-07-06 11:08:04
 tags: [Inomad, Security, Compliance, Governance, Infrastructure]
 ---

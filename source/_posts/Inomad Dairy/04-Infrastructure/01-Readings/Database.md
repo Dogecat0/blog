@@ -1,5 +1,5 @@
 ---
-title: Inomad Dairy-04-Infrastructure-05-Database
+title: Inomad Diary-04-Infrastructure-01-Readings-Database
 date: 2024-07-04 14:42:37
 tags: [Database, Infrastructure, Inomad]
 ---

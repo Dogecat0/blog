@@ -1,5 +1,5 @@
 ---
-title: 04-infrastructure-09-Auditing Monitoring and Logging
+title: Inomad Diary-04-Infrastructure-01-Readings-Auditing Monitoring and Logging
 date: 2024-07-07 09:46:25
 tags: [Inomad, Infrastructure, Auditing, Monitoring, Logging]
 ---

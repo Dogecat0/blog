@@ -1,5 +1,5 @@
 ---
-title: Inomad Dairy-04-infrastructure-07-Messaging
+title: Inomad Diary-04-Infrastructure-01-Readings-Messaging
 date: 2024-07-05 09:58:26
 tags: [Inomad, Messaging, Infrastructure]
 ---

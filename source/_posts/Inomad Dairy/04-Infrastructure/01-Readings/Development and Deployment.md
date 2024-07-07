@@ -1,5 +1,5 @@
 ---
-title: Inomad Dairy-04-infrastructure-06-Development and Deployment
+title: Inomad Diary-04-Infrastructure-01-Readings-Development and Deployment
 date: 2024-07-04 15:47:16
 tags: [Development, Infrastructure, Inomad]
 ---
@@ -54,7 +54,7 @@ Development and deployment technologies play a crucial role in modern cloud infr
 - Relational Databases: SQL-based databases like MySQL, PostgreSQL, Oracle, and Microsoft SQL Server.
 - NoSQL Databases: Document stores (MongoDB, CouchDB), Key-value stores (Redis, DynamoDB), Column-family stores (Cassandra, HBase), Graph databases (Neo4j, Amazon Neptune).
 
-More details on databases can be found in the [previous post](https://dogecat0.github.io/2024/07/04/Inomad%20Dairy/04-Infrastructure-05-Database.html).
+More details on databases can be found in the [previous post](https://dogecat0.github.io/2024/07/04/Inomad%20Dairy/Inomad Diary-04-Infrastructure-01-Readings05-Database.html).
 
 ## **📈 Monitoring and Logging**
 - Prometheus: Open-source monitoring and alerting toolkit. Collects metrics from monitored targets and stores them in a time-series database.
