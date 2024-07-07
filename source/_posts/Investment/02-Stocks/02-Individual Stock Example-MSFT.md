@@ -1,7 +1,7 @@
 ---
-title: Investment-02-Stocks-02-MSFT
+title: Investment-02-Stocks-02-Individual Stock Example-MSFT
 date: 2024-07-01 02:46:59
-tags: [Investment, Stocks, Microsoft, MSFT]
+tags: [Investment, Stocks, Individual Stock Analysis]
 ---
 
 ## **🔎 Intro**
