@@ -4,7 +4,7 @@ date: 2024-07-07 09:46:25
 tags: [Inomad, Infrastructure, Auditing, Monitoring, Logging]
 ---
 
-**🔍 Intro**
+## **🔍 Intro**
 
 Auditing, monitoring, and logging are critical components in the realm of cloud computing, ensuring operational integrity, security, and compliance. In this post, I will discuss the importance of auditing, monitoring, and logging in the cloud, and give it a detailed overview and study of these technologies.
 
