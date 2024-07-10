@@ -1,5 +1,5 @@
 ---
-title: Investment-02-Stocks-01-1st Month Summary
+title: Investment-02-Stocks-01-Portfolio Review-1st Month Summary
 date: 2024-06-15 08:06:24
 tags: [Investment, Stocks]
 ---
