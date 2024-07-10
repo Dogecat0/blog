@@ -1,5 +1,5 @@
 ---
-title: Investment-02-Stocks-02-Individual Stock Example-MSFT
+title: Investment-02-Stocks-02-Individual Analysis-Analysis Report
 date: 2024-07-01 02:46:59
 tags: [Investment, Stocks, Individual Stock Analysis]
 ---
@@ -12,26 +12,82 @@ This post is part of my investment learning series where I explore various aspec
 
 ## **📊 Financial Performance Analysis**
 
-## 1. Revenue Growth:
-- Historical Growth: Microsoft has shown consistent revenue growth over the past decade. For example, from FY 2018 to FY 2023, revenue grew from $110 billion to $204 billion. [Microsoft annual reports](https://www.microsoft.com/investor/reports/ar23/index.html)
-- Segment Performance: Key segments like Intelligent Cloud (Azure) and Productivity and Business Processes (Office 365, LinkedIn) have been major contributors. Azure has been a standout performer, experiencing annual growth rates of 40-50% in recent years. Office 365 continued subscription growth, particularly among enterprise users.
+## 1. Income Statement:
 
-## 2. Profit Margins:
-- Gross Margin: Microsoft consistently maintains a high gross margin, around 68-70%, indicating strong pricing power and cost efficiency. [Microsoft Financial Performance](https://www.microsoft.com/investor/reports/ar23/index.html)
-- Operating Margin: Operating margins have been improving, reaching around 41% in FY 2023, reflecting operational efficiencies and scale benefits.
-- Net Margin: Net profit margins are also robust, typically in the range of 30-35%, showcasing the company's ability to convert revenue into profit effectively.
+- Current Statement: For Q3 FY24, Microsoft reported revenue of $61.9 billion, a 17% increase year-over-year [Microsft Q3 FY24 Earnings](https://www.microsoft.com/en-us/Investor/earnings/FY-2024-Q3/press-release-webcast)
+
+For FY 2023 the details are as follows:
+- Revenue: $211.92 billion
+- Cost of Revenue: $65.86 billion
+- Gross Profit: $146.05 billion
+- Operating Income: $88.52 billion
+- Net Income: $72.36 billion
+
+Segment Performance: Key segments like Intelligent Cloud (Azure) and Productivity and Business Processes (Office 365, LinkedIn) have been major contributors. Azure has been a standout performer, experiencing annual growth rates of 40-50% in recent years. Office 365 continued subscription growth, particularly among enterprise users.
+
+## 2. Profititability:
+- Gross Profit Margin: Microsoft consistently maintains a high gross margin, around 68-70%, indicating strong pricing power and cost efficiency. [Microsoft Financial Performance](https://www.microsoft.com/investor/reports/ar23/index.html). 70.08% for the quarter ending March 31, 2024​ [Finbox - Microsoft Gross Margin](https://finbox.com/NASDAQGS:MSFT/explorer/gp_margin/)
+- Operating Margin: Operating margins have been improving, reaching around 41% in FY 2023, reflecting operational efficiencies and scale benefits. 42.14% as of July 2024 [CompayniesMarketCap - Microsoft Operating Margin](https://companiesmarketcap.com/microsoft/operating-margin/)
+- Net Profit Margin: Net profit margins are also robust, typically in the range of 30-35%, showcasing the company's ability to convert revenue into profit effectively. 36.43% for the quarter ending March 31, 2024 [yahoo Finance - Microsoft Net Margin](https://finance.yahoo.com/quote/MSFT/key-statistics/)
 
 ## 3. Cash Flow:
-- Operating Cash Flow: Microsoft generates substantial operating cash flow, which was $87.6 billion in FY 2023, providing flexibility for reinvestment, acquisitions, and shareholder returns. [Microsoft Cash Flow Statments](https://www.microsoft.com/investor/reports/ar23/index.html)
-- Free Cash Flow: After capital expenditures, free cash flow remains strong, supporting dividends and share buybacks. For instance, free cash flow was around $65 billion in FY 2023.
+- Operating Cash Flow: $87.58 billion
+- Investing Cash Flow: -$22.68 billion
+- Financing Cash Flow: -$43.94 billion
+- Net Cash Flow: $20.77 billion
+- Free Cash Flow: $59.48 billion
+These figures indicate robust cash generation from operations, significant investments, and substantial financing activities including dividends and share repurchases [Stock Analysis](https://stockanalysis.com/stocks/msft/financials/cash-flow-statement/)
 
-## 4. Debt and Liquidity:
-- Debt Levels: Microsoft has a relative low debt-to-equity ratio, with long-term debt around $50 billion against a market cap exceeding $2.7 trillion, indicating a conservative leverage approach.
-- Liquidity: The company holds significant cash reserves, over $100 billion, providing a cushion against economic downturns and funding for strategic initiatives.
+## 4. Financial Position:
+- Total Debt: $79.9 billion as of March 31, 2024.
+- Debt-to-Equity Ratio: 0.32.
+- Current Ratio: 1.24.
+- Quick Ratio: 1.05.
+- Interest Coverage Ratio: 39.76.
+- Credit Rating: Microsoft holds a AAA credit rating from S&P, reflecting its robust financial health and low risk of default.
 
-## 5. Shareholder Returns:
+These metrics indicate that Microsoft maintains a strong financial position and manageable debt levels, ensuring its ability to cover short-term liabilities and interest payments comfortably. [MacroTrends - Microsoft Debt](https://www.macrotrends.net/stocks/charts/MSFT/microsoft/debt-equity-ratio) [Stock Analysis](https://stockanalysis.com/stocks/msft/statistics/) [S&P Global Ratings](https://cbonds.com/news/2406587/)
+
+## 5. Balance Sheet:
+- Cash & Cash Equivalents: 80.02B
+- Total Debt: 79.91B
+- Net Cash: 110.00M
+- Net Cash Per Share: $0.01
+- Equity (Book Value): 253.15B
+- Book Value Per Share:	34.06
+- Working Capital: 28.66B
+
+Microsoft's balance sheet is strong, with substantial cash reserves, manageable debt levels, and a healthy equity position. The company's working capital and liquidity ratios indicate its ability to meet short-term obligations and invest in growth opportunities. [Stock Analysis](https://stockanalysis.com/stocks/msft/statistics/)
+
+## 6. Financial Efficiency
+- Return on Equity (ROE): 37.50%
+- Return on Assets (ROA): 19.00%
+- Return on Invested Capital (ROIC): 26.00%
+- Asset Turnover: 0.52
+- Inventory Turnover: 34.07
+- Interest Coverage Ratio: 39.76
+
+These metrics indicate that Microsoft is highly efficient in using its equity and assets to generate profit, with strong returns on both equity and invested capital. The company's high inventory turnover and interest coverage ratios further demonstrate its operational efficiency and ability to meet interest obligations comfortably. [Stock Analysis](https://stockanalysis.com/stocks/msft/statistics/)
+
+## 7. Dividends Yields
+- Dividend Per Share: $3.00
+- Dividend Yield: 0.65%
+- Dividend Growth (YoY): 10.29%
+- Years of Dividend Growth: 19
+- Payout Ratio: 25.97%
+- Buyback Yield: -0.11%
+- Shareholder Yield: 0.55%
+- Earnings Yield: 2.52%
+- FCF Yield: 2.07%
+
+Microsoft has an annual dividend of $3.00 per share, with a forward yield of 0.65%. The company has a strong track record of dividend growth, with a low payout ratio, indicating room for further increases. The shareholder yield, which includes dividends and buybacks, is positive, reflecting Microsoft's commitment to returning capital to shareholders.
+
+## 8. Shareholder Returns:
+As of the third quarter of fiscal year 2024, Microsoft returned $8.4 billion to shareholders through dividends and share repurchases. This is part of their ongoing commitment to providing shareholder value through regular dividend payments and strategic buybacks.
+
+- Total Return: $8.4 billion in Q3 FY24.
 - Dividends: Microsoft has a consistent track record of paying and increasing dividends, with a current yield of approximately 1%, and a payout ratio around 30%-35%, suggesting room for further increases. [Microsoft Dividend Information](https://www.microsoft.com/investor/reports/ar23/index.html)
-- Share Buybacks: The company actively repurchases shares, returning additional capital to shareholders and supporting share price appreciation.
+- Share Repurchases: Continuation of buyback programs to enhance shareholder value by reducing the number of outstanding shares, thus increasing earnings per share (EPS).
 
 ## Conclusion:
 Microsoft's financial performance is a strong argument for investment. The company demonstrates consistent revenue and profit growth, strong cash flow generation, prudent debt management, and shareholder-friendly practices. These factor collectively suggest a robust financial foundation and potential for sustained performance, making it an attractive option for long-term investors.
@@ -186,75 +242,48 @@ Microsoft’s competitive position is strong due to its market leadership in key
 ## Conclusion:
 Industry trends strongly favor Microsoft, providing substantial growth opportunities across its diverse business segments. The company's strategic focus on cloud computing, AI, cybersecurity, remote work, gaming, and IoT aligns well with these trends, positioning it for sustained growth and competitive advantage. Microsoft’s ability to innovate and adapt to these trends makes it a compelling investment for long-term growth.
 
-## **💵 Financial Health**
-
-## 1. Balance Sheet Strength:
-**Assets:**
-- Total Assets: As of FY 2023, Microsoft reported total assets of approximately $411 billion.
-- Cash and Cash Equivalents: Around $99 billion, providing substantial liquidity.
-**Liabilities:**
-- Total Liabilities: Approximately $191 billion, including long-term debt of $50 billion, indicating a strong equity position.
-- Long-term Debt: About $50 billion, showcasing a conservative leverage approach.
-
-## 2. Debt Levels and Credit Rating:
-**Debt-to-Equity Ratio:** Approximately 0.34, indicating a low level of leverage and strong financial stability.
-**Credit Rating:** Microsoft holds a AAA credit rating from S&P, reflecting its robust financial health and low risk of default.
-[S&P Global Ratings](https://cbonds.com/news/2406587/)
-
-## 3. Cash Flow Generation:
-**Operating Cash Flow:**
-- FY 2023: Microsoft generated around $87 billion in operating cash flow, providing substantial funds for operations, investments, and shareholder returns.
-**Free Cash Flow:**
-- FY 2023: Free cash flow was approximately $65 billion, after accounting for capital expenditures.
-
-## 4. Shareholder Returns:
-**Dividends:**
-- Annual Dividend Payout: Microsoft paid out $19.8 billion in dividends in FY 2023.
-- Dividend Yield: Approximately 0.8%, with a payout ratio of around 28%, indicating room for further increases.
-**Share Buybacks:**
-- Repurchases: Microsoft returned $28 billion to shareholders through share repurchases in FY 2023, reducing share count and enhancing EPS.
-
-## 5. Profitability Ratios:
-**Gross Margin:** Approximately 68% in FY 2023, reflecting strong pricing power and cost efficiency.
-**Operating Margin:** Around 41%, showcasing efficient operations and scalability.
-**Net Margin:** Approximately 35%, indicating high profitability and effective cost management.
-
-## 6. Liquidity Ratios:
-**Current Ratio:** Approximately 2.5, indicating strong short-term liquidity and ability to cover current liabilities.
-**Quick Ratio:** Around 2.3, further confirming the company's ability to meet short-term obligations without relying on inventory sales.
-
-## Conclusion:
-Microsoft's financial health is robust, characterized by a strong balance sheet, low debt levels, substantial cash reserves, and high profitability. consistent cash flow generation and prudent capital allocation through dividends and share buybacks enhance share holder value. These financial strengthens support Microsoft's long-term growth strategy and resilience, making its compelling investment option.
-
 ## **💲 Valuation**
 
 ## 1. Price-to-Earnings (P/E) Ratio:
-**Current P/E Ratio:** As of the latest fiscal year, Microsoft's P/E ration is approximately 36, which is higher than the average for the S&P 500, reflecting strong growth expectations.
+**Current P/E Ratio:** As of July 2024, Microsoft's P/E ratio stands at 39.82, indicating a high valuation reflective of its strong growth prospects​ 
 **Historical P/E:** Over the past five years, Microsoft's P/E ration has ranged between 25 and 40, indicating consistent investor confidence in its growth prospects.
 [Yahoo Finance - Microsoft Key Statistics](https://finance.yahoo.com/quote/MSFT/key-statistics/)
 
-## 2. Price-to-Sales (P/S) Ratio:
+## 2. Earnings Per Share (EPS):
+**Current EPS:** EPS for Q3 FY24 was $2.94, beating Wall Street estimates of $2.82
+**Historical EPS:** Microsoft has shown consistent growth in EPS over the past few years, driven by revenue growth and operational efficiency.
+
+## 3. Enterprise Value and Market Capitalization:
+**Market Capitalization:** Microsoft's market cap is approximately $3.4 trillion, making it one of the largest companies by market value.
+**Enterprise Value:** Around $3.4 trillion, reflecting the total value of the company, including debt and cash.
+**Historical Market Cap and Enterprise value:** Microsoft's market cap and enterprise value have grown steadily over the years, reflecting its strong financial performance and market position.
+
+## 4. Enterprise Value/EBITDA
+**Current Enterprise Value/EBITDA:** 26.73, indicating the company's valuation relative to its earnings before interest, taxes, depreciation, and amortization.
+**Historical EV/EBITDA:** Microsoft's EV/EBITDA ratio has been relatively stable, reflecting the company's consistent profitability and growth prospects.
+
+## 5. Price-to-Sales (P/S) Ratio:
 **Current P/S Ratio:** Approximately 11, indicating that investor are willing to pay $11 for every $1 of sales, higher than the industry average, reflecting strong sales growth and profitability.
 **Historical P/S:** Microsoft's P/S ratio has trended upwards over the past few years, reflecting the company's strong financial performance and market position.
 
-## 3. Price-to-Book (P/B) Ratio:
+## 6. Price-to-Book (P/B) Ratio:
 **Current P/B Ratio:** Around 14, suggesting that Microsoft is trading at a significant premium to its book value. This is common for highly profitable and growth-oriented technology companies.
 **Historical P/B:** Microsoft's P/B ratio has been consistently above 10 in recent years, reflecting investor confidence in the company's growth prospects and financial health.
 
-## 4. Free Cash Flow (FCF) Yield:
-**Current FCF Yield:** Approximately 2.5%, calculated by dividing free cash flow ($65 billion) by market capitalization ($2.6 trillion). This indicates a reasonable return on investment considering the company's growth prospects.
+## 7. Free Cash Flow (FCF) Yield:
+**Current FCF Yield:** Approximately 2.07%, calculated by dividing free cash flow ($62 billion) by market capitalization ($3.4 trillion). This indicates a reasonable return on investment considering the company's growth prospects.
 
-## 5. Dividend Yield:
-**Current Dividend Yield:** Approximately 0.8%, reflecting a moderate income component alongside capital appreciation potential.
+## 8. Dividend Yield:
+**Current Dividend Yield:** Approximately 0.92% for 5 year average, reflecting a moderate income component alongside capital appreciation potential.
 **Dividend Growth:** Microsoft has a strong track record of increasing dividends, with a CAGR of around 10% over the past five years, providing income growth for investors.
 
-## 6. Discounted Cash Flow (DCF) Analysis:
+## 9. Discounted Cash Flow (DCF) Analysis:
 **Assumptions:** A DCF analysis would consider Microsoft's strong cash flow generation, growth in key segments like Azure, and potential risks.
 **Growth Rate:** Assuming a 10% growth rate in free cash flow over the next five years, tapering to 3% terminal growth.
 **Discount Rate:** Using a discount rate of 8% to account for the company's risk profile and cost of capital.
 **Intrinsic Value:** These assumptions suggest an intrinsic value per share higher than the current trading price, indicating potential undervaluation.
 
-## 7. Relative Valuation:
+## 10. Relative Valuation:
 **Comparisons with peers:**
 - Apple (AAPL): P/E ratio of around 30.
 - Google (GOOGL): P/E ratio of approximately 27.
@@ -265,7 +294,7 @@ Microsoft's financial health is robust, characterized by a strong balance sheet,
 ## Conclusion:
 Microsoft's valuation reflects a premium relative to the broader market, justified by its strong financial performance, consistent growth, and dominant market position. the high P/E and P/S ratios indicate strong investor confidence in future growth. While the dividend yield is moderate, the company's robust free cash flow and dividend growth highlight its capacity to return capital to shareholders. A DCF analysis suggest potential undervaluation, reinforcing Microsoft as an attractive long-term investment.
 
-## **👥 Management and Governance
+## **👥 Management and Governance**
 
 ## 1. Leadership:
 **CEO Satya Nadella:** 
@@ -353,7 +382,7 @@ While Microsoft has strong financial health, a robust business model, and a lead
 
 ## **🔮 Final Review**
 
-## 1. Financial Performance:
+## 1. Income Statement:
 Microsoft's financial performance is a strong argument for investment. The company demonstrates consistent revenue and profit growth, strong cash flow generation, prudent debt management, and shareholder-friendly practices. Key highlights include:
 - Revenue growth driven by diverse business segments like Azure, Office 365, and Xbox.
 - High and stable profit margins, indicating efficient operations and pricing power.
@@ -378,26 +407,20 @@ Microsoft is well-positioned to benefit from favorable industry trends such as d
 - Growth opportunities in AI, cybersecurity, and remote work solutions.
 - Expanding gaming market and potential in IoT solutions.
 
-## 5. Financial Health:
-Microsoft's financial health is robust, characterized by a strong balance sheet, low debt levels, substantial cash reserves, and high profitability.
-- Strong balance sheet with significant assets and low debt.
-- Consistent cash flow generation and shareholder returns through dividends and buybacks.
-- High profitability ratios and strong liquidity.
-
-## 6. Valuation:
+## 5. Valuation:
 Microsoft's valuation reflects a premium relative to the broader market, justified by its strong financial performance, consistent growth, and dominant market position.
 - High P/E and P/S ratios indicate strong investor confidence in future growth.
 - Moderate dividend yield with a strong track record of dividend growth.
 - DCF analysis suggests potential undervaluation, reinforcing its attractiveness for long-term investment.
 
-## 7. Management and Governance:
+## 6. Management and Governance:
 Microsoft's management and governance are strong positives for potential investors. The leadership under Satya Nadella has been transformative, driving growth and innovation.
 - Diverse and independent board of directors.
 - Strong corporate governance practices and transparency.
 - Executive compensation aligned with shareholder interests.
 - Active shareholder engagement and strategic initiatives in R&D and risk management.
 
-## 8. Risks:
+## 7. Risks:
 Microsoft faces several risks that investors need to consider, including regulatory and legal challenges, intense competition, rapid technological changes, cybersecurity threats, and macroeconomic and geopolitical uncertainties.
 - Regulatory and antitrust scrutiny.
 - Competition from other tech giants.
