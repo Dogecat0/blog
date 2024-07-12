@@ -1,7 +1,7 @@
 ---
 title: Investment-02-Stocks-04-Weighted Score Calculation-01-Financial Performance Analysis
 date: 2024-07-12 10:30:04
-tags: [Investment, Stocks, Individual Stock Analysis, Weighted Score Calculation]
+tags: [Investment, Stocks, Individual Stock Analysis]
 ---
 
 ## **🔎 Intro**
