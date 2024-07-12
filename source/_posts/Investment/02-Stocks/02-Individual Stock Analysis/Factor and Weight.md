@@ -1,14 +1,14 @@
 ---
 title: Investment-02-Stocks-03-Factor and Weight
 date: 2024-07-10 12:01:06
-tags: [Investment, Stocks]
+tags: [Investment, Stocks, Individual Stock Analysis]
 ---
 
 ## **🔎 Intro**
 
 In this post, I'll continue to explore the ChatGPT's capability to introduce the concept of factor and weight in stock investment using the previous analysis report as an example.
 
-<!-- More -->
+<!-- more -->
 
 In the last post, I've generated an individual stock analysis for Microsoft. In this post, I'll continue to explore more analysis about how to make informed decisions on stock investment by some quantitative metrics.
 
@@ -318,59 +318,14 @@ I've generated a skeletal report for Microsoft with the following key points bas
 - Periodic Review: Regularly review and adjust weights based on new data, market conditions, and changes in company fundamentals. Quarterly or semi-annualy reviews are common.
 - Adaptive Algorithms: Implement machine learning algorithms that adaptively adjust weights based on continuous learning from new data. Algorithms like gradient boosting or reinforcement learning can be used to optimized weight assignment dynamically.
 
-## **🔢 Scoring and Ranking**
+## **🔢 Scoring and Ranking (More for a group of companies)**
 
 ## 1. Scoring:
 - Normalization of Metrics: Convert each raw metric into a standardized socre. This could involve z-score normalization, min-max scaling, or ranking each metric on a percentile basis. For example, for a metric like Revenue Growth, if the company's revenue growth is in the 90th percentile of the peer group, it might receive a score of 90 out of 100.
 - Weighted Composite Score: Calculate a composite score for each company by multiplying each normalized metric by its assigned weight and summing up the weighted scores. This gives a single score that represents the overall financial health and investment potential of the company. For example, if Revenue Growth has a weight of 0.2 and a normalized score of 90, its weighted score would be 0.2 * 90 = 18. Composite Score = Σ (Weight_i * Normalized Metric_i).
 - Handling Missing Data: If some data points are missing, use imputation methods (mean/mode substitution, regression imputation) or adjust the weights proportionally.
 
-## 2. Ranking: (More for a group of companies)
+## 2. Ranking: 
 - Composite Score Ranking: Rank companies based on their composite scores. Higher scores indicate better performance based on the selected factors and their weights.
 - Tiered Ranking: Group companies into tiers (e.g., top 10%, next 20%) to facilitate investment decisions, focusing on the highest-tier companies for potential investments.
 - Adjustments for Market Conditions: Overlay the rankings with current market conditions, macroeconomic trends, and industry outlooks to refine the final investment list.
-
-## **🧮 Calculation for Each Seaction**
-
-## 1. Financial Performance Analysis:
-
-**Income Statement (Weight: 20%)**
-
-Metrics and Weights:
-- Revenue (Weight: 5%)
-- Cost of Revenue (Weight: 2.5%)
-- Gross Profit (Weight: 5%)
-- Operating Income (Weight: 5%)
-- Net Income (Weight: 2.5%)
-
-Normalized Scores:
-- Revenue: Revenue/Benchmark Revenue
-- Cost of Revenue: 1−(Cost of Revenue/Benchmark Cost of Revenue)
-- Gross Profit: Gross Profit/Benchmark Gross Profit
-- Operating Income: Operating Income/Benchmark Operating Income
-- Net Income: Net Income/Benchmark Net Income
-
-Assume benchmark values for normalization:
-- Benchmark Revenue: $200 billion
-- Benchmark Cost of Revenue: $70 billion
-- Benchmark Gross Profit: $130 billion
-- Benchmark Operating Income: $80 billion
-- Benchmark Net Income: $60 billion
-
-Calculations:
-- Revenue Score: 211.92/200=1.06
-- Cost of Revenue Score: 1-(65.86/70)=0.06
-- Gross Profit Score: 146.05/130=1.12
-- Operating Income Score: 88.52/80=1.11
-- Net Income Score: 72.36/60=1.21
-
-Weighted Scores:
-- Revenue: 1.06*5%=0.053
-- Cost of Revenue: 0.06*2.5%=0.0015
-- Gross Profit: 1.12*5%=0.056
-- Operating Income: 1.11*5%=0.0555
-- Net Income: 1.21*2.5%=0.03025
-
-Total Income Statement Score:
-- Total Score = 0.053 + 0.0015 + 0.056 + 0.0555 + 0.03025 = 0.19625
-
