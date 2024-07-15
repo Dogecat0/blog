@@ -46,9 +46,8 @@ In this post, I'll summarize the key points from my second month of investing in
 - Apple (AAPL): +0.58%
 - Broadcom (AVGO): +14.41%
 - Vistra Corp (VST): -12.14%
-- Total Return: 6.14%
 
-## **📊 End of Period Adjustments
+## **📊 End of Period Adjustments**
 - Microsoft (MSFT): 14%
 - Apple (AAPL): 12%
 - Alphabet Class A (GOOGL): 12%
