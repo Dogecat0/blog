@@ -98,10 +98,10 @@ Personal Computing:
 
 **Normalized Scores:**
 - R&D Investment (significant investment in R&D with $25 annually): 25/22 = 1.14
-- Product Innovation (innovative products and services): 10/10 = 1
+- Product Innovation (innovative products and services): (1.5 + 1.2) = 2.7
 
 **Weighted Scores:**
-- Innovation and R&D: 1.14*0.1 + 1*0.05 = 0.114 + 0.05 = 0.164
+- Innovation and R&D: 1.14*0.1 + 2.7*0.05 = 0.249
 
 ## Total Business Model and Diversification Score:
 
@@ -111,7 +111,7 @@ Personal Computing:
 
 Those three sections are harder to assess and score, as they require a deeper understanding of the company's strategic decisions, market positioning, and future growth prospects. Below is a simple walkthrough of a quantifiable way to evaluate these aspects which hopefully enables a more objective and comprehensive, data-driven investment analysis.
 
-## **⚠️ Diversification and Risk Mitigation (Weight: 25%):
+## **⚠️ Diversification and Risk Mitigation (Weight: 25%):**
 
 ## Revenue Streams (Weight: 10%):
 
