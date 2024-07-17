@@ -315,7 +315,7 @@ Share Repurchases: Continuation of buyback programs to enhance shareholder value
 **Total Shareholder Returns Score:**
 - Total Score = 0.0224 + 0.024 + 0.01 = 0.0564
 
-## Total Financial Performance Analysis Score:
+## **📊 Final Weighted Score for Valuation**
 
 - Total Score = 0.19625*20% + 0.173*15% + 0.23175*20% + 0.1371*15% + 0.0994*10% + 0.1223*10% + 0.0633*5% + 0.0564*5% = 0.160275
 
