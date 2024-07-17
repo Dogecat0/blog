@@ -6,7 +6,7 @@ tags: [Investment, Stocks, Individual Stock Analysis]
 
 ## **🔎 Intro**
 
-This is post is the caculation of Valuation score for the weighted score calculation of an individual stock. This is a very straightforward calculation as it's all data based similar to Financial Performance section. The key metrics, weights and final scores are in the content below.
+This post is the caculation of Valuation score for the weighted score calculation of an individual stock. This is a very straightforward calculation as it's all data based similar to Financial Performance section. The key metrics, weights and final scores are in the content below.
 
 <!--more-->
 
@@ -173,10 +173,8 @@ This part is scraped from the report and is not included in this post. The data 
 
 This part is scraped from the report and is not included in this post. The data is used to calculate the P/E, EV/EBITDA, P/S and P/B ratios. The final scores are calculated based on the data.
 
-## Total Valuation Score:
+## **📊 Final Weighted Score for Valuation**
 
-0.1807975*0.15 + 0.09067*0.1 + 0.15069*0.15 + 0.15*0.15 + 0.15*0.15 + 0.1035*0.1 + 0.142*0.1 + 0.115*0.1 = 0.153
-
-## **🧮 Calculation for Risks**
+- 0.1807975*0.15 + 0.09067*0.1 + 0.15069*0.15 + 0.15*0.15 + 0.15*0.15 + 0.1035*0.1 + 0.142*0.1 + 0.115*0.1 = 0.153
 
 
