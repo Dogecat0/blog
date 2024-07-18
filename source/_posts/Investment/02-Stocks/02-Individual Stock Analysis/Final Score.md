@@ -26,7 +26,7 @@ Consider industry standards and typical weightings used by professional analysts
 ## 4. Expert Opinion:
 Consult financial analysts and industry experts to determine appropriate weightings.
 
-## **🧮 Suggested Weights:
+## **🧮 Suggested Weights:**
 
 ## 1. Financial Performance Analysis (Weight: 25%)
 Financial performance is a primary indicator of a company’s health and ability to generate profits.
