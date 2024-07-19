@@ -1,5 +1,5 @@
 ---
-title: Inomad Diary-04-Infrastructure-01-Implementations-Azure Setup
+title: Inomad Diary-04-Infrastructure-02-Implementations-01-Azure Setup
 date: 2024-07-18 15:35:25
 tags: [Inomad Diary, Infrastructure, Azure]
 ---
@@ -68,6 +68,10 @@ Azure subscriptions are used to manage billing, access control, and resource lim
 
 Depending on the specific requirements and constraints of the project, you can choose the most suitable approach for creating environments in Azure.
 
+Once the envrionments are created, we can move to next steps.
+
+## **⚠️ Next Steps**
+In the next step, I will be creating a Pulumi project to manage the infrastructure for Inomad on Azure. During the initial steps, we will come back to Azure to create necessary resource, namely Azure Blob Storage for storing the state file of the Pulumi project.
 
 
 
