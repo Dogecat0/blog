@@ -20,7 +20,7 @@ Pulumi is an open-source infrastructure as code tool that allows you to define, 
 During the initial setup of a Pulumi project, you will encouter some new concepts from Pulumi such as [projects](https://www.pulumi.com/docs/concepts/projects/) and [stacks](https://www.pulumi.com/docs/concepts/stack/). 
 
 ## 2. Pulumi State Management
-One another one worth mentioning is when you create a stack, the 'orgName' depends on whether you choose to use [Pulumi Cloud or Self-managed Backends](https://www.pulumi.com/docs/concepts/state/#using-a-self-managed-backend) to mange your Pulumi state files. Since I am using self-managed backend, below are some key points to consider.
+One another one worth mentioning is when you create a stack, the `orgName` depends on whether you choose to use [Pulumi Cloud or Self-managed Backends](https://www.pulumi.com/docs/concepts/state/#using-a-self-managed-backend) to mange your Pulumi state files. Since I am using self-managed backend, below are some key points to consider.
 
 **Where to Store State Files**:
 Decide where to store your state files: You can store your state files locally, in a shared file system, or in a cloud storage bucket like Azure Blob Storage or AWS S3.
@@ -29,10 +29,20 @@ If you choose Azure Blog Storage like me, here are the links to get started:
 - [Azure Blob Storage for Pulumi state](](https://www.pulumi.com/docs/concepts/state/#using-a-self-managed-backend))
 - [Azure Blob Storage](https://azure.microsoft.com/en-gb/products/storage/blobs)
 
-The general steps to set up Azure Blob Storage for Pulumi state are:
-- Create a resource group if you haven't done so to hold the storage account (e.g., rg-dev-storage).
+The general steps to set up an Azure Blob Storage for Pulumi state are:
+- Create a resource group if you haven't done so to hold the storage account (e.g., `rg-dev-storage`).
 - Create a storage account in the resource group. ()
-⚠️ Note here, for Azure storage account, you can only name it with Lowercase letters and numbers and must be between 3 and 24 characters long. It is also universally unique so it's a good idea to include a unique name like your organization name or project name in it.(e.g., <your-project-name>devstorage)Sometimes the error message is not clear and you might get stuck here. [Resource Name Rules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules)
-- Create a Blob container in the storage account to hold the state files specifically for your Pulumi project.(e.g., state-container)
-
-
+⚠️ Note here, for Azure storage account, you can only name it with Lowercase letters and numbers and must be between 3 and 24 characters long. It is also universally unique so it's a good idea to include a unique name like your organization name or project name in it.(e.g., `<your-project-name>devstorage`)Sometimes the error message is not clear and you might get stuck here. [Resource Name Rules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules)
+- Create a Blob container in the storage account to hold the state files specifically for your Pulumi project.(e.g., `state-container`)
+- Get the storage account key and set environment variable `AZURE_STORAGE_KEY` to the name of it for Pulumi to use to store the state files in the Azure Blob Storage.
+- Create and Microsoft Entra user group for developers in the current subscription and assign the `Storage Blob Data Contributor` role to the group. This is to allow developers to access the storage account and container to read and write the state files.
+- Login to Pulumi backend using the Azure Blob Storage account and container URL and the storage account key.
+```bash
+pulumi login azblob://<blob-container-name>?storage_account=<storage-account-name>
+```
+- Create a new stack for the project. Try to use the same name as the environment you are working on (e.g., `dev`, `staging`, `prod`). So the suggested practice here is you creating a stack for each environment you are working on.
+```bash
+pulumi stack init dev
+pulumi config set azure:subscriptionId <subscription-id> --stack dev
+pulumi stack select dev
+```
