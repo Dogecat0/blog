@@ -1,7 +1,7 @@
 ---
 title: Inomad Diary-04-Infrastructure-02-Implementations-02-Create a Pulumi Project
 date: 2024-07-19 11:45:38
-tags: [Inomad Diary, Infrastructure, Azure, Pulumi]
+tags: [Inomad, Infrastructure, Azure, Pulumi]
 ---
 
 ## **🔎 Intro**
@@ -46,3 +46,4 @@ pulumi stack init dev
 pulumi config set azure:subscriptionId <subscription-id> --stack dev
 pulumi stack select dev
 ```
+- When you create a stack you will be asked to specify a secret provider. You can choose to use the default secret provider `passphrase` or use a custom secret provider. If you choose to use a custom secret provider, you will need to provide the [URL](https://www.pulumi.com/docs/cli/commands/pulumi_stack_change-secrets-provider/) of the secret provider. For example, you can use Azure Key Vault as a secret provider. [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/)
