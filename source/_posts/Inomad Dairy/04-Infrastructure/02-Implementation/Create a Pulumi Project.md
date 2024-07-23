@@ -31,7 +31,7 @@ If you choose Azure Blog Storage like me, here are the links to get started:
 
 The general steps to set up an Azure Blob Storage for Pulumi state are:
 - Create a resource group if you haven't done so to hold the storage account (e.g., `rg-dev-storage`).
-- Create a storage account in the resource group. ()
+- Create a storage account in the resource group. (e.g., `dev-storage`)
 ⚠️ Note here, for Azure storage account, you can only name it with Lowercase letters and numbers and must be between 3 and 24 characters long. It is also universally unique so it's a good idea to include a unique name like your organization name or project name in it.(e.g., `<your-project-name>devstorage`)Sometimes the error message is not clear and you might get stuck here. [Resource Name Rules](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules)
 - Create a Blob container in the storage account to hold the state files specifically for your Pulumi project.(e.g., `state-container`)
 - Get the storage account key and set environment variable `AZURE_STORAGE_KEY` to the name of it for Pulumi to use to store the state files in the Azure Blob Storage.
@@ -40,6 +40,10 @@ The general steps to set up an Azure Blob Storage for Pulumi state are:
 ```bash
 pulumi login azblob://<blob-container-name>?storage_account=<storage-account-name>
 ```
+
+## 3. Pulumi Stack Initialization
+Once you have set up the backends for Pulumi state, you can now initialize a Pulumi project and stack. 
+
 - Create a new stack for the project. Try to use the same name as the environment you are working on (e.g., `dev`, `staging`, `prod`). So the suggested practice here is you creating a stack for each environment you are working on.
 ```bash
 pulumi stack init dev
