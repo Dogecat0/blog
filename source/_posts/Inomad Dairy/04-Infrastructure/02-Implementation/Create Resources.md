@@ -68,7 +68,40 @@ The Pulumi code to create a container registry in Azure can be find [here](https
 
 **Things to consider when creating a container registry:**
 - Assign role-based access control (RBAC) roles to the registry to control access to the registry like `AcrPull` and `AcrPush`.
+(⚠️ Note here, when assigning the roles using `pulumi_azure_native.authorization.RoleAssignment` to groups or uses in Pulumi Azure, there is one thing quite confusing:
+`roleDefinitionId`: This is the Identifier of the role definition to assign to the principal, which uses the ID of the roles in Azure as part of it.
+example of the Identifier: `"/subscriptions/${subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000"` and `providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000"`is the ID of the role in Azure you are going to assign.
+Currently in Pulumi latest azure-native module, it does not support retrieving the role ID from the role name, so you need to define a function using Azure CLI and use it in the Pulumi code. For example:
+```python
+def get_role_id_by_name(role_name):
+    try:
+        result = subprocess.run(
+            [
+                "az",
+                "role definition",
+                "list",
+                "--query",
+                f"[?roleName=='{role_name}'].id",
+                "--output",
+                "json",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        roles = json.loads(result.stdout)
+        if roles:
+            return roles[0]
+        return None
+    except subprocess.CalledProcessError as e:
+        print(f"Error running az command: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return None
+```
+)
 - SKU: Choose the SKU based on the requirements of the application. The SKU determines the capabilities and features of the registry. Here it has `Basic` and `Standard` SKUs.
 - Registry Name: The name of the registry must be unique within Azure. It must be between 5 and 50 characters long alphanumeric.
-⚠️ Note here, since the registry name must be unique within Azure, so it's a good idea to include a unique name like your organization name or project name in it. (e.g., `<your-project-name>containerregistry`). This also applies to other resources in Azure. It's also a good practice if you can add corresponding environment names to the resources to make it easier to identify which resources belong to which environment.
+(⚠️ Note here, since the registry name must be unique within Azure, so it's a good idea to include a unique name like your organization name or project name in it. (e.g., `<your-project-name>containerregistry`). This also applies to other resources in Azure. It's also a good practice if you can add corresponding environment names to the resources to make it easier to identify which resources belong to which environment.)
 - Export the registry name and login server to use in the container app deployment.
