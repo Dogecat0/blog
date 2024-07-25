@@ -105,3 +105,47 @@ def get_role_id_by_name(role_name):
 - Registry Name: The name of the registry must be unique within Azure. It must be between 5 and 50 characters long alphanumeric.
 (⚠️ Note here, since the registry name must be unique within Azure, so it's a good idea to include a unique name like your organization name or project name in it. (e.g., `<your-project-name>containerregistry`). This also applies to other resources in Azure. It's also a good practice if you can add corresponding environment names to the resources to make it easier to identify which resources belong to which environment.)
 - Export the registry name and login server to use in the container app deployment.
+
+## **🖥️ SQL Server and Database**
+
+Azure SQL Database is a fully managed relational database service that provides a broad variety of features to enable you to scale, secure, and monitor your database. More about [Azure SQL Database](https://docs.microsoft.com/en-us/azure/azure-sql/database/).
+
+The Pulumi code to create a SQL Server and SQL Database in Azure can be find [here](https://www.pulumi.com/registry/packages/azure-native/api-docs/sql/).
+
+**Things to consider when creating a SQL Server and SQL Database:**
+- Create a `KeyVault` and assign the Server credentials to the KeyVault to secure them. Of course you need to assign the proper RBAC roles to the KeyVault to allow the SQL Server to access the credentials.
+(⚠️ Note here, pulumi_azure_native does not suppport retireving the actual key value from the KeyVault, so you need to use Azure CLI to retrieve the secret value from the KeyVault and use it in the Pulumi code. For example:
+```python
+def get_kv_secret(vault_name, secret_name, access_token, secret_version=None):
+    url = f"https://{vault_name}.vault.azure.net/secrets/{secret_name}"
+    if secret_version:
+        url += f"/{secret_version}"
+    url += "?api-version=7.0"
+
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+    }
+
+    response = requests.get(url, headers=headers, timeout=30)
+    if response.status_code != 200:
+        raise requests.exceptions.HTTPError(f"Failed to get secret: {response.text}")
+
+    secret = response.json()
+    print(json.dumps(secret))
+    return secret
+```
+)
+
+## **🫙 Storage Account and Blob Container
+
+This is the straghtforward part of the implementation. The Pulumi code to create a Storage Account and Blob Container in Azure can be find [here](https://www.pulumi.com/registry/packages/azure-native/api-docs/storage/).
+
+## **🛢️ ContainerApp
+
+Azure Container Apps is a fully managed serverless container service that enables you to deploy and run containerized applications without having to manage the underlying infrastructure. More about [Azure Container Apps](https://docs.microsoft.com/en-us/azure/container-apps/).
+
+The Pulumi code to create a Container App in Azure can be find [here](https://www.pulumi.com/registry/packages/azure-native/api-docs/web/containerapp/).
+
+**Things to consider when creating a Container App:**
+- First, you need to create a image source from the container registry you created earlier and here you also need to install a new module `pulumi_docker`. Example can be found here in [Pulumi Docs](https://www.pulumi.com/docs/reference/pkg/docker/image/). 
+(⚠️ Note here, in `RegistryArgs` you need to fill in the registry credentials to access the container registry. If you've created your registry without having credentials, you can also use `az acr login` with your Microsoft Entra ID which you should have assigned acr permissions to or a Service Principle to access the registry.)
