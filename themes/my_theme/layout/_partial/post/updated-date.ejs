@@ -1,0 +1,5 @@
+<% if (updated !== created) { %>
+<p class="<%= class_name %>">
+    Updated: <time class="dt-published" datetime="<%= date_xml(post.updated) %>" itemprop="datePublished"><%= date(post.updated, date_format) %></time>
+</p>
+<% } %>
