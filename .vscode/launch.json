@@ -7,17 +7,41 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Hexo Server",
             "skipFiles": [
                 "<node_internals>/**"
             ],
+            "restart": true,
+            "runtimeExecutable": "node",
             "program": "${workspaceFolder}/node_modules/hexo-cli/bin/hexo",
             "args": [
                 "server",
+                "--debug",
                 "--config",
                 "_config.yml,_config.local.yml",
-                "--debug",
-            ]
+            ],
+            "console": "integratedTerminal",
+        },
+        {
+            // Run 'npm run watch:tailwind' in the integrated terminal
+            "type": "node",
+            "request": "launch",
+            "name": "Watch Tailwind CSS",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "watch:tailwind"
+            ],
+            "console": "integratedTerminal",
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug Hexo",
+            "configurations": ["Launch Hexo Server", "Watch Tailwind CSS"]
         }
     ]
 }
