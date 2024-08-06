@@ -1,3 +1,12 @@
+<% 
+  var createdDateText = date(post.date, date_format);
+  var updatedDateText = post.updated ? date(post.updated, date_format) : null; 
+%>
+
 <p class="<%= class_name %>">
-  <time class="dt-published" datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, date_format) %></time>
+  Published: <time class="dt-published" datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= createdDateText %></time>
+  <br>
+  <% if (updatedDateText && updatedDateText !== createdDateText) { %>
+  Updated: <time class="dt-published" datetime="<%= date_xml(post.updated) %>" itemprop="datePublished"><%= updatedDateText  %></time>
+  <% } %>
 </p>
