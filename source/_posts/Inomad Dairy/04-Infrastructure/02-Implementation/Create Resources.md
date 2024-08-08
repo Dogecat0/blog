@@ -182,4 +182,14 @@ The Pulumi code to create a Container App in Azure can be find [here](https://ww
 - `log_analytics_configuration`: Log Analytics configuration, must only be provided when destination is configured as 'log-analytics'. This leads to the creation of another resource `LogAnalyticsWorkspace` which is a workspace for storing log data. [Microsoft doc](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash). [Pulumi doc](https://www.pulumi.com/registry/packages/azure-native/api-docs/operationalinsights/workspace/).
 - `custom_domain_configuration`: Custom domain configuration allows you to map a custom domain (e.g., www.my-name.com) to your Azure managed environment or specific resources within it. This is often necessary when you want your application to be accessible via a branded domain name rather than the default Azure-generated domain name.
 
-## **🔍 Insights**
+## **🛜 Network**
+
+Network resources in Azure are used to connect and isolate resources in Azure. They provide security and control over the traffic flow between resources. The network itself is a huge topic, here I will just list the basic network settings and points to configure Azure infrastructure with Pulumi.  More about [Azure Network](https://docs.microsoft.com/en-us/azure/virtual-network/).
+
+Things to consider when creating a Network:
+
+**1. Virtual Network (VNET):** A virtual network is a network that is logically isolated from other networks in Azure. It allows you to control the flow of traffic between resources in the network and between the network and the internet. More about [Azure Virtual Network](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview).
+
+⚠️ Concepts I picked up here:
+- `address_space`: The address space of the virtual network. This is the range of IP addresses that the virtual network can use. Normally, you can use the default address space `10.0.0./16`. 
+- `subnets`: The subnets of the virtual network. Subnets are used to divide the virtual network into smaller networks. Each subnet has its own range of IP addresses. Normally, you can use the default subnet `10.0.1.0/24` for `web-subnet` and `10.0.1.0/24` for `db-subnet`. [Here](https://techcommunity.microsoft.com/t5/itops-talk-blog/configuring-azure-virtual-network-subnets-with-cidr-notation/ba-p/2047809) is a good article about CIDR notation.
