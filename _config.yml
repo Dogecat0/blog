@@ -4,20 +4,20 @@
 
 # Site
 title: Zhicheng's Blog
-subtitle: 'A Chronicles of a Self-taught Programmer: Learn to Debug Life'
+subtitle: "A Chronicles of a Self-taught Programmer: Learn to Debug Life"
 description: |
-             Welcome to my blog!
-             This blog chronicles my personal exploration into the worlds of coding and life itself.
-             Here, I share the things I encounter while learning to program.
-             Think of it as me trying to debug life while getting better at debugging code.
-             Fueled by my own insatiable curiosity (and ChatGPT's endless patience), bolstered by my humble attitude of learning (with millions of searches on Google),
-             I'm pretty confident this debugging process will be wrapped up by the end of this century.
+  Welcome to my blog!
+  This blog chronicles my personal exploration into the worlds of coding and life itself.
+  Here, I share the things I encounter while learning to program.
+  Think of it as me trying to debug life while getting better at debugging code.
+  Fueled by my own insatiable curiosity (and ChatGPT's endless patience), bolstered by my humble attitude of learning (with millions of searches on Google),
+  I'm pretty confident this debugging process will be wrapped up by the end of this century.
 
-             ✉️: zcmmwang@gmail.com
+  ✉️: zcmmwang@gmail.com
 keywords:
 author: Zhicheng Wang
 language: en
-timezone: 'Europe/London'
+timezone: "Europe/London"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -45,7 +45,7 @@ titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
-  exclude: ''
+  exclude: ""
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -58,14 +58,14 @@ prismjs:
   preprocess: true
   line_number: true
   line_threshold: 0
-  tab_replace: ''
+  tab_replace: ""
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 
@@ -91,7 +91,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: "mtime"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -108,36 +108,36 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: my_theme
-    
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: 'git'
-  repo: 'git@github.com:Dogecat0/Dogecat0.github.io.git'
+  type: "git"
+  repo: "git@github.com:Dogecat0/Dogecat0.github.io.git"
 
 # Markdown Renderer
 markdown:
-  preset: 'default'
+  preset: "default"
   render:
     html: true
     xhtmlOut: false
-    langPrefix: 'language-'
+    langPrefix: "language-"
     breaks: true
     linkify: true
     typographer: true
-    quotes: '“”‘’'
+    quotes: "“”‘’"
   enable_rules:
   disable_rules:
   plugins:
   anchors:
     level: 2
-    collisionSuffix: ''
+    collisionSuffix: ""
     permalink: false
-    permalinkClass: 'header-anchor'
-    permalinkSide: 'left'
-    permalinkSymbol: '¶'
+    permalinkClass: "header-anchor"
+    permalinkSide: "left"
+    permalinkSymbol: "¶"
     case: 0
-    separator: '-'
+    separator: "-"
   images:
     lazyload: false
     prepend_root: false
