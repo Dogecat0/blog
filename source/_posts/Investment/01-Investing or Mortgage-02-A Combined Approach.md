@@ -4,13 +4,13 @@ date: 2024-05-21 16:02:35
 tags: [Investment, Mortgage]
 ---
 
-## **🔎 Intro**
+### **🔎 Intro**
 
 In the last post, I quickly compared the outcomes of investing in the stock market or paying off the mortgage early over a 2-year and 5-year period. In this post, I'll explore the option of investing in stocks and paying off the mortage simultaneously, and see how the numbers stack up for 2-year period.
 
 <!-- more -->
 
-## **Assumptions**
+### **Assumptions**
 
 - Monthly Cash Available: £2,000
 - Monthly Mortgage Payment: £2,000
@@ -22,7 +22,7 @@ In the last post, I quickly compared the outcomes of investing in the stock mark
 
 We'll use two scenarios this time to do our analysis:
 
-## **Scenario 1: Invest in stocks with £2,000 monthly and withdraw £11,000 towards the mortgage at the end of year.**
+### **Scenario 1: Invest in stocks with £2,000 monthly and withdraw £11,000 towards the mortgage at the end of year.**
 
 ### **Investment Growth:**
 
@@ -40,19 +40,20 @@ Year-end Investment Value = £15,040 * (1 + 0.085/12)**12 + £2,000 * ((1 + 0.08
 
 ### **Mortgage Reduction:**
 
-```
+````
 Monthly interest rate: 5.8%/12 = 0.0048333
 
 Year 1:
 
-Month 1: 
+Month 1:
 Principal = £111,000
 Interest = £111,000 * 0.0048333 = £536.99
 Payment = £2,000
 Principal Reduction = £2,000 − £536.99 = £1,463.01
 New Principal = £111,000 − £1,463.01 = £109,536.99
 ​```
-```
+````
+
 Continue this calculation for 24 months to get the peirod-end principal.
 
 ```python
@@ -100,8 +101,7 @@ total_interest_1, total_interest_2
 
 Total interest paid over 2 years: $10,197.47
 
-
-## **Scenario 2: Invest in stocks with £1,100 monthly and use £900 towards the mortgage at each month.**
+### **Scenario 2: Invest in stocks with £1,100 monthly and use £900 towards the mortgage at each month.**
 
 ### **Investment Growth:**
 
@@ -111,40 +111,40 @@ Total interest paid over 2 years: $10,197.47
 Year-end Investment Value = £1,100 * ((1 + 0.085/12)**24 - 1)/(0.085/12) &approx £27,480
 
 ```
+
 ​
+
 ### **Mortgage Reduction:**
 
-```
+````
 Month 1:
 Principal = £111,000
 Interest = £111,000×0.0048333 = £536.99
 Payment = £2,000 + £900 − £536.99 = £2,363.01
 New Principal = £111,000 − £2,363.01 = £108,636.99
 ​```
-```
+````
 
 Continue this calculation for 24 months to get the peirod-end principal using the same calculation as above.
 
 Total interest paid over 2 years: $9,608.45
 
-## **Conclusion**
+### **Conclusion**
 
 ### **Scenario 1: **
+
 - Total interest paid over 2 years: £10,197.47
 - Investment value after 2 years: £30,139
 
 ### **Scenario 2:**
+
 - Scenario 2: Total interest paid over 2 years: £9,608.45
 - Investment value after 2 years: £27,480
 
 In this case, the second scenario is better as it results in lower interest paid and a higher investment value after 2 years with the difference of £589.02. However, the Investment value is still lower than the Scenario 1 due to the lower monthly investment amount with the difference of £2,659.
 
-So in summary, scenario 1 is gaining more in total at £2,659 - £589.02 = £2069.98 in 2-year period. 
+So in summary, scenario 1 is gaining more in total at £2,659 - £589.02 = £2069.98 in 2-year period.
 
-## **Intersting Insights**
+### **Intersting Insights**
 
 Again this whole analysis was generated using GPT4o. Although the accuracy and the numbers are not 100% accurate, the insights are very interesting and the short of amount of time it took to generate this analysis is very impressive. This could be further developed to provide more accurate and detailed analysis for sure but more importantly, it can be used as a tool to generate ideas and insights for personal finance.
-
-
- 
-

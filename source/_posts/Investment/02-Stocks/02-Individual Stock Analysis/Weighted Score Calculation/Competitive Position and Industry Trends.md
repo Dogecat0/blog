@@ -4,37 +4,40 @@ date: 2024-07-16 12:15:53
 tags: [Investment, Stocks, Individual Stock Analysis]
 ---
 
-## **🔎 Intro**
+### **🔎 Intro**
 
 In the this post, I will continue the calculation of the weighted scores for three Competitive Position, Industry Trends and Management/Governance. Following the same quantifying process of the previous post on Business Model and Diversification Analysis, here I will just list the key metrics, weights and final scores.
 
 <!--more-->
 
-## **🔢 Content Extracted from the Report**
+### **🔢 Content Extracted from the Report**
 
 Refer to the corresponding section in the [report](https://dogecat0.github.io/2024/07/01/Investment/02-Stocks/02-Individual%20Stock%20Analysis/Analysis%20Report.html) for the related content used for the calculation.
 
-## **🧮 Calculation for Competitive Position**
+### **🧮 Calculation for Competitive Position**
 
-## Overall Section Weights:
+### Overall Section Weights:
+
 - Market Leasership: 40%
 - Innovations and R&D: 25%
 - Brand and Reputation: 15%
 - Strategic Partnerships: 10%
 - Competitive Advantage: 10%
 
-## Weighted Section Scores:
+### Weighted Section Scores:
+
 - Market Leasership: 0.1408
 - Innovations and R&D: 0.066
 - Brand and Reputation: 0.021375
 - Strategic Partnerships: 0.0092
 - Competitive Advantage: 0.007
 
-## Total Competitive Position Score: 0.244375
+### Total Competitive Position Score: 0.244375
 
-## **🧮 Calculation for Industry Trends**
+### **🧮 Calculation for Industry Trends**
 
-## Overall Section Weights:
+### Overall Section Weights:
+
 - Digital Transformation: 15%
 - Cloud Computing: 20%
 - AI and Machine Learning: 20%
@@ -43,7 +46,8 @@ Refer to the corresponding section in the [report](https://dogecat0.github.io/20
 - Gaming Industry Growth: 10%
 - Internet of Things(IoT): 10%
 
-## Weighted Section Scores:
+### Weighted Section Scores:
+
 - Digital Transformation: 0.1635
 - Cloud Computing: 0.198
 - AI and Machine Learning: 0.212
@@ -52,11 +56,12 @@ Refer to the corresponding section in the [report](https://dogecat0.github.io/20
 - Gaming Industry Growth: 0.1175
 - Internet of Things(IoT): 0.109
 
-## Total Industry Trends Score: 0.164025
+### Total Industry Trends Score: 0.164025
 
-## **🧮 Calculation for Management/Governance**
+### **🧮 Calculation for Management/Governance**
 
-## Overall Section Weights:
+### Overall Section Weights:
+
 - Leadership: 20%
 - Board of Directors: 20%
 - Corporate Governance: 20%
@@ -64,7 +69,8 @@ Refer to the corresponding section in the [report](https://dogecat0.github.io/20
 - Shareholder Engagement: 15%
 - Strategic Initiatives and Innovation: 10%
 
-## Weighted Section Scores:
+### Weighted Section Scores:
+
 - Leadership: 0.04
 - Board of Directors: 0.038
 - Corporate Governance: 0.036
@@ -72,4 +78,4 @@ Refer to the corresponding section in the [report](https://dogecat0.github.io/20
 - Shareholder Engagement: 0.02025
 - Strategic Initiatives and Innovation: 0.0095
 
-## Total Management/Governance Score: 0.1645
+### Total Management/Governance Score: 0.1645
