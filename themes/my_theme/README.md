@@ -2,7 +2,7 @@
 
 Blog theme for [Hexo].
 
-## **Installation**
+### **Installation**
 
 If you would like to enable the RSS, the [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed) plugin is also required.
 
@@ -10,7 +10,7 @@ If you would like to enable the RSS, the [hexo-generator-feed](https://github.co
 
 Modify `theme` setting in `_config.yml` to `my_theme`.
 
-``` diff
+```diff
 _config.yml
 - theme: some-theme
 + theme: my_theme
@@ -18,16 +18,16 @@ _config.yml
 
 ### **Update**
 
-``` bash
+```bash
 cd themes/my_theme
 git pull
 ```
 
-## **Configuration**
+### **Configuration**
 
 It is recommended not to modify `theme/my_theme/_config.yml` but to use the `theme_config` section of `_config.yml` or to create `_config.my_theme.yml` (see [Alternate Theme Config](https://hexo.io/docs/configuration#Alternate-Theme-Config)).
 
-``` yml
+```yml
 # Header
 menu:
   Home: /
@@ -48,16 +48,15 @@ copyright: |-
 # Sidebar
 sidebar: right
 widgets:
-- category
-- tag
-- archive
-- recent_posts
+  - category
+  - tag
+  - archive
+  - recent_posts
 
 # Miscellaneous
 google_analytics:
 favicon: /favicon.png
 twitter:
-
 # Header links
 # Each name must correspond to the icon name of Fork Awesome
 # https://forkaweso.me/Fork-Awesome/icons/
@@ -80,7 +79,7 @@ twitter:
 - **twitter** - Twitter ID
 - **links** - Header links with icon, specified links will appear at the top right corner of the page
 
-## **Features**
+### **Features**
 
 ### **Fancybox**
 
