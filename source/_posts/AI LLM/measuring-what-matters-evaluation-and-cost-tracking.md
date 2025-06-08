@@ -4,7 +4,6 @@ date: 2025-06-07 21:30:00
 tags:
   - Python
   - LLM
-  - MLOps
   - Evaluation
   - Cost Management
   - AI
