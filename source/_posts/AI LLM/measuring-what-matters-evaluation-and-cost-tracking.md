@@ -16,7 +16,7 @@ In this post, we will dive a bit into model evaluation. Building with Large Lang
 1.  **How do you know if the output is any good?**
 2.  **How do you prevent API costs from spiraling out of control?**
 
-Today, I tackled both of these head-on by building a robust evaluation and cost-tracking framework. It's an (again) interesting but necessary step for moving from a fun prototype to a reliable tool.
+Today, I tackled both of these head-on by building a robust evaluation and cost-tracking framework. It's an (again) interesting learning journey but important step for moving from a fun prototype to a reliable tool.
 
 <!-- more -->
 
@@ -59,7 +59,7 @@ This script runs the full analysis pipeline and saves the structured JSON output
 
 ### Step 2: Tracking Every Penny with `CostTracker` and `CostRegistry`
 
-LLM costs are measured in fractions of a cent per thousand tokens, which can add up deceptively fast. I needed a way to track this meticulously.
+LLM costs are measured per million tokens, which can add up deceptively fast. I needed a way to track this meticulously.
 
 First, I created `CostTracker`, a simple class to record each API request's model, token counts, and purpose.
 

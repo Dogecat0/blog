@@ -12,16 +12,18 @@ categories:
   - AI Projects
 ---
 
-It's been a while, but I'm happy to be back to blogging (helped by my AI assistants) with a new project and a new series! But this isn't just about building another AI tool. This is a dual experiment:
+It's been a while, but I'm happy to be back to blogging (helped by my AI assistants) with a new project and a new series! This is a dual experiment:
 
 1.  Can we build an AI-powered tool to automate the analysis of complex financial documents for the purpose of learning the latest AI LLM techniques?
-2.  How far can a developer push a project by truly _partnering_ with AI coding assistants?, and I'll be sharing the journey right here.
+2.  How far can a developer push a project by truly _partnering_ with AI coding assistants?
+
+I'll be sharing the journey right here.
 
 ### The Problem: Information Overload in Finance
 
-Before the project I had not much experience with financial documents, only a basic understanding of their importance and relevance. After spending some time working with the filings, I realized the challenge: You're faced with mountains of dense, jargon-filled documents like 10-Ks and 10-Qs. Buried within these SEC filings is a goldmine of information about a company's performance, strategy, and risks. But extracting and understanding it is a tedious, manual process and never even mention that not all SEC filings themselves are not standardized.
+Before the project I had not much experience with financial documents especially company filings, only a basic understanding of their importance and relevance. After spending some time digging into them, I realized the challenge: You're faced with mountains of dense, jargon-filled documents like 10-Ks and 10-Qs. Buried within these SEC filings is a goldmine of information about a company's performance, strategy, and risks. But extracting and understanding it is a tedious, manual process and never even mention that not all SEC filings themselves are not standardized.
 
-But one thing we can be sure is with the power of LLMs, and the huge amount of text data offered by those filings, we can swim in the sea of information and surface the insights that matter.
+There are many websites have information about companies like Yahoo Finance, Google Finance, and others. But to build a platform with LLMs that can truly understand and analyze these documents, it's essential to work directly with the raw data. This is where the SEC's EDGAR database comes in, providing access to all public filings.
 
 <!-- more -->
 
@@ -70,6 +72,4 @@ src/
 
 ### What's Next?
 
-This is just the beginning. The foundation is laid, but building a reliable AI system requires more than just calling an API. Need to measure its performance, control its costs, and continuously improve its accuracy.
-
-In my next post, I'll dive into the crucial framework I've just finished building for **model evaluation and cost tracking**. It's one thing to build a cool demo, but it's another to build something you can actually measure and trust.
+This is just the beginning. The foundation is laid, but building a reliable AI system requires more than just calling an API. Next post will dive a bit more into the architecture and the core components of the application, including how the AI assistants are integrated into the development process.
