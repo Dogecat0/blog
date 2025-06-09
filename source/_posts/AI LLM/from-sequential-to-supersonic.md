@@ -9,6 +9,7 @@ tags:
   - asyncio
   - FastAPI
 categories:
+  - AI Projects
   - Software Development
 ---
 
@@ -16,7 +17,9 @@ When I first started building this application, my focus was on a simple goal: u
 
 But then, I started to find out each analysis takes time especially when I wanted to analyze multiple sections like Business, Management's Discussion and Analysis (MD&A), Risk Factors, and Financials. Each of these sections required a separate LLM API call, and I was making those calls one after another in a synchronous loop.
 
-That's when I hit the wall, together with the previous 'cache' implementation that wasn't caching anything. The user experience was not ideal, and I knew I had to do something about it. So in this post I will show how to transform a sequential script to a multi-layered concurrent application that feels responsive and powerful to reduce the wait time from **a couple of min** to just  seconds.
+That's when I hit the wall, together with the previous 'cache' implementation that wasn't caching anything. The user experience was not ideal, and I knew I had to do something about it. So in this post I will show how to transform a sequential script to a multi-layered concurrent application that feels responsive and powerful to reduce the wait time from **a couple of min** to just seconds.
+
+<!-- more -->
 
 ### The Agony of the Synchronous Loop
 
