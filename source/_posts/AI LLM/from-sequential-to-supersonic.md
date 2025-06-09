@@ -10,7 +10,6 @@ tags:
   - FastAPI
 categories:
   - AI Projects
-  - Software Development
 ---
 
 When I first started building this application, my focus was on a simple goal: use a Large Language Model (LLM) to read dense SEC filings and extract structured, easy-to-digest insights. The initial prototype was magical. I could feed it the "Business" section of a 10-K filing, and it would return a beautiful JSON object with competitive advantages, key products, and more.
