@@ -1,6 +1,6 @@
 ---
 title: "Seeing is Believing: A Tale of Two Demos (and the Power of Caching)"
-date: 2025-06-10 09:00:00
+date: 2025-06-09 09:00:00
 tags:
 - Python
 - FastAPI

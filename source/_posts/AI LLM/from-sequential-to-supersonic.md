@@ -1,6 +1,6 @@
 ---
 title: "From Sequential to Supersonic: A Developer's Journey into Parallel LLM Queries"
-date: 2023-10-27 10:00:00
+date: 2025-06-09 12:00:00
 tags:
   - Python
   - LLM
