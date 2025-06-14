@@ -14,6 +14,8 @@ categories:
 
 For our financial analysis tool, the latest series of updates focuses on an architectural enhancement: the integration of a persistent database layer for caching, performance tracking, and data retention. This post details the changes, the rationale behind them, and how they set the stage for future development.
 
+<!-- more -->
+
 ### The Problem: The Cost of Being Stateless
 
 Previously, our application performed a complete, on-demand analysis for every API request. While this ensured the data was always fresh, it had significant drawbacks:
