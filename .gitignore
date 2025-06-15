@@ -8,3 +8,11 @@ public/
 _multiconfig.yml
 repomix-output.xml
 demos/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.mp4
+*.webm

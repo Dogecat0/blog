@@ -33,25 +33,38 @@ This update introduces a complete database backend to store the results of compr
 
 #### Key Components of the New Architecture:
 
-*   **Database Models (`src/models/database_models.py`):** I've introduced two SQLAlchemy models: `Company` and `Analysis`. The `Analysis` table is the star of the show, storing not just the JSON blob of a completed analysis, but also the specific parameters used to generate it (`include_business`, `max_10k_history`, etc.), performance metrics like `cost_usd` and `processing_time`, and a timestamp.
+1. **Database Models (`src/models/database_models.py`):** I've introduced two SQLAlchemy models: `Company` and `Analysis`. The `Analysis` table is the star of the show, storing not just the JSON blob of a completed analysis, but also the specific parameters used to generate it (`include_business`, `max_10k_history`, etc.), performance metrics like `cost_usd` and `processing_time`, and a timestamp.
 
-*   **Repository Pattern (`src/repositories/analysis_repository.py`):** To maintain a clean separation of concerns, all direct database interactions are now handled by a new `AnalysisRepository`. This data access layer abstracts the database logic away from the API endpoints. The router is no longer responsible for how data is stored or retrieved; it simply asks the repository.
+2. **Repository Pattern (`src/repositories/analysis_repository.py`):** To maintain a clean separation of concerns, all direct database interactions are now handled by a new `AnalysisRepository`. This data access layer abstracts the database logic away from the API endpoints. The router is no longer responsible for how data is stored or retrieved; it simply asks the repository.
 
-*   **Intelligent Caching Logic (`src/api/routers/dashboard_router.py`):** The main `comprehensive_analysis` endpoint has been significantly enhanced. Before initiating a new analysis, it now queries the `AnalysisRepository` for an existing result that matches the exact request parameters (ticker, sections to include, history length) and is within a specified age limit (e.g., 24 hours). If a valid entry is found, it's returned instantly, saving both time and money.
+3. **Intelligent Caching Logic (`src/api/routers/dashboard_router.py`):** The main `comprehensive_analysis` endpoint has been significantly enhanced. Before initiating a new analysis, it now queries the `AnalysisRepository` for an existing result that matches the exact request parameters (ticker, sections to include, history length) and is within a specified age limit (e.g., 24 hours). If a valid entry is found, it's returned instantly, saving both time and money.
 
-*   **Database Initialization (`src/db/init_db.py`):** The application now automatically initializes the SQLite database and creates the necessary tables on startup, ensuring a smooth first-run experience.
+4. **Database Initialization (`src/db/init_db.py`):** The application now automatically initializes the SQLite database and creates the necessary tables on startup, ensuring a smooth first-run experience.
 
 ### Beyond Caching: New Endpoints and Robust Testing
 
 This architectural shift also enabled new features and demanded a higher standard of testing.
 
-*   **Analysis History:** I've added a new endpoint, `GET /analyses/{ticker}`, which allows users to retrieve a history of all previously run analyses for a given company. Another endpoint, `DELETE /analyses/{ticker}`, provides a way to clear the cache for a specific ticker.
+1. **Analysis History:** I've added a new endpoint, `GET /analyses/{ticker}`, which allows users to retrieve a history of all previously run analyses for a given company. Another endpoint, `DELETE /analyses/{ticker}`, provides a way to clear the cache for a specific ticker.
 
-*   **Comprehensive Testing (`tests/test_analysis_repository.py`):** A change this significant requires rigorous testing. I've built a full test suite for the `AnalysisRepository` using `pytest`. These tests cover everything from basic save-and-retrieve operations to more complex scenarios like ensuring parameter-matching works correctly, stale data is properly filtered by `max_age_hours`, and database relationships are sound.
+2. **Comprehensive Testing (`tests/test_analysis_repository.py`):** A change this significant requires rigorous testing. I've built a full test suite for the `AnalysisRepository` using `pytest`. These tests cover everything from basic save-and-retrieve operations to more complex scenarios like ensuring parameter-matching works correctly, stale data is properly filtered by `max_age_hours`, and database relationships are sound.
 
 ### Retiring Old Code
 
 With the introduction of this more sophisticated database layer, the old, file-based `OpenAICacheManager` has been deprecated. The new repository caches the entire, final analysis object, which is a much more efficient and powerful approach than caching individual, intermediate LLM calls.
+
+### Quick demo
+<!-- add an image of the demo here -->
+{% asset_img cached-googl-data-in-database.png "Screenshot of the new database caching layer" %}
+<p class="text-center text-muted mt-2"><em>Cached GOOGL analysis result in database.</em></p>
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/cbP9WS5Qm4c"
+    title="SEC Filing Analysis Demo" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+</iframe>
+<p class="text-center text-muted mt-2"><em>Now analysis is generated instantly.</em></p>
 
 ### Final Thoughts
 
