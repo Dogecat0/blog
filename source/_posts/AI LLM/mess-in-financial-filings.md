@@ -1,5 +1,5 @@
 ---
-title: 'Mess in Financial Filings: A new Challenges of Data Extraction'
+title: 'Mess in SEC Financial Filings: A new Challenge of Data Extraction'
 date: 2025-06-19 23:15:27
 tags:
   - Python
