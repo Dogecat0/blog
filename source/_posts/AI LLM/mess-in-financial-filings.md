@@ -7,6 +7,7 @@ tags:
   - Financial Filings
 categories:
   - Project Update
+  - AI Projects
 ---
 
 In the world of financial data extraction, the challenge of parsing and interpreting complex documents is ever-present. As I continue to refine my financial analysis tool, I've encountered a new set of challenges that highlight the messy nature of financial filings. This post delves into these issues and how they impact the accuracy and reliability of data extraction.

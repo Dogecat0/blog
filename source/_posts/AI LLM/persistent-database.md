@@ -10,6 +10,7 @@ tags:
   - Software Engineering
 categories:
   - Project Update
+  - AI Projects
 ---
 
 For our financial analysis tool, the latest series of updates focuses on an architectural enhancement: the integration of a persistent database layer for caching, performance tracking, and data retention. This post details the changes, the rationale behind them, and how they set the stage for future development.
