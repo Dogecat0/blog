@@ -9,7 +9,6 @@ tags:
   - Refactoring
   - Software Engineering
 categories:
-  - Project Update
   - AI Projects
 ---
 

@@ -10,7 +10,6 @@ tags:
   - 10-Q
   - FastAPI
 categories:
-  - Technical Deep Dive
   - AI Projects
 ---
 

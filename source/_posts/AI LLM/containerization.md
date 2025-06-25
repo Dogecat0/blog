@@ -1,6 +1,6 @@
 ---
 title: 'Containerization: A Case Study in Environment and Configuration Management'
-date: 2024-06-24 20:00:00
+date: 2025-06-24 20:00:00
 tags:
   - Docker
   - Docker Compose

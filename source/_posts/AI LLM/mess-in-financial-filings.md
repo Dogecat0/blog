@@ -6,7 +6,6 @@ tags:
   - Data Extraction
   - Financial Filings
 categories:
-  - Project Update
   - AI Projects
 ---
 
