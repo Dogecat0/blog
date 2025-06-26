@@ -55,4 +55,4 @@ The persistent `protocol not available` error indicated that the Docker Desktop 
 
 ### Conclusion
 
-The primary goal of containerizing the application was achieved. The key takeaway is the critical importance of a well-defined configuration management strategy. Hardcoding secrets or relying on IDE-specific features for environment setup is brittle and will fail in a true deployment pipeline. By abstracting configuration into a `.env` file and systematically propagating it through the container orchestration layer into the application, we have a more portable, secure, and production-ready system.
+The primary goal of containerizing the application was achieved. The key takeaway is the critical importance of a well-defined configuration management strategy. But again, like many things in software development, the process always involves unexpected challenges and debugging efforts.
