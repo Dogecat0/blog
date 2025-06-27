@@ -9,7 +9,7 @@ tags:
   - Environment Variables
   - Troubleshooting
 categories:
-  - AI Projects
+  - SEC Analysis
 ---
 
 Today's objective was to containerize the SEC filing analysis application to ensure a consistent and reproducible runtime environment. This process involved not only creating the necessary Docker artifacts but also refactoring the application's configuration to adhere to best practices for handling secrets and environment-specific variables.

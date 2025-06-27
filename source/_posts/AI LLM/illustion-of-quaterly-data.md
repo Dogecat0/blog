@@ -10,7 +10,7 @@ tags:
   - 10-Q
   - FastAPI
 categories:
-  - AI Projects
+  - SEC Analysis
 ---
 
 When building financial analysis tools, one of the most common and dangerous assumptions is that the financial data you receive—whether from an API or directly from SEC filings—represents discrete, isolated time periods. A "Q2" report, for instance, should contain data only for the second quarter. Right?

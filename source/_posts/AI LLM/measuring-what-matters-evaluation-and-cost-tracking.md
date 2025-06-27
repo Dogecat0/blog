@@ -8,7 +8,7 @@ tags:
   - Cost Management
   - AI
 categories:
-  - AI Projects
+  - SEC Analysis
 ---
 
 In this post, we will dive a bit into model evaluation. Building with Large Language Models (LLMs) presents two major challenges:

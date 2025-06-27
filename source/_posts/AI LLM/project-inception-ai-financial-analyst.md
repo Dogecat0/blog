@@ -9,7 +9,7 @@ tags:
   - FinTech
   - AI
 categories:
-  - AI Projects
+  - SEC Analysis
 ---
 
 It's been a while, but I'm happy to be back to blogging (helped by my AI assistants) with a new project and a new series! This is a dual experiment:

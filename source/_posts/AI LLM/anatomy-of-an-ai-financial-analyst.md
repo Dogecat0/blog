@@ -9,7 +9,7 @@ tags:
   - Architecture
   - AI
 categories:
-  - AI Projects
+  - SEC Analysis
 ---
 
 In the last post, I briefly outlined the project for an AI-powered tool to analyze SEC filings. In this blog, I'm diving deep into the architecture and core components that form the engine of this financial analyst.

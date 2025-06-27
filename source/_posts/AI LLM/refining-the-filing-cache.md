@@ -10,7 +10,7 @@ tags:
 - AI
 - Copilot
 categories:
-- AI Projects
+- SEC Analysis
 ---
 
 After running a few analyses, I noticed from the logs that with the existing edgar caching strategy, it still made HTTP requests and my terminal logs showed that the app was re-downloading the same SEC filings over and over.
