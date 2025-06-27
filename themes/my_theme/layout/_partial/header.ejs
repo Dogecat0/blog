@@ -8,13 +8,13 @@
       </p>
       <% if (theme.subtitle || config.subtitle){ %>
         <p id="subtitle-wrap" class="header-subtitle">
-          <%= theme.subtitle || config.subtitle %>
+          <%- theme.subtitle || config.subtitle %>
           <!-- <a href="<%- url_for() %>" id="subtitle"><%= theme.subtitle || config.subtitle %></a> -->
         </p>
       <% } %>
       <% if (theme.description || config.description){ %>
         <p id="description-wrap" class="header-description">
-          <%= theme.description || config.description %>
+          <%- theme.description || config.description %>
           <!-- <a href="<%- url_for() %>" id="description"><%= theme.description || config.description %></a> -->
         </p>
       <% } %>
