@@ -4,6 +4,8 @@ date: 2025-06-29 22:00:00
 tags:
   - LLM
   - Agentic RAG
+category:
+  - Journal App
 ---
 
 Today, I implemented one of the new features proposed on roadmap in my personal journal analysis app: a semantic search and synthesis engine. Instead of a traditional keyword search, I opted for an "Agentic RAG" (Retrieval-Augmented Generation) pipeline. This approach leverages a local LLM (`gemma3n:latest`) not just for generating text, but for orchestrating the entire search process. This post outlines the design thinking behind this implementation and its future potential.
@@ -57,4 +59,3 @@ To overcome the `take: 20` limitation, the next step for optimization is to impl
 3.  **Reduce:** Combine all the intermediate summaries and send them to the LLM (a new agent) one final time to produce a single, cohesive, and highly accurate final answer.
 
 This "Map-Reduce" approach would trade latency for a far more comprehensive analysis, making the tool even more powerful. It's an exciting next step for the project.
----
