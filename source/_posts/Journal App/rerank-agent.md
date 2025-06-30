@@ -1,6 +1,6 @@
 ---
 title: 'Optimizing Semantic Search: A Two-Stage Reranker'
-date: 2024-05-23 09:00:00
+date: 2025-06-30 19:00:00
 tags:
 - RAG
 - LLM
