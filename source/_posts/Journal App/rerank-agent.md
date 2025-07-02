@@ -7,6 +7,8 @@ tags:
 - Architecture
 - Search
 - AI
+category:
+- Journal App
 ---
 
 Previously in Synapse, we have a core feature: an agentic semantic search system (Still confused what **actually** makes RAG, a RAG and what's the difference between it and semantic search? They both seem to intersect. But like Andrew Ng mentioned in one of the interviews, how to define if an agent is truly autonomous? How? maybe the definition does not matter, as long as the agent works itself.) that allows users to ask natural language questions about their activities. The initial version was a standard, three-step pipeline: a **Planner** agent to generate keywords, a **Retrieval** step using those keywords against the database, and a **Synthesizer** agent to generate a summary.
