@@ -1,5 +1,5 @@
 ---
-title: "Building AI-Powered Weekly Reports with Next.js and LLMs"
+title: "Building AI-Powered Weekly Reports in Synapse"
 date: 2025-07-02 22:00:00
 tags:
 - Next.js
