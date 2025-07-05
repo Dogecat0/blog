@@ -1,6 +1,6 @@
 ---
 title: From Static to Dynamic - A Foundational Refactor for Synapse
-date: 2023-10-27 10:00:00
+date: 2025-07-05 10:00:00
 tags:
 - refactoring
 - architecture
