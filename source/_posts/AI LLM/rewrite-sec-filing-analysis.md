@@ -12,13 +12,11 @@ categories:
   - Aperilex
 ---
 
-## The Problem: A Reality Check
-
 I knew this would come at some point as I was developing the SEC Analysis Project. Last weekend I started to refactor the codebase for better code quality check and planned the roadmap for better architecture and security. Instead of applying band-aid fixes, I decided today on a complete rewrite—but this time, of course, not alone.
 
 <!-- more -->
 
-## The Solution: Partnering with Claude Code
+## The Solution to the Problem: Partnering with Claude Code
 
 I have been following news about Claude Code for some time and the model Opus 4 seems like a game-changer for AI-assisted development especially for architecture. I decided to leverage its capabilities for my rewrite project also as an initial trial for its 90 pounds per month subscription to test if how well it will pay off.
 
