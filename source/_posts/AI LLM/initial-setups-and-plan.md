@@ -10,8 +10,8 @@ tags:
 - Context7
 - LLM
 categories:
-- Aperilex
 - AI Development
+- Aperilex
 ---
 
 As in the night 2 coding with Claude Code, I focused on establishing and refining the initial project setup for Aperilex while, of course, learning with the good practices provided by Claude (Opus4 and Sonnet4).
@@ -31,7 +31,7 @@ The initial set of changes established a robust, clean architecture foundation f
 
 ### 1. The `CLAUDE.md` Manifesto: The Project's Living Brain
 
-The most critical file in this commit isn't a `.py` file—it's `CLAUDE.md`. I've watched a couple videos on how to effectively use this document, here is probably the best one from the creator himself [one](https://www.youtube.com/watch?v=6eBSHbLKuN0&t=1143s).
+The most critical file in this commit isn't a `.py` file—it's `CLAUDE.md`. I've watched a couple videos on how to effectively use this document, here is probably the best one from the creator himself [link to the video](https://www.youtube.com/watch?v=6eBSHbLKuN0&t=1143s).
 
 In my case, it contains:
 - **Project Overview**: High-level goals for Aperilex.
@@ -72,4 +72,4 @@ With the assistance of Claude Code, we have achieved in two nights:
 -   **Strategic Planning**: Architecting complex systems and generating detailed, executable implementation plans.
 -   **Enforcing Standards**: Maintaining code quality and architectural integrity from the very first line of code.
 
-By orchestrating these tools with a clear strategy—using `CLAUDE.md` as our context anchor, Context7 for domain knowledge, and the Opus/Sonnet duo for planning and execution—we're building better, more robust, and more maintainable systems. At least for the current me (which I think of course Opus 4 and Sonnet 4 are better coders than architects than me), this has been a tremendously good learning journey so far with Claude Code. I very much look forward to the next phases when the actual implementation happens, even though I am aware there will of course be bugs and mistakes, frustrations, but all will be part of the learning journey stepping into this new era of software engineering.
+By orchestrating these tools with a clear strategy—using `CLAUDE.md` as our context anchor, Context7 for domain knowledge, and the Opus/Sonnet duo for planning and execution—we're building better, more robust, and more maintainable systems. At least for the current me (which I think of course Opus 4 and Sonnet 4 are **better coders than architects** than me), this has been a **tremendously good** learning journey so far with Claude Code. I very much look forward to the next phases when the actual implementation happens, even though I am aware there will of course be **bugs and mistakes, frustrations**, but all will be part of the learning journey stepping into this new era of software engineering.
