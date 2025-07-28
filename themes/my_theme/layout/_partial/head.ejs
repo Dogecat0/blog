@@ -20,6 +20,21 @@
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <% if (page.description || page.excerpt || config.description) { %>
+    <meta name="description" content="<%= (page.description || page.excerpt || config.description).replace(/<[^>]+>/g, '').replace(/\n/g, ' ').substring(0, 160) %>">
+  <% } %>
+  
+  <% if (config.keywords || page.tags) { %>
+    <meta name="keywords" content="<%= config.keywords %><% if (page.tags && page.tags.length) { %>, <%= page.tags.map(tag => tag.name).join(', ') %><% } %>">
+  <% } %>
+  
+  <% if (page.permalink) { %>
+    <link rel="canonical" href="<%= config.url %>/<%= page.path.replace('index.html', '') %>">
+  <% } else if (is_home()) { %>
+    <link rel="canonical" href="<%= config.url %>/">
+  <% } %>
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap" rel="stylesheet">
   <%- open_graph({twitter_id: theme.twitter, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
   <% if (config.feed) { %>
