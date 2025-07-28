@@ -1,12 +1,12 @@
 ---
 title: "Seeing is Believing: A Tale of Two Demos (and the Power of Caching)"
-date: 2025-06-09 09:00:00
+date: 2025-06-10
 tags:
 - Python
 - FastAPI
 - AI
 categories:
-- AI Projects
+- SEC Analysis
 ---
 
 In this post, I want to *show* you the demo for the project after making the caching work. Below are two demos of the exact same analysis request. The only difference is that one is a cold start, and the other benefits from the now-functional cache.
