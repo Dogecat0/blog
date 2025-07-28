@@ -17,7 +17,7 @@ description: |
   ✉️: zcmmwang@gmail.com
   <br>
   🌟: <a href="https://github.com/Dogecat0" target="_blank" rel="noopener noreferrer">https://github.com/Dogecat0</a>
-keywords:
+keywords: programming, software development, AI, LLM, machine learning, financial analysis, SEC filings, Python, FastAPI, web development, coding tutorials, technical blog, software engineering, Claude Code, reading
 author: Zhicheng Wang
 language: en
 timezone: "Europe/London"
@@ -146,3 +146,8 @@ markdown:
     prepend_root: false
     post_asset: false
   inline: false
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  rel: false
