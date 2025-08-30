@@ -15,6 +15,9 @@ module.exports = {
         'accent': 'var(--color-accent)',
         'accent-light': 'var(--color-accent-light)',
         'muted': 'var(--color-muted)',
+        'highlight': 'var(--color-highlight)',
+        'creative': 'var(--color-creative)',
+        'sage': 'var(--color-sage)',
       },
       fontFamily: {
         'pop': ['Poppins', 'sans-serif'],
@@ -26,6 +29,9 @@ module.exports = {
         'accent-light': 'var(--color-accent-light)',
         'tertiary': 'var(--color-tertiary)',
         'muted': 'var(--color-muted)',
+        'highlight': 'var(--color-highlight)',
+        'creative': 'var(--color-creative)',
+        'sage': 'var(--color-sage)',
       },
       backgroundColor: {
         'primary': 'var(--color-primary)',
@@ -33,6 +39,9 @@ module.exports = {
         'accent': 'var(--color-accent)',
         'accent-light': 'var(--color-accent-light)',
         'tertiary': 'var(--color-tertiary)',
+        'highlight': 'var(--color-highlight)',
+        'creative': 'var(--color-creative)',
+        'sage': 'var(--color-sage)',
       },
       boxShadow: {
         'soft': '0 2px 15px 0 rgba(0, 0, 0, 0.1)',
