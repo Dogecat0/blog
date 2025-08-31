@@ -4,11 +4,13 @@
   <% } %>
   <div class="outer">
     <div id="footer-info" class="inner footer-info">
-      <% if (theme.copyright){ %>
-        <%- render(theme.copyright, 'pug'); %>
-      <% } %>
-      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-      <div>
+      <div class="footer-left">
+        <% if (theme.copyright){ %>
+          <%- render(theme.copyright, 'pug'); %>
+        <% } %>
+        &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %>
+      </div>
+      <div class="footer-right">
         <%= __('powered_by') %> 
         <a href="https://hexo.io/" target="_blank">Hexo</a>
       </div>
