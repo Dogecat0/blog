@@ -99,10 +99,6 @@ There are mainly two workflows I have seen and been using with Claude Code: **Ma
 **2. Second one is to build with a plan and iterate with small steps.** This is more like a 'let's do it step by step' approach where you have a clear plan and break down into small tasks for Claude Code to implement. You normally strictly follow the command like `/explore-plan-code-test` I mentioned earlier. This gives you more granualar control of the project and you can make sure each step is implemented, tested and documented properly. After the initial brainstorm phases, I found this is a more practical way to build a project with Claude Code and normally comes with much better quality and accuracy of the implementation.
 
 **3. Auxiliary Workflows** 
-
-<br>
-<br>
-
 **TDD**: ogether with the two workflows above, using TDD(Test-Drive Design) and writing documentation with Claude Code have never been more important. LLMs make mistakes that's why we have the second workflow to implement and iterate with small steps and test them carefully. But manually writing tests is necessary but often boring and time-consuming. Fortunately, LLMs have made writing tests much easier and more time-saving. With the short amount of the time, Claude Code can write quite comprehensive tests for a feature you want to implement and I think this is one of the biggest reasons we should bring TDD to the centre of the workflow.
 
 **Documentation**: Here the documentation is not only just for the users or other developers of the project, but also for Claude Code itself. For example, if you have an unfinished task that you want to continue later, having Claude Code to summarize the current status and context of the task can be extremely helpful. This way, when you come back to the task later, you and Claude Code can quickly get up to what has been done, what problems have been identified and what needs to be done next. 
