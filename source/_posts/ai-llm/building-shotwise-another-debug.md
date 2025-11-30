@@ -1,5 +1,5 @@
 ---
-title: "From Hobby Photos to Shotwise: Building an AI Photo Critique App in 20 Hours"
+title: "From Hobby Photos to Shotwise: Building an AI Photo Critique App"
 date: 2025-11-30 18:00:00
 tags:
   - nextjs
