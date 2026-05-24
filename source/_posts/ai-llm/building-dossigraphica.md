@@ -5,9 +5,13 @@ categories: [AI Development, Dossigraphica]
 tags: [react, typescript, threejs, python, fastapi, llm, agents, geoint]
 ---
 
-Spent the last few weeks diving deep into building Dossigraphica—a high-fidelity Geographic Intelligence (GEOINT) visualization platform. 
+Spent the last few weeks diving deep into building [Dossigraphica](https://zhicheng-wang.com/Dossigraphica/)—a Geographic Intelligence visualization platform. 
 
-This one was a massive step up in complexity. While some projects are quick dopamine sprints, Dossigraphica turned into an intense, multi-layered architectural challenge, blending heavy frontend 3D rendering with a complex, autonomous backend research pipeline.
+This one was a massive step up in complexity. I've been using Google Gemini's deep research functionality for analyzing corporate filings recently and was thinking if it would be possible to build a similar thing myself so I don't have to manually copy, paste, transform to structured format like json or markdown anymore.
+
+Then I started to build Dossigraphica which turned into an intense, multi-layered architectural challenge, blending heavy frontend 3D rendering with a complex, autonomous backend research pipeline.
+
+<!-- more -->
 
 ### Basic Information
 First, let’s look at some interesting stats from the project:
