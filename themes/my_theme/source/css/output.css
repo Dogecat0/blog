@@ -2682,6 +2682,10 @@ article pre code {
   border-color: rgb(231 229 228 / 0.6);
 }
 
+.border-stone-200\/80 {
+  border-color: rgb(231 229 228 / 0.8);
+}
+
 .border-stone-800 {
   --tw-border-opacity: 1;
   border-color: rgb(41 37 36 / var(--tw-border-opacity, 1));
@@ -3012,6 +3016,11 @@ article pre code {
   padding-bottom: 1.5rem;
 }
 
+.py-\[1\.5px\] {
+  padding-top: 1.5px;
+  padding-bottom: 1.5px;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -3236,6 +3245,10 @@ article pre code {
 
 .leading-8 {
   line-height: 2rem;
+}
+
+.leading-none {
+  line-height: 1;
 }
 
 .leading-normal {
@@ -4132,9 +4145,8 @@ article pre code {
   border-color: rgb(54 49 44 / 0.4);
 }
 
-.dark\:border-stone-700:is(.dark *) {
-  --tw-border-opacity: 1;
-  border-color: rgb(68 64 60 / var(--tw-border-opacity, 1));
+.dark\:border-stone-700\/80:is(.dark *) {
+  border-color: rgb(68 64 60 / 0.8);
 }
 
 .dark\:border-stone-800:is(.dark *) {
@@ -4158,6 +4170,10 @@ article pre code {
 .dark\:bg-stone-800:is(.dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(41 37 36 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-stone-800\/60:is(.dark *) {
+  background-color: rgb(41 37 36 / 0.6);
 }
 
 .dark\:bg-stone-900\/10:is(.dark *) {
