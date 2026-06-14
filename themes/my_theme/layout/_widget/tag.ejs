@@ -1,8 +1,13 @@
 <% if (site.tags.length){ %>
   <div class="widget-wrap">
-    <p class="widget-title"><%= __('tags') %></p>
-    <div class="widget">
-      <%- list_tags({show_count: theme.show_count}) %>
+    <p class="widget-title">
+      <i data-lucide="tag" class="h-3.5 w-3.5 text-[var(--personality-color)]"></i>
+      <%= __('tags') %>
+    </p>
+    <div class="widget flex flex-wrap gap-2 pt-1.5 font-mono text-[10px]">
+      <% site.tags.sort('name', 1).forEach(function(tag){ %>
+        <a href="<%- url_for(tag.path) %>" class="px-2 py-0.5 rounded-full bg-stone-150 dark:bg-stone-800 text-stone-500 hover:text-[var(--personality-color)] dark:hover:text-[var(--personality-color)] hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors">#<%= tag.name %></a>
+      <% }) %>
     </div>
   </div>
 <% } %>

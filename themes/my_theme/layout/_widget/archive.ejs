@@ -1,8 +1,41 @@
 <% if (site.posts.length){ %>
   <div class="widget-wrap">
-    <p class="widget-title"><%= __('archive_a') %></p>
-    <div class="widget">
-      <%- list_archives({show_count: theme.show_count, type: theme.archive_type}) %>
+    <p class="widget-title">
+      <i data-lucide="calendar" class="h-3.5 w-3.5 text-[var(--personality-color)]"></i>
+      <%= __('archives') %>
+    </p>
+    <div class="widget pt-1">
+      <div class="space-y-1.5">
+        <% 
+          var groups = {};
+          site.posts.forEach(function(post) {
+            var date = post.date;
+            var year = date.year();
+            var month = date.format('MM');
+            var monthName = date.format('MMMM');
+            var key = year + '/' + month;
+            if (!groups[key]) {
+              groups[key] = {
+                year: year,
+                month: month,
+                name: monthName + ' ' + year,
+                count: 0,
+                path: 'archives/' + year + '/' + month + '/'
+              };
+            }
+            groups[key].count++;
+          });
+          // Convert to array and sort descending by key
+          var sortedKeys = Object.keys(groups).sort().reverse();
+        %>
+        <% sortedKeys.forEach(function(key) { %>
+          <% var item = groups[key]; %>
+          <div class="flex items-center justify-between py-1 border-b border-dashed border-stone-200/60 dark:border-stone-800/40 last:border-none">
+            <a href="<%- url_for(item.path) %>" class="text-xs font-mono text-stone-700 dark:text-stone-300 hover:text-[var(--personality-color)] transition-colors"><%= item.name %></a>
+            <span class="text-[10px] font-mono text-stone-400 dark:text-stone-500">(<%= item.count %>)</span>
+          </div>
+        <% }) %>
+      </div>
     </div>
   </div>
 <% } %>

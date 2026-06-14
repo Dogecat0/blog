@@ -1,14 +1,16 @@
 <% if (site.posts.length){ %>
   <div class="widget-wrap">
-    <p class="widget-title"><%= __('recent_posts') %></p>
-    <div class="widget">
-      <ul>
-        <% site.posts.sort('date', -1).limit(theme.recent_posts_limits).each(function(post){ %>
-          <li class="recent-post-list-item">
-            <a href="<%- url_for(post.path) %>"><%= post.title || '(no title)' %></a>
-          </li>
-        <% }) %>
-      </ul>
+    <p class="widget-title">
+      <i data-lucide="clock" class="h-3.5 w-3.5 text-[var(--personality-color)]"></i>
+      <%= __('recent_posts') %>
+    </p>
+    <div class="widget space-y-3 pt-1">
+      <% site.posts.sort('date', -1).limit(theme.recent_posts_limits).each(function(post){ %>
+        <div class="group flex flex-col gap-1 py-1.5 border-b border-dashed border-stone-200/60 dark:border-stone-800/40 last:border-b-0 pb-2.5 last:pb-0">
+          <span class="text-[9px] font-mono text-stone-400 dark:text-stone-500 uppercase tracking-wider"><%= date(post.date, 'YYYY-MM-DD') %></span>
+          <a href="<%- url_for(post.path) %>" class="text-xs font-serif leading-snug text-stone-700 dark:text-stone-300 group-hover:text-[var(--personality-color)] hover:text-[var(--personality-color)] transition-colors duration-200 font-semibold"><%= post.title || '(no title)' %></a>
+        </div>
+      <% }) %>
     </div>
   </div>
 <% } %>

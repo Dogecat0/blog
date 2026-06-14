@@ -1,8 +1,52 @@
 <% if (site.categories.length){ %>
   <div class="widget-wrap">
-    <p class="widget-title"><%= __('categories') %></p>
-    <div class="widget">
-      <%- list_categories({show_count: theme.show_count}) %>
+    <p class="widget-title">
+      <i data-lucide="folder-open" class="h-3.5 w-3.5 text-[var(--personality-color)]"></i>
+      <%= __('categories') %>
+    </p>
+    <div class="widget space-y-3 pt-1">
+      <%
+        // Get parent categories (those without a parent)
+        var parents = [];
+        site.categories.forEach(function(cat) {
+          if (!cat.parent) {
+            parents.push(cat);
+          }
+        });
+        // Sort parents alphabetically
+        parents.sort((a, b) => a.name.localeCompare(b.name));
+      %>
+      <% parents.forEach(function(parent) { %>
+        <div class="category-group">
+          <div class="flex items-center justify-between py-1 border-b border-dashed border-stone-200/60 dark:border-stone-800/40">
+            <a href="<%- url_for(parent.path) %>" class="text-xs font-serif font-bold text-stone-700 dark:text-stone-300 hover:text-[var(--personality-color)] transition-colors"><%= parent.name %></a>
+            <span class="text-[10px] font-mono text-stone-400 dark:text-stone-500">(<%= parent.posts.length %>)</span>
+          </div>
+          
+          <%
+            // Get child categories for this parent
+            var children = [];
+            site.categories.forEach(function(cat) {
+              if (cat.parent === parent._id) {
+                children.push(cat);
+              }
+            });
+            // Sort children
+            children.sort((a, b) => a.name.localeCompare(b.name));
+          %>
+          
+          <% if (children.length) { %>
+            <div class="pl-3.5 border-l border-stone-200 dark:border-stone-800 mt-1 space-y-1">
+              <% children.forEach(function(child) { %>
+                <div class="flex items-center justify-between py-0.5">
+                  <a href="<%- url_for(child.path) %>" class="text-[11px] font-sans text-stone-500 dark:text-stone-400 hover:text-[var(--personality-color)] transition-colors"><%= child.name %></a>
+                  <span class="text-[9px] font-mono text-stone-450 dark:text-stone-500"><%= child.posts.length %></span>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+        </div>
+      <% }) %>
     </div>
   </div>
 <% } %>
