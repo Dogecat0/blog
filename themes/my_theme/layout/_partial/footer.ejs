@@ -3,15 +3,9 @@
     <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1">
       <span class="font-bold text-stone-600 dark:text-stone-400">&copy; <%= date(new Date(), 'YYYY') %></span>
       <span><%= config.author || config.title %></span>
-      <span class="text-stone-300 dark:text-stone-800">|</span>
-      <span>Creative/Analytic Redesign Concept</span>
     </div>
     
     <div class="flex items-center justify-center gap-3">
-      <% if (theme.rss) { %>
-        <a href="<%- url_for(theme.rss) %>" class="hover:text-[var(--personality-color)] transition-colors">RSS</a>
-        <span class="text-stone-300 dark:text-stone-800">•</span>
-      <% } %>
       <a href="<%- url_for('/sitemap.xml') %>" class="hover:text-[var(--personality-color)] transition-colors">Sitemap</a>
       <span class="text-stone-300 dark:text-stone-800">•</span>
       <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-[var(--personality-color)] hover:text-[var(--personality-hover-color)] transition-colors flex items-center gap-1 font-bold">
