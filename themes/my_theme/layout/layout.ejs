@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark">
   <%- partial('_partial/head') %>
-  <body class="body">
-    <div id="container" class="container">
-      <div id="wrap">
-        <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
-        <div class="outer">
-          <section class="post-container" id="main"><%- body %></section>
-          <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %> <%-
-          partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
-          <% } %>
-        </div>
-        <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+  <body class="bg-brand-bgLight text-brand-textLight dark:bg-brand-bgDark dark:text-brand-textDark min-h-screen transition-custom font-sans antialiased overflow-x-hidden">
+    
+    <%- partial('_partial/header') %>
+
+    <% if (is_home()){ %>
+      <%- partial('_partial/hero') %>
+    <% } %>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- LEFT COLUMN: CONTENT STREAM -->
+        <section class="lg:col-span-8 space-y-12" id="articles-stream">
+          <%- body %>
+        </section>
+
+        <!-- RIGHT COLUMN: SIDEBAR -->
+        <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+          <%- partial('_partial/sidebar') %>
+        <% } %>
+
       </div>
-      <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link})
-      %> <%- partial('_partial/after-footer') %>
-    </div>
+    </main>
+
+    <%- partial('_partial/footer') %>
+
+    <%- partial('_partial/after-footer') %>
   </body>
 </html>

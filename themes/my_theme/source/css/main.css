@@ -49,7 +49,10 @@
   }
 
   code {
-    @apply text-gray-800 bg-gray-100 px-2 py-0.5 rounded font-mono text-sm;
+    @apply text-stone-800 bg-stone-100 px-1.5 py-0.5 rounded font-mono text-xs sm:text-sm;
+  }
+  .dark code {
+    @apply text-stone-200 bg-stone-800;
   }
 
   img {
@@ -268,20 +271,74 @@
     @apply flex flex-wrap items-center justify-between bg-primary mt-4 px-3 md:px-5 py-3 rounded-md border-t border-gray-300;
   }
 
+  /* Article Navigation (Next/Prev buttons at bottom of single post) */
   .article-nav {
-    @apply flex items-center justify-between w-full mt-6 pt-6 border-t border-gray-100;
+    @apply flex flex-col sm:flex-row gap-4 w-full mt-12 pt-8 border-t border-brand-borderLight dark:border-brand-borderDark;
+  }
+
+  .article-nav-link-wrap {
+    @apply flex-1 p-5 border border-brand-borderLight dark:border-brand-borderDark rounded-xl bg-stone-100/10 dark:bg-stone-900/10 transition-custom hover:border-[var(--personality-color)] hover:bg-stone-100/35 dark:hover:bg-stone-800/15 flex flex-col;
+  }
+
+  #article-nav-newer {
+    @apply items-start text-left;
+  }
+
+  #article-nav-older {
+    @apply items-end text-right;
+  }
+
+  .article-nav-caption {
+    @apply font-mono text-[10px] uppercase tracking-widest text-stone-500 dark:text-stone-500 mb-1.5 block;
+  }
+
+  .article-nav-title {
+    @apply font-playfair text-base font-bold text-stone-800 dark:text-stone-200 transition-colors duration-200 leading-snug;
+  }
+
+  .article-nav-link-wrap:hover .article-nav-title {
+    color: var(--personality-color);
+  }
+
+  /* Archives Page Structure */
+  .archives-wrap {
+    @apply mb-10 first:mt-0;
+  }
+
+  .archive-year-wrap {
+    @apply mb-6 pb-2 border-b border-brand-borderLight dark:border-brand-borderDark flex items-center justify-between;
+  }
+
+  .archive-year {
+    @apply font-playfair text-3xl font-extrabold tracking-tight text-stone-800 dark:text-stone-100 hover:text-[var(--personality-color)] transition-colors duration-200;
+  }
+
+  .archives {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
   }
 
   .archive-article {
-    @apply m-3 md:m-5 p-4 md:p-5 border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200;
+    @apply p-5 border border-brand-borderLight dark:border-brand-borderDark rounded-xl bg-stone-100/10 dark:bg-stone-900/10 transition-custom flex flex-col justify-center;
+  }
+
+  .archive-article:hover .archive-article-title {
+    color: var(--personality-color);
+  }
+
+  .archive-article-inner {
+    @apply w-full;
+  }
+
+  .archive-article-header {
+    @apply flex flex-col space-y-1.5;
   }
 
   .archive-article-date {
-    @apply text-sm text-muted;
+    @apply font-mono text-[11px] uppercase tracking-wider text-stone-500 dark:text-stone-500 m-0 leading-none;
   }
 
   .archive-article-title {
-    @apply hover:underline hover:text-gray-700 font-medium;
+    @apply font-playfair text-base font-bold text-stone-800 dark:text-stone-100 transition-colors duration-200 leading-snug;
   }
 
   .article-category {
@@ -305,38 +362,31 @@
     @apply hover:underline list-none bg-gray-100 px-2 py-1 rounded-full text-xs text-muted transition-all duration-200;
   }
 
-  .widget-wrap {
-    @apply py-4 my-4 border-b border-gray-300 last:border-b-0;
-  }
-
-  .widget-title {
-    @apply bg-gray-100 capitalize text-lg text-center px-4 py-2 rounded-md font-medium mb-4;
-  }
-
-  .widget {
-    @apply pb-3 my-3 text-sm;
-  }
-
-  .widget ul li {
-    @apply border-b border-gray-50 last:border-b-0 py-2;
-  }
-
-  .widget a {
-    @apply hover:text-gray-700;
-  }
 
   /* Pagination */
   #page-nav {
-    @apply space-x-3 flex justify-center mt-8;
+    @apply space-x-2 flex justify-center mt-12 mb-6 font-mono text-xs;
   }
 
   #page-nav a,
   #page-nav span {
-    @apply px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100;
+    @apply px-3.5 py-2 border border-brand-borderLight dark:border-brand-borderDark rounded-lg text-stone-600 dark:text-stone-400 bg-stone-50/50 dark:bg-stone-900/50 transition-custom hover:text-[var(--personality-color)] dark:hover:text-[var(--personality-color)] hover:bg-stone-100 dark:hover:bg-stone-800/80;
   }
 
-  #page-nav .current {
-    @apply bg-gray-700 text-white;
+  #page-nav span.current,
+  #page-nav a.current {
+    background-color: var(--personality-color) !important;
+    border-color: var(--personality-color) !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark #page-nav span.current,
+  .dark #page-nav a.current {
+    color: #1c1917 !important;
+    background-color: var(--personality-color) !important;
+    border-color: var(--personality-color) !important;
   }
 
   /* Back to top button */
@@ -354,46 +404,69 @@
     @apply text-center text-sm text-muted mt-2 italic;
   }
 
-  /* Base styles for article content.
-     Adjust the 'article' selector if your theme uses a different wrapper for post content,
-     e.g., '.post-content' or '.article-entry'. */
   article {
-    @apply text-gray-900 text-lg leading-relaxed;
+    @apply text-stone-900 text-lg leading-relaxed;
   }
-
-  /* Main post title on its dedicated page */
+  .dark article {
+    @apply text-stone-200;
+  }
 
   /* Content Headings */
   article h2 {
-    @apply text-3xl font-bold text-gray-900 my-4;
+    @apply text-2xl sm:text-3xl font-playfair font-bold text-stone-800 mt-10 mb-4 border-b border-brand-borderLight pb-2;
+  }
+  .dark article h2 {
+    @apply text-stone-100 border-brand-borderDark;
   }
 
   article h3 {
-    @apply text-2xl font-bold text-gray-900 my-3;
+    @apply text-xl sm:text-2xl font-playfair font-bold text-stone-800 mt-8 mb-3;
+  }
+  .dark article h3 {
+    @apply text-stone-200;
   }
 
   article h4 {
-    @apply text-xl font-bold text-gray-800 my-3;
+    @apply text-lg sm:text-xl font-playfair font-bold text-stone-800 mt-6 mb-2.5;
+  }
+  .dark article h4 {
+    @apply text-stone-300;
   }
 
   article h5,
   article h6 {
-    @apply text-lg font-bold text-gray-800 my-2;
+    @apply text-base sm:text-lg font-playfair font-bold text-stone-700 mt-5 mb-2;
+  }
+  .dark article h5,
+  .dark article h6 {
+    @apply text-stone-300;
   }
 
   /* Paragraphs */
   article p {
-    @apply mb-4;
+    @apply mb-5 text-stone-700;
+  }
+  .dark article p {
+    @apply text-stone-300;
   }
 
   /* Lists */
-  article ul,
+  article ul {
+    @apply list-inside list-disc my-4 pl-5 text-stone-700 space-y-1.5;
+  }
+  .dark article ul {
+    @apply text-stone-300;
+  }
+  
   article ol {
-    @apply list-inside list-disc my-4 pl-5;
+    @apply list-inside list-decimal my-4 pl-5 text-stone-700 space-y-1.5;
+  }
+  .dark article ol {
+    @apply text-stone-300;
   }
 
   article li {
-    @apply mb-2;
+    @apply mb-2 leading-relaxed;
   }
 
   /* Nested lists */
@@ -401,20 +474,49 @@
   article ol ol,
   article ul ol,
   article ol ul {
-    @apply my-2;
+    @apply my-2 pl-5;
   }
 
   /* Blockquotes */
   article blockquote {
-    @apply border-l-4 border-gray-400 pl-4 italic my-4 text-gray-600;
+    @apply border-l-4 border-[var(--personality-color)] pl-4 italic my-6 text-stone-600 bg-stone-100/10 py-3 pr-4 rounded-r-md;
+  }
+  .dark article blockquote {
+    @apply text-stone-400 bg-stone-900/10;
   }
 
   article blockquote p {
-    @apply mb-2;
+    @apply mb-2 text-stone-600;
+  }
+  .dark article blockquote p {
+    @apply text-stone-400;
   }
 
   article blockquote p:last-child {
     @apply mb-0;
+  }
+
+  /* Tables styling */
+  article table {
+    @apply w-full text-left my-8 border-collapse text-sm sm:text-base;
+  }
+
+  article th {
+    @apply border-b border-brand-borderLight pb-2.5 font-mono text-xs font-bold tracking-widest text-stone-400 uppercase;
+  }
+  .dark article th {
+    @apply border-brand-borderDark text-stone-500;
+  }
+
+  article td {
+    @apply border-b border-stone-100 py-3.5 text-stone-700;
+  }
+  .dark article td {
+    @apply border-stone-800/50 text-stone-300;
+  }
+
+  article tr:last-child td {
+    @apply border-none;
   }
 
   /* Preformatted text / Code blocks (Prism.css will handle most styling for <pre>) */
@@ -447,4 +549,102 @@
   }
 }
 
-/* Light theme only - no dark mode */
+/* ==========================================================================
+   MINIMALIST EDITORIAL PERSISTENT STYLES & ACCENTS
+   ========================================================================== */
+
+:root {
+  --personality-color: #945745;
+  --personality-hover-color: #784435;
+  --brand-engineer: #475e53;
+  --brand-analyst: #3e5d7a;
+  --brand-designer: #945745;
+}
+
+.dark {
+  --personality-color: #cf8c7a;
+  --personality-hover-color: #dbab9e;
+  --brand-engineer: #7ca28e;
+  --brand-analyst: #7ea4c4;
+  --brand-designer: #cf8c7a;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: #e7e3df;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #36312c;
+  border-radius: 3px;
+}
+
+/* Smooth custom transition speeds */
+.transition-custom {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.mindset-card {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-start infinite;
+}
+
+/* Sidebar Widgets styled like the mockup */
+.widget-wrap {
+  @apply p-6 bg-stone-100/20 dark:bg-stone-900/20 border border-brand-borderLight dark:border-brand-borderDark rounded-xl transition-custom mb-6;
+}
+
+.widget-title {
+  @apply text-xs font-mono font-bold tracking-widest text-stone-400 dark:text-stone-500 uppercase mb-3 flex items-center gap-2;
+}
+
+.widget {
+  @apply text-xs font-mono text-stone-500 dark:text-stone-400;
+}
+
+.widget ul {
+  @apply space-y-2 pt-1;
+}
+
+.widget li {
+  @apply flex items-center justify-between list-none my-0 py-0.5 leading-normal text-xs font-mono border-b border-dashed border-stone-200 dark:border-stone-800 last:border-none;
+}
+
+.widget li a {
+  @apply text-stone-700 dark:text-stone-300 hover:text-[var(--personality-hover-color)] transition-colors font-medium;
+}
+
+/* Custom search widget styling */
+#local-search-input {
+  @apply w-full bg-transparent border-b border-brand-borderLight dark:border-brand-borderDark focus:border-[var(--personality-color)] py-2 text-sm font-serif outline-none transition-colors !important;
+}
+
+.local-search-result {
+  @apply mt-2 text-xs font-serif text-stone-600 dark:text-stone-400 space-y-2 max-h-48 overflow-y-auto;
+}
+
+/* Category indicator */
+.cat-indicator {
+  color: var(--personality-color);
+}

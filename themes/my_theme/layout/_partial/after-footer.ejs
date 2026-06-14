@@ -49,10 +49,6 @@
 
 <%# Search engine code %>
 
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
 <!-- <% if (theme.fancybox){ %>
 <link rel="stylesheet" href="<%- config.root %>fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="<%- config.root %>fancybox/jquery.fancybox.pack.js"></script>
@@ -73,3 +69,238 @@
      searchFunc(path, 'local-search-input', 'local-search-result');
    </script>
 <% } %>
+
+<!-- ========================================== -->
+<!-- PERSISTENT REDESIGN CONTROLLER SCRIPTS     -->
+<!-- ========================================== -->
+<script>
+  // Light/Dark Theme management
+  let isDarkMode = false;
+  
+  // Load theme from localStorage
+  if (localStorage.getItem('theme') === 'light') {
+    isDarkMode = false;
+    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.add('light');
+    const icon = document.getElementById('theme-btn-icon');
+    if (icon) icon.setAttribute('data-lucide', 'sun');
+  } else {
+    isDarkMode = true;
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+    const icon = document.getElementById('theme-btn-icon');
+    if (icon) icon.setAttribute('data-lucide', 'moon');
+  }
+
+  function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    const html = document.documentElement;
+    const icon = document.getElementById('theme-btn-icon');
+    
+    if (isDarkMode) {
+      html.classList.add('dark');
+      html.classList.remove('light');
+      if (icon) icon.setAttribute('data-lucide', 'moon');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.classList.remove('dark');
+      html.classList.add('light');
+      if (icon) icon.setAttribute('data-lucide', 'sun');
+      localStorage.setItem('theme', 'light');
+    }
+    if (window.lucide) lucide.createIcons();
+    updatePersonalityColors();
+  }
+
+  // Personality Mindset management
+  let activeMindset = localStorage.getItem('mindset') || 'designer';
+  
+  const mindsets = {
+    engineer: {
+      pillText: 'Programmer',
+      light: '#475e53',
+      dark: '#7ca28e',
+      hoverLight: '#33473e',
+      hoverDark: '#a0bdaf',
+      spanText: 'life.py',
+      desc: '"When I write code, I look for elegance in variables and clean loops. The programmer mindset demands structure."',
+      btnId: 'btn-engineer'
+    },
+    analyst: {
+      pillText: 'Analyst',
+      light: '#3e5d7a',
+      dark: '#7ea4c4',
+      hoverLight: '#2f475d',
+      hoverDark: '#9cbcd7',
+      spanText: 'metrics.json',
+      desc: '"Data holds the ultimate truth. Parsing, weights, completeness models: these parameters explain complex systems."',
+      btnId: 'btn-analyst'
+    },
+    designer: {
+      pillText: 'Designer',
+      light: '#945745',
+      dark: '#cf8c7a',
+      hoverLight: '#784435',
+      hoverDark: '#dbab9e',
+      spanText: 'pixels.css',
+      desc: '"Balance, typography, white space, and letter-spacing tell a story before the text is even read. Esthetics are function."',
+      btnId: 'btn-designer'
+    }
+  };
+
+  function updatePersonalityColors() {
+    const config = mindsets[activeMindset];
+    const primaryColor = isDarkMode ? config.dark : config.light;
+    const hoverColor = isDarkMode ? config.hoverDark : config.hoverLight;
+    
+    document.documentElement.style.setProperty('--personality-color', primaryColor);
+    document.documentElement.style.setProperty('--personality-hover-color', hoverColor);
+    
+    // Update Pill Text
+    const pill = document.getElementById('active-mindset-pill');
+    if (pill) {
+      pill.innerText = config.pillText;
+      pill.style.color = primaryColor;
+    }
+    
+    // Update title inline toggles
+    const elEngineer = document.getElementById('title-click-engineer');
+    const elAnalyst = document.getElementById('title-click-analyst');
+    const elDesigner = document.getElementById('title-click-designer');
+
+    if (elEngineer) {
+      if (activeMindset === 'engineer') {
+        elEngineer.className = "cursor-pointer transition-custom text-brand-engineer";
+      } else {
+        elEngineer.className = "cursor-pointer transition-custom text-stone-400 dark:text-stone-600 hover:text-brand-engineer";
+      }
+    }
+    if (elAnalyst) {
+      if (activeMindset === 'analyst') {
+        elAnalyst.className = "cursor-pointer transition-custom font-serif italic font-normal text-brand-analyst";
+      } else {
+        elAnalyst.className = "cursor-pointer transition-custom font-serif italic font-normal text-stone-400 dark:text-stone-600 hover:text-brand-analyst";
+      }
+    }
+    if (elDesigner) {
+      if (activeMindset === 'designer') {
+        elDesigner.className = "cursor-pointer transition-custom underline decoration-1 underline-offset-4 text-brand-designer decoration-brand-designer";
+      } else {
+        elDesigner.className = "cursor-pointer transition-custom underline decoration-1 underline-offset-4 text-stone-400 dark:text-stone-600 decoration-stone-300 dark:decoration-stone-700 hover:text-brand-designer hover:decoration-brand-designer";
+      }
+    }
+  }
+
+  // Typing and Scrambling animations state
+  let typingTimer = null;
+  let scrambleTimer = null;
+
+  function setMindset(type) {
+    activeMindset = type;
+    const config = mindsets[type];
+    localStorage.setItem('mindset', type);
+
+    // Update all CSS variables and colors
+    updatePersonalityColors();
+
+    // Update Descriptions
+    const descEl = document.getElementById('mindset-meta-description');
+    if (descEl) {
+      descEl.innerText = config.desc;
+    }
+
+    // Trigger custom animations on subtitle span
+    triggerMindsetAnimation(type, config.spanText);
+  }
+
+  function triggerMindsetAnimation(type, targetText) {
+    const span = document.getElementById('interactive-span');
+    const cursor = document.getElementById('interactive-cursor');
+    if (!span || !cursor) return; // Fail-safe for non-home pages
+    
+    // Clear previous running timers
+    clearTimeout(typingTimer);
+    clearInterval(scrambleTimer);
+    
+    span.innerText = '';
+    span.style.opacity = '1';
+    span.style.letterSpacing = 'normal';
+    cursor.style.display = 'inline-block';
+
+    if (type === 'engineer') {
+      let index = 0;
+      function typeWriter() {
+        if (index < targetText.length) {
+          span.innerText += targetText.charAt(index);
+          index++;
+          typingTimer = setTimeout(typeWriter, 90);
+        }
+      }
+      typeWriter();
+    } 
+    else if (type === 'analyst') {
+      const chars = '0123456789%#@$*[]+=&?';
+      let iterations = 0;
+      
+      scrambleTimer = setInterval(() => {
+        span.innerText = targetText
+          .split('')
+          .map((char, index) => {
+            if (index < iterations) {
+              return targetText[index];
+            }
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('');
+        
+        if (iterations >= targetText.length) {
+          clearInterval(scrambleTimer);
+        }
+        iterations += 1/3;
+      }, 30);
+    } 
+    else if (type === 'designer') {
+      cursor.style.display = 'none'; // hide cursor
+      span.innerText = targetText;
+      span.style.opacity = '0';
+      span.style.filter = 'blur(8px)';
+      span.style.letterSpacing = '0.35em';
+      
+      let start = null;
+      const duration = 450; // ms
+      
+      function animateDesigner(timestamp) {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing out cubic: easeOutCubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        
+        span.style.opacity = ease;
+        span.style.filter = `blur(${(1 - ease) * 8}px)`;
+        span.style.letterSpacing = `${0.35 - ease * 0.30}em`; // 0.35em to 0.05em
+        
+        if (progress < 1) {
+          typingTimer = requestAnimationFrame(animateDesigner);
+        } else {
+          span.style.filter = '';
+          span.style.letterSpacing = '0.05em';
+        }
+      }
+      typingTimer = requestAnimationFrame(animateDesigner);
+    }
+  }
+
+  // Initialize state on start
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide) lucide.createIcons();
+    updatePersonalityColors();
+    
+    // Only run typing animation on pages where hero is present
+    const span = document.getElementById('interactive-span');
+    if (span) {
+      setMindset(activeMindset);
+    }
+  });
+</script>
