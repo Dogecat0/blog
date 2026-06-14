@@ -5,52 +5,68 @@ categories: [AI Development, Dossigraphica]
 tags: [react, typescript, threejs, python, fastapi, llm, agents, geoint]
 ---
 
-Spent the last few weeks diving deep into building [Dossigraphica](https://zhicheng-wang.com/Dossigraphica/)—a Geographic Intelligence visualization platform. 
+If you've ever used Gemini's deep research feature, you know the pattern: type a query, wait for the report, read through it, then manually extract the structured bits into JSON or markdown. I was doing this for corporate geopolitical analysis — office locations, supply chain dependencies, revenue geography, risk signals. Each analysis session meant copy-pasting, reformatting, and cross-referencing by hand. Tedious.
 
-This one was a massive step up in complexity. I've been using Google Gemini's deep research functionality for analyzing corporate filings recently and was thinking if it would be possible to build a similar thing myself so I don't have to manually copy, paste, transform to structured format like json or markdown anymore.
-
-Then I started to build Dossigraphica which turned into an intense, multi-layered architectural challenge, blending heavy frontend 3D rendering with a complex, autonomous backend research pipeline.
+So I've been building something that does it for me.
 
 <!-- more -->
 
-### Basic Information
-First, let’s look at some interesting stats from the project:
-- **Core Focus:** Visualizing global footprint, supply chain dependencies, and geopolitical risk profiles.
-- **Frontend Stack:** React 19, TypeScript, Vite, Tailwind CSS 4, Zustand 5, `react-globe.gl`, Three.js.
-- **Backend Stack:** Python with FastAPI (SSE Streaming), LiteLLM (for local llama.cpp, Gemini, Featherless).
-- **Research Pipeline:** Async generators, Pydantic, Brave Search API, Jina Reader API.
+Dossigraphica is an autonomous, local-first research pipeline that takes a company name, runs a full intelligence workflow across the open web, and produces structured geographic intelligence — rendered onto a 3D globe dashboard. This was one of those side projects where the scope kept expanding because the problem turned out to be deeper than I expected.
 
-### From Concept to Reality: The "Parchment and Ink" Aesthetic
-One of the most satisfying parts of this project was nailing the visual identity. I didn't want this to look like just another generic dashboard. I wanted it to feel like a modern intelligence brief mixed with classic cartography.
+### What the Pipeline Actually Does
 
-We landed on a "Parchment and Ink" style. The centerpiece is the interactive 3D globe built with `react-globe.gl` and Three.js, which maps out office hubs, supply chain arcs, and risk hotspots. Combining this with the integrated global strategy hub—featuring the Value Chain Matrix and Macro Risk Convergence panels—made the UI feel incredibly immersive.
+The backend is a Python FastAPI server with Server-Sent Events streaming. It orchestrates an **8-stage deterministic workflow**, each stage feeding into the next with no LLM-driven routing — every decision about *what to do next* is hardcoded. The LLM only decides *what the data means*.
 
-### The Autonomous Research Agent: Structuring the Unstructured
-The real beast of Dossigraphica is the Python Sidecar—an autonomous, local-first research agent pipeline. Instead of just querying an LLM, the pipeline executes a deterministic workflow:
-1. **Planning:** Generating targeted search queries.
-2. **Searching:** Using the Brave Discovery API to scour the web.
-3. **Extraction & Sieve:** Using Jina Reader API for markdown extraction, followed by a Map-Reduce summarization.
-4. **Entity Assembly:** Detecting data gaps and synthesizing geographic information.
-5. **Drafting:** Parallel generation of structured JSON intelligence and rich Markdown dossiers.
+Here's the full chain:
 
-Getting an LLM to reliably extract and structure geographic and supply chain data without hallucinating or losing context was a massive challenge.
+**1. Planning (programmatic, no LLM).** The planner maps `GeoIntelligenceSchema` fields (offices, supply chain, revenue geography, risks, customers) into search queries. Each field gets two queries: a clean structural query for permanent data, and a temporal-anchored query for earnings data. No LLM involved — it's just template expansion. This keeps the search strategy deterministic and reproducible.
 
-### Challenges: Tracing, Assembly, and Rate Limits
-Building an orchestration engine that runs multiple async tasks in parallel is never easy. 
+**2. Parallel search.** TinyFIsh API (or Brave Search as an alternative) runs all queries concurrently. Results get URL-deduplicated. Cached aggressively on disk so re-runs are instant.
 
-I hit several walls during development:
-- **Tracing Model Inputs and Outputs:** Debugging an agentic pipeline where the LLM is constantly communicating and restructuring data is hard. The current setup for logs and inference tracing helped immensely to peek under the hood and understand exactly where the agent was hallucinating or failing.
-- **Entity Assembly and Enrichment Search:** This is the absolute beast step of the pipeline. Synthesizing disparate data points, identifying gaps, and enriching the geographic context takes the most time and tuning to perfect the answers.
-- **API Bottlenecks and Quotas:** While the Gemini API handles the heavy lifting, the Jina Reader API turned out to be the current bottleneck for pipeline execution speed. Without an API key, the free tier limits you to 20 requests per minute, meaning bulk URL processing has to be carefully throttled.
+**3. Source triage (LLM-powered spam filter).** Every search result gets evaluated by the LLM against a binary authoritative/spam schema. SEC filings, Bloomberg, Reuters, WSJ, official earnings transcripts — pass. SEO spam, PR wire aggregators, content mills — rejected. This single step was the difference between getting clean extraction data and getting garbage.
 
-### Tech Stack Reality Check: The Hybrid LLM Setup
-Building the intelligence layer required moving past simple API calls and designing a resilient, hybrid orchestration system:
-- **Model-Agnostic Architecture (High-Level):** The pipeline is structured to decouple the research logic from the underlying model provider. By implementing a unified routing layer, the system can dynamically switch between heavy-duty cloud models (Gemini) for complex entity synthesis, and local fallback instances for lighter tasks if needed (My 3070 did run a couple of research with Google new Gemma4 model, it was decent but not mind blowing and time consuming).
-- **Unified Interface via LiteLLM (Technical Deep-Dive):** To achieve this flexibility without duplicating prompt engineering, the backend relies on `LiteLLM`. This acts as a proxy, mapping standardized OpenAI-compatible payloads to Gemini endpoints under the hood. This allows seamless integration with a local `llama.cpp` or Featherless server just by swapping an environment variable as you like (Funny how I started with this whole project using local LLM but now I am here using Gemini for everything lol).
+**4. Content extraction.** Surviving URLs get fetched via again TinyFish API (with Jina Extract API as fallback). The free tier caps at ~30 RPM. There's also a blocked domain list persisted to disk — There have been a couple of hundred blocked urls for legally restricted domains, and the pipeline remembers them across runs.
+
+**5. Map-Reduce fact sieve.** Each fetched page gets token-chunked using litellm's tokenizer, then each chunk is LLM-extracted into categorized facts via `SynthesizerSchema`. The extractor writes `reason` (why this fact matters) and `content` (the fact itself) into strict categories: `CORPORATE`, `OFFICES`, `REVENUE`, `SUPPLY_CHAIN`, `CUSTOMERS`, `RISKS`. This is where unstructured web text becomes structured intelligence.
+
+The key insight here was running extraction and chunking concurrently — the extractor feeds a queue, the preprocessor consumes it, and both run in parallel via an async multiplexer. No waiting for one phase to finish before the next starts.
+
+**6. Entity assembly and gap detection.** This is the most intricate step. The pipeline pre-assembles Pydantic models (offices, supply chain, risks, customers) using what it has so far, then *programmatically inspects them for missing geographic data*. No address on that office? No coordinates on that supplier? Missing HQ city for that customer? Each gap generates a targeted enrichment search query.
+
+If gaps are found, the pipeline loops back through search → extract → sieve with those specific queries. If nothing's missing, it skips the enrichment loop entirely and moves straight to drafting.
+
+**7. Parallel drafting.** Concurrent LLM calls produce the final output: 7 structured JSON schemas (basic info, anchor filing, offices, revenue geography, supply chain, geopolitical risks, customer concentration) and 6 markdown narrative sections. All running in parallel, all progress-tracked as discrete units.
+
+**8. Progress tracking throughout.** A `TaskTracker` treats every LLM call and every I/O operation as a countable unit. It computes per-phase ETAs from historical completion rates, handles state recovery from log replay (so interrupted runs resume with accurate progress), and streams everything via SSE. Watching it tick through 8 phases with live ETA is genuinely satisfying.
+
+### The Globe Is the Dessert (But It's a Good Dessert)
+
+The frontend uses React 19 with react-globe.gl and Three.js. The visual identity is "parchment and ink" — antique warm parchment globe material, charcoal ink landmasses, gold cartographic graticule lines. Supply chain arcs pulse slowly along dashed paths between nodes. Regional risks render as shield markers with rust-to-gold color scales.
+
+Every node on the globe is clickable. Clicking an office flies the camera to it, pauses auto-rotation, and opens a GPS-style intelligence panel. Hovering highlights connected nodes and dims everything else. Stacked nodes (overlapping coordinates) fan out automatically.
+
+But honestly, it's all window dressing for the pipeline. The globe is what people *see*. The pipeline is what *works*.
+
+### How the LLM Setup Evolved
+
+I started this project convinced I'd run everything locally on my RTX 3070. Gemma 4 E2B at first, then E4B when it dropped. The local models handled the simple extraction fine — categorizing facts, evaluating source authority, basic summarization.
+
+But the complex tasks were a different story. Entity assembly requires synthesizing disparate data points and identifying *absence* — "this supplier entry has no city, go find it." Parallel drafting needs consistent output across 13 concurrent schemas. The local models struggled with instruction adherence at that scale. A single pipeline run could take over 2 hours.
+
+The architecture had the right abstraction from day one — LiteLLM as a unified routing layer. Every LLM call goes through the same `LLMClient` class, which maps OpenAI-compatible payloads to whatever provider is active. Switching from local llama.cpp to Gemini was a single environment variable.
+
+I'm now on new `deepseek-v4-flash` with 256 parallel requests, 1M context window and 390K output size. Pipeline runs faster but the system is still provider-agnostic — I can point it at DeepSeek, Gemini, or back to a local instance just by changing `.env`. The prompt engineering stays the same; only the backend changes.
+
+### The Hardest Parts
+
+**Entity assembly and the enrichment loop.** Getting an LLM to recognize that it's missing data — rather than just making something up — is fundamentally hard. The current approach (assemble → inspect → search → re-extract) works but took the most iteration. The enrichment queries have to be specific enough to find the gap data without being so narrow they return nothing.
+
+**Async orchestration with progress tracking.** Running 10+ concurrent LLM calls with rate limits, cache lookups, and a UI that expects real-time progress updates was harder than I expected. The multiplexer pattern that merges task generators with LLM pulse queues was the third rewrite. The first two had deadlock bugs I couldn't reproduce reliably.
+
+**Tracing what the LLM is doing.** An agentic pipeline where every data transformation goes through an LLM is a black box. If the output is wrong, you can't just read the code — you have to read what the model was *thinking*. An inference logging system was built that saves every input prompt, output JSON, and reasoning field to disk, indexed sequentially so I can replay a full pipeline run post-mortem. That logging alone is why this project shipped.
 
 ### Final Thoughts
-Dossigraphica sits right at the intersection of complex data orchestration and high-end data visualization. 
 
-It’s proof that you can take unstructured web data, run it through an autonomous agentic pipeline, and render it into a highly structured, beautiful 3D intelligence dashboard (dashboard is just the side project but nice to again have this full-stack experience). It was an intense learning journey driven by curiosity and the desire to build something on my own to automate a task I find interesting (Geopolitical risk analysis of publicly traded companies). 
+Dossigraphica started as personal frustration with a manual workflow. It turned into a deep dive into async Python orchestration, provider-agnostic LLM routing, map-reduce extraction design, and just enough Three.js (thanks to AI) to make a globe look good.
 
-For now, I'm just enjoying watching the globe spin as the research agent seamlessly streams its findings into the UI.
+It's still a side project, but it's kind you like. I type a company name, watch the globe spin, and the pipeline does the rest.

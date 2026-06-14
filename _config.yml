@@ -7,38 +7,21 @@ title: Zhicheng's Blog
 subtitle: "A Chronicles of a 👨‍💻 Programmer <s>(with 📊 📈 Analytical Mindset Who was Once a 🎨 🖌️ Designer)</s>: Learn to Debug Life"
 description: |
   Welcome to my blog!
-  This blog chronicles my personal exploration into the worlds of building <s>(with LLMs ofc, what were you expecting?)</s> and life itself.
-  Here, I share the things I encounter while building.
+  This blog chronicles my journey of building things <s>(currently interested in LLM-powered features)</s> and figuring out life.
+  <br>
+  <br>
+  As a born designer who stumbled into data science before learning his first programming language (Python), I believe software is the <s>(current)</s> ultimate vehicle for great thinking and building.
+  <br>
+  <br>
+  But tools still need analytics to act as proof, and design to make them effortlessly digestible.
+  <br>
+  <br>
+  I live for these intersections, treat this as my playground for validating life thoughts by building them out, automating the <s>(unfortunately essential)</s> stuff to free up the fun.
   Think of it as me trying to debug life while getting better at debugging programs.
-  Fueled by my own insatiable curiosity <s>(and AI's endless patience)</s>, bolstered by my humble attitude of learning <s>(with millions of searches on Google)</s>,
-  I'm pretty confident this debugging process will be wrapped up by the end of this century.
+  Fueled by an insatiable curiosity <s>(and AI's endless patience)</s>,
+  I'm pretty confident this entire script will be error-free by the end of this century.
   <br>
   <br>
-  I'm passionate about building LLM powered features, with a particular interest in the intersection of geography, corporate intelligence, and (maybe) financial analysis.
-  <br>
-  <br>
-  <strong>👨‍💻 Building:</strong>
-  <br>
-  <br>
-  <strong>Geo Intelligence</strong>
-  <br>
-  • <a href="https://zhicheng-wang.com/Dossigraphica" target="_blank" rel="noopener noreferrer">🌍 Dossigraphica</a> — <em>macro scale: corporate analysis &amp; company intelligence</em>
-  <br>
-  • <a href="https://www.nearpulse.space" target="_blank" rel="noopener noreferrer">📍 NearPulse</a> — <em>micro scale: neighborhood insights for finding your next place to live</em>
-  <br>
-  <br>
-  <strong>Random Side Hobby</strong>
-  <br>
-  • <a href="https://www.shotwiseai.com" target="_blank" rel="noopener noreferrer">📸 Shotwise</a>
-  <br>
-  • <a href="https://www.aperilexlabs.com" target="_blank" rel="noopener noreferrer">📈 AperilexLabs</a>
-  <br>
-  <br>
-  ✉️: zcmmwang@gmail.com
-  <br>
-  🐦: <a href="https://x.com/ZhichengWang87" target="_blank" rel="noopener noreferrer">X</a>
-  <br>
-  🌟: <a href="https://github.com/Dogecat0" target="_blank" rel="noopener noreferrer">GitHub</a>
 keywords: programming, software development, AI, LLM, machine learning, financial analysis, SEC filings, Python, FastAPI, web development, coding tutorials, technical blog, software engineering, Claude Code, reading
 author: Zhicheng Wang
 language: en
