@@ -2686,6 +2686,11 @@ article pre code {
   border-color: rgb(231 229 228 / 0.8);
 }
 
+.border-stone-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(68 64 60 / var(--tw-border-opacity, 1));
+}
+
 .border-stone-800 {
   --tw-border-opacity: 1;
   border-color: rgb(41 37 36 / var(--tw-border-opacity, 1));
@@ -4248,6 +4253,22 @@ article pre code {
 
 .dark\:hover\:text-\[var\(--personality-color\)\]:hover:is(.dark *) {
   color: var(--personality-color);
+}
+
+.dark\:hover\:text-brand-analyst:hover:is(.dark *) {
+  color: var(--brand-analyst);
+}
+
+.dark\:hover\:text-brand-designer:hover:is(.dark *) {
+  color: var(--brand-designer);
+}
+
+.dark\:hover\:text-brand-engineer:hover:is(.dark *) {
+  color: var(--brand-engineer);
+}
+
+.dark\:hover\:decoration-brand-designer:hover:is(.dark *) {
+  text-decoration-color: var(--brand-designer);
 }
 
 @media (min-width: 640px) {
