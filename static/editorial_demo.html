@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zhicheng Wang — Redesign Editorial Demo</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond (Serif), Playfair Display (Serif), Inter (Sans), JetBrains Mono (Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            serif: ['Cormorant Garamond', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            brand: {
+              // Neutral background colors based on stone/paper feel
+              bgLight: '#fcfbfa', // warm paper
+              bgDark: '#171513', // warm charcoal
+              cardLight: '#ffffff',
+              cardDark: '#211e1b',
+              borderLight: '#e7e3df',
+              borderDark: '#36312c',
+              textLight: '#1c1917',
+              textDark: '#f5f5f4',
+              
+              // Personality Accent Colors
+              engineer: '#10b981', // Emerald
+              analyst: '#2563eb', // Indigo / Digital Blue
+              designer: '#ea580c', // Burnt Orange
+            }
+          },
+          animation: {
+            'blink': 'blink 0.8s step-end infinite',
+            'draw-line': 'draw 1.5s ease-out forwards',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --personality-color: #c2410c; /* Default burnt orange */
+      --personality-hover-color: #9a3412; /* Default burnt orange hover */
+    }
+    .dark {
+      --personality-color: #ea580c; /* Default dark mode orange */
+      --personality-hover-color: #f97316; /* Default dark mode orange hover */
+    }
+
+    /* Premium custom styling and page-load animations */
+    .transition-custom {
+      transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+
+    .mindset-card {
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.4s ease;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-start infinite;
+    }
+
+    /* Asymmetrical Grid layout hover effects */
+    .post-hover-trigger:hover .post-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Custom scrollbars matching the warm palette */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .light ::-webkit-scrollbar-thumb {
+      background: #e7e3df;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #36312c;
+      border-radius: 3px;
+    }
+
+    /* Waveform/Matrix canvas container styling */
+    .personality-canvas {
+      mask-image: linear-gradient(to bottom, black 80%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent);
+    }
+  </style>
+</head>
+<body class="bg-brand-bgLight text-brand-textLight dark:bg-brand-bgDark dark:text-brand-textDark min-h-screen transition-custom font-sans antialiased overflow-x-hidden">
+
+  <!-- ========================================== -->
+  <!-- PERSISTENT CONTROL HEADER (STAYS FIXED)   -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-brand-bgLight/80 dark:bg-brand-bgDark/80 backdrop-blur-md border-b border-brand-borderLight dark:border-brand-borderDark transition-custom py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      
+      <!-- Top Title/Logo -->
+      <a href="#" class="font-playfair text-xl font-bold tracking-tight transition-custom flex items-center gap-2">
+        Zhicheng Wang
+        <span class="text-xs font-mono font-normal tracking-normal text-stone-400 dark:text-stone-500">/ journal</span>
+      </a>
+
+      <!-- Redesign Options Controller -->
+      <div class="flex items-center gap-4">
+        
+        <!-- Personality Status Ribbon -->
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 border border-brand-borderLight dark:border-brand-borderDark text-[11px] font-mono text-stone-500 dark:text-stone-400 transition-custom">
+          <span>mindset_focus:</span>
+          <span id="active-mindset-pill" class="text-brand-designer font-bold uppercase transition-colors">Designer</span>
+        </div>
+
+        <!-- Light/Dark Toggle -->
+        <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 border border-brand-borderLight dark:border-brand-borderDark transition-custom text-stone-600 dark:text-stone-400" title="Toggle Light/Dark Mode">
+          <i data-lucide="sun" id="theme-btn-icon" class="h-4.5 w-4.5"></i>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- HERO: THE MULTI-FACET PERSONALITY BOARD   -->
+  <!-- ========================================== -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 border-b border-brand-borderLight dark:border-brand-borderDark transition-custom">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left side: Main text and Selector -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Typographic display representing the inner balance of minds -->
+        <div class="space-y-2">
+          <span class="text-xs font-mono tracking-widest text-stone-400 uppercase">Chronicles of a</span>
+          <h1 class="text-4xl sm:text-5xl font-playfair font-extrabold tracking-tight leading-tight">
+            Programmer, <span class="font-serif italic font-normal text-stone-500 dark:text-stone-400">Analyst</span>, <br class="hidden sm:inline">
+            and <span class="underline decoration-1 underline-offset-4 decoration-stone-300 dark:decoration-stone-700">Designer</span>.
+          </h1>
+        </div>
+
+        <!-- Animated Mindset Subtitle -->
+        <div class="h-10 flex items-center">
+          <p class="font-serif italic text-lg sm:text-xl text-stone-500 dark:text-stone-400 flex items-center">
+            Currently debugging&nbsp;
+            <span class="font-mono text-base sm:text-lg not-italic font-bold px-2 py-0.5 rounded transition-custom" id="interactive-span" style="color: var(--personality-color, #ea580c); background-color: rgba(234, 88, 12, 0.08);">
+              life.py
+            </span>
+            <span class="inline-block w-1.5 h-4.5 bg-[var(--personality-color,#ea580c)] ml-0.5 cursor-blink align-middle" id="interactive-cursor"></span>
+          </p>
+        </div>
+
+        <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl font-sans">
+          This blog compiles my personal journey into AI development, geo intelligence, and software craftsmanship. Built with million-token context windows and a designer’s eye for visual hierarchy.
+        </p>
+
+        <!-- Selector Toggles representing the personalities -->
+        <div class="space-y-2 pt-2">
+          <span class="text-[10px] font-mono tracking-widest text-stone-400 uppercase">Active Mindset Filters (Click to Morph UI)</span>
+          <div class="flex flex-wrap gap-2.5">
+            <button onclick="setMindset('engineer')" id="btn-engineer" class="px-4 py-2 border rounded font-mono text-xs transition-custom font-semibold bg-brand-engineer/10 border-brand-engineer text-brand-engineer flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="code" class="h-3.5 w-3.5"></i> 👨‍💻 Programmer
+            </button>
+            <button onclick="setMindset('analyst')" id="btn-analyst" class="px-4 py-2 border rounded font-mono text-xs transition-custom font-semibold border-brand-borderLight dark:border-brand-borderDark hover:border-brand-analyst/50 text-stone-450 hover:text-brand-analyst flex items-center gap-1.5">
+              <i data-lucide="bar-chart-2" class="h-3.5 w-3.5"></i> 📊 Analyst
+            </button>
+            <button onclick="setMindset('designer')" id="btn-designer" class="px-4 py-2 border rounded font-mono text-xs transition-custom font-semibold border-brand-borderLight dark:border-brand-borderDark hover:border-brand-designer/50 text-stone-450 hover:text-brand-designer flex items-center gap-1.5">
+              <i data-lucide="brush" class="h-3.5 w-3.5"></i> 🎨 Designer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: Single active card container with smooth transition -->
+      <div class="lg:col-span-5 relative h-[260px]" id="mindset-cards-container">
+        
+        <!-- CARD 1: ENGINEER / PROGRAMMER -->
+        <div id="card-engineer" class="mindset-card absolute inset-0 w-full h-full p-4 bg-brand-cardLight dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark rounded-xl flex flex-col justify-between font-mono text-xs opacity-0 pointer-events-none scale-95 translate-y-2 select-none">
+          <!-- Window Header Chrome -->
+          <div class="flex items-center justify-between border-b border-brand-borderLight dark:border-brand-borderDark pb-2">
+            <div class="flex items-center gap-1.5">
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-brand-engineer animate-pulse"></span>
+              <span class="text-[10px] text-stone-555 dark:text-stone-400 font-bold ml-1.5 flex items-center gap-1 font-mono"><i data-lucide="file-code" class="h-3 w-3"></i> life_debugger.py</span>
+            </div>
+            <span class="text-[9px] text-stone-450 dark:text-stone-500 font-mono font-bold tracking-tight">main.py</span>
+          </div>
+          <!-- Code editor mock content -->
+          <div class="flex-grow space-y-1 opacity-90 text-[11px] leading-relaxed pt-2">
+            <p class="text-stone-400 dark:text-stone-600"><span class="text-stone-600 dark:text-stone-400 font-medium">import</span> os, time, sys</p>
+            <p><span class="text-blue-500 dark:text-blue-400">def</span> <span class="text-brand-engineer font-bold">debug_experience</span>(day):</p>
+            <p class="pl-4">insights = day.parse_logs()</p>
+            <p class="pl-4"><span class="text-stone-600 dark:text-stone-450 font-medium">if</span> insights.has_bugs():</p>
+            <p class="pl-8 text-brand-engineer font-semibold">fix_mindset(insights.errors)</p>
+            <p class="pl-4"><span class="text-stone-600 dark:text-stone-400">return</span> insights.completeness()</p>
+          </div>
+          <div class="text-[9px] border-t border-brand-borderLight dark:border-brand-borderDark pt-2 mt-1 text-stone-455 flex justify-between items-center font-mono">
+            <span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-brand-engineer"></span> Terminal: Compiled life.py</span>
+            <span class="font-bold text-brand-engineer">OK</span>
+          </div>
+        </div>
+
+        <!-- CARD 2: ANALYST -->
+        <div id="card-analyst" class="mindset-card absolute inset-0 w-full h-full p-4 bg-brand-cardLight dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark rounded-xl flex flex-col justify-between font-mono text-xs opacity-0 pointer-events-none scale-95 translate-y-2 select-none">
+          <!-- Window Header Chrome -->
+          <div class="flex items-center justify-between border-b border-brand-borderLight dark:border-brand-borderDark pb-2">
+            <div class="flex items-center gap-1.5">
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-brand-analyst animate-pulse"></span>
+              <span class="text-[10px] text-stone-555 dark:text-stone-400 font-bold ml-1.5 flex items-center gap-1 font-mono"><i data-lucide="bar-chart-2" class="h-3 w-3 text-brand-analyst"></i> dossier_metrics.json</span>
+            </div>
+            <span class="text-[9px] text-stone-450 dark:text-stone-500 font-mono font-bold tracking-tight">Q1 2026</span>
+          </div>
+          <!-- Sparkline and dashboard mock data content -->
+          <div class="flex-grow flex items-center justify-between gap-4 py-3">
+            <div class="w-1/2 h-12 relative flex items-center">
+              <svg viewBox="0 0 100 45" class="w-full h-full stroke-brand-analyst fill-none overflow-visible">
+                <line x1="0" y1="22" x2="100" y2="22" class="stroke-stone-200 dark:stroke-stone-850" stroke-width="0.5" stroke-dasharray="2 2" />
+                <path d="M 0 40 L 20 32 L 40 35 L 60 12 L 80 18 L 100 5" stroke-width="2.5" class="stroke-brand-analyst" />
+                <path d="M 0 40 L 20 32 L 40 35 L 60 12 L 80 18 L 100 5 L 100 45 L 0 45 Z" class="fill-brand-analyst/5 stroke-none" />
+                <circle cx="60" cy="12" r="3.5" class="fill-brand-analyst stroke-white dark:stroke-brand-cardDark" stroke-width="1.5" />
+                <circle cx="100" cy="5" r="3.5" class="fill-brand-analyst stroke-white dark:stroke-brand-cardDark" stroke-width="1.5" />
+              </svg>
+            </div>
+            <div class="w-1/2 grid grid-cols-2 gap-x-2 gap-y-1.5 border-l border-brand-borderLight dark:border-brand-borderDark pl-3">
+              <div>
+                <span class="block font-bold text-stone-750 dark:text-stone-300 text-sm">75.8%</span>
+                <span class="text-[8px] text-stone-450 uppercase font-bold tracking-wider">AMD Score</span>
+              </div>
+              <div>
+                <span class="block font-bold text-stone-750 dark:text-stone-300 text-sm">72.4%</span>
+                <span class="text-[8px] text-stone-450 uppercase font-bold tracking-wider">AMZN Score</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-[9px] border-t border-brand-borderLight dark:border-brand-borderDark pt-2 mt-1 text-stone-455 flex justify-between items-center font-mono">
+            <span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-brand-analyst"></span> Data Cache: Indexing logs</span>
+            <span class="font-bold text-brand-analyst font-mono">RUNNING</span>
+          </div>
+        </div>
+
+        <!-- CARD 3: DESIGNER -->
+        <div id="card-designer" class="mindset-card absolute inset-0 w-full h-full p-4 bg-brand-cardLight dark:bg-brand-cardDark border border-brand-borderLight dark:border-brand-borderDark rounded-xl flex flex-col justify-between font-mono text-xs opacity-0 pointer-events-none scale-95 translate-y-2 select-none">
+          <!-- Window Header Chrome -->
+          <div class="flex items-center justify-between border-b border-brand-borderLight dark:border-brand-borderDark pb-2">
+            <div class="flex items-center gap-1.5">
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-stone-300 dark:bg-stone-750"></span>
+              <span class="h-2 w-2 rounded-full bg-brand-designer animate-pulse"></span>
+              <span class="text-[10px] text-stone-550 dark:text-stone-400 font-bold ml-1.5 flex items-center gap-1 font-serif italic"><i data-lucide="compass" class="h-3.5 w-3.5 text-brand-designer"></i> golden_ratio.svg</span>
+            </div>
+            <span class="text-[9px] text-stone-450 dark:text-stone-500 font-mono font-bold tracking-tight">1.618 Ratio</span>
+          </div>
+          <!-- Artboard Preview geometric layout -->
+          <div class="flex-grow flex items-center justify-between gap-4 py-2">
+            <div class="w-1/2 flex items-center justify-center relative h-12 overflow-hidden bg-stone-50/50 dark:bg-stone-900/50 border border-brand-borderLight/40 dark:border-brand-borderDark/40 rounded">
+              <!-- Golden spiral representation in SVG -->
+              <svg viewBox="0 0 40 25" class="h-8 w-12 stroke-brand-designer/40 fill-none overflow-visible">
+                <path d="M 25 15 A 10 10 0 0 1 15 15 A 10 10 0 0 1 15 5 A 15 15 0 0 1 30 5 A 25 25 0 0 1 5 5" stroke-width="0.8" />
+                <rect x="0" y="0" width="40" height="25" class="stroke-stone-300/40 dark:stroke-stone-700/40" stroke-width="0.5" />
+              </svg>
+              <div class="text-xs font-serif italic text-brand-designer font-light absolute select-none opacity-80" style="transform: translate(18px, -6px);">Φ</div>
+            </div>
+            <div class="w-1/2 flex flex-col gap-0.5 border-l border-brand-borderLight dark:border-brand-borderDark pl-3 font-sans">
+              <span class="font-serif italic text-stone-650 dark:text-stone-300 text-xs">"Esthetics are function"</span>
+              <span class="font-mono text-[8.5px] text-stone-455 dark:text-stone-555 leading-tight">W: 1.618 / H: 1.000</span>
+            </div>
+          </div>
+          <div class="text-[9px] border-t border-brand-borderLight dark:border-brand-borderDark pt-2 mt-1 text-stone-450 flex justify-between items-center font-mono">
+            <span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-brand-designer"></span> Canvas: Rendered grids</span>
+            <span class="font-bold text-brand-designer font-mono">LOADED</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- ARTICLES & SIDEBAR GRID                    -->
+  <!-- ========================================== -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- LEFT COLUMN: ARTICLES STREAM -->
+      <section class="lg:col-span-8 space-y-12" id="articles-stream">
+        
+        <!-- Section Header -->
+        <div class="pb-3 border-b border-brand-borderLight dark:border-brand-borderDark flex items-baseline justify-between transition-custom">
+          <h2 class="text-xl font-playfair font-bold text-stone-850 dark:text-stone-100 flex items-center gap-2">
+            Selected Notebooks
+          </h2>
+          <span class="text-xs font-mono text-stone-400">7 published items</span>
+        </div>
+
+        <!-- ARTICLE CARD 1 -->
+        <article class="post-hover-trigger space-y-3 cursor-pointer group" onclick="alert('Viewing AMD/Amazon Completeness Audits Post')">
+          <div class="flex items-center gap-3 text-xs font-mono text-stone-450 dark:text-stone-500">
+            <span class="text-brand-engineer font-bold transition-colors uppercase" id="cat-indicator-1">AI Development</span>
+            <span>•</span>
+            <span>2026-05-24</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="h-3 w-3"></i> 6 min read</span>
+          </div>
+
+          <h3 class="text-2xl font-playfair font-bold tracking-tight text-stone-850 dark:text-stone-100 hover:text-[var(--personality-color)] transition-colors duration-250 cursor-pointer">
+            Completeness Audits of Dossigraphica: DeepSeek V4 Flash on AMD and Amazon
+          </h3>
+
+          <p class="font-serif italic text-base leading-relaxed text-stone-600 dark:text-stone-400 max-w-2xl">
+            Finished a refactor of the Dossigraphica research pipeline, switching the model from Gemini 3 Flash Lite to DeepSeek V4 Flash. Run first two audits on AMD and Amazon. Here is how they stack up...
+          </p>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex gap-2 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#deepseek</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#evaluation</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#geoint</span>
+            </div>
+            <a href="#" class="font-sans font-semibold text-xs text-[var(--personality-color)] hover:text-[var(--personality-hover-color)] transition-colors duration-200 flex items-center gap-1 group">
+              READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+            </a>
+          </div>
+        </article>
+
+        <hr class="border-brand-borderLight dark:border-brand-borderDark transition-custom">
+
+        <!-- ARTICLE CARD 2 -->
+        <article class="post-hover-trigger space-y-3 cursor-pointer group" onclick="alert('Viewing Anatomy of an AI Analyst Post')">
+          <div class="flex items-center gap-3 text-xs font-mono text-stone-450 dark:text-stone-500">
+            <span class="text-brand-engineer font-bold transition-colors uppercase" id="cat-indicator-2">AI Development</span>
+            <span>•</span>
+            <span>2026-04-18</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="h-3 w-3"></i> 8 min read</span>
+          </div>
+
+          <h3 class="text-2xl font-playfair font-bold tracking-tight text-stone-850 dark:text-stone-100 hover:text-[var(--personality-color)] transition-colors duration-250 cursor-pointer">
+            Anatomy of an AI Financial Analyst
+          </h3>
+
+          <p class="font-serif italic text-base leading-relaxed text-stone-600 dark:text-stone-400 max-w-2xl">
+            Building a multi-agent system to digest EDGAR filings, extract geographic linkages, and automatically construct corporate risks. In this post, we map out the complete pipeline schema and prompt constraints...
+          </p>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex gap-2 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#sec-filings</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#agents</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#fastapi</span>
+            </div>
+            <a href="#" class="font-sans font-semibold text-xs text-[var(--personality-color)] hover:text-[var(--personality-hover-color)] transition-colors duration-200 flex items-center gap-1 group">
+              READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+            </a>
+          </div>
+        </article>
+
+        <hr class="border-brand-borderLight dark:border-brand-borderDark transition-custom">
+
+        <!-- ARTICLE CARD 3 -->
+        <article class="post-hover-trigger space-y-3 cursor-pointer group" onclick="alert('Viewing Building Dossigraphica Post')">
+          <div class="flex items-center gap-3 text-xs font-mono text-stone-450 dark:text-stone-500">
+            <span class="text-brand-engineer font-bold transition-colors uppercase" id="cat-indicator-3">Geo Intelligence</span>
+            <span>•</span>
+            <span>2026-03-05</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="h-3 w-3"></i> 5 min read</span>
+          </div>
+
+          <h3 class="text-2xl font-playfair font-bold tracking-tight text-stone-850 dark:text-stone-100 hover:text-[var(--personality-color)] transition-colors duration-250 cursor-pointer">
+            Building Dossigraphica: Mapping Macro-Scale Corporate Networks
+          </h3>
+
+          <p class="font-serif italic text-base leading-relaxed text-stone-600 dark:text-stone-400 max-w-2xl">
+            An interactive geo intelligence tool exploring where tech giants place data centers, offices, and where they draw resources. Why visualizing geography and corporate concentration is a designer's play space...
+          </p>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex gap-2 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#geography</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#visuals</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#dossigraphica</span>
+            </div>
+            <a href="#" class="font-sans font-semibold text-xs text-[var(--personality-color)] hover:text-[var(--personality-hover-color)] transition-colors duration-200 flex items-center gap-1 group">
+              READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+            </a>
+          </div>
+        </article>
+
+        <hr class="border-brand-borderLight dark:border-brand-borderDark transition-custom">
+
+        <!-- ARTICLE CARD 4 -->
+        <article class="post-hover-trigger space-y-3 cursor-pointer group" onclick="alert('Viewing Thinking, Fast and Slow Post')">
+          <div class="flex items-center gap-3 text-xs font-mono text-stone-455 dark:text-stone-500">
+            <span class="text-brand-engineer font-bold transition-colors uppercase" id="cat-indicator-4">Reading</span>
+            <span>•</span>
+            <span>2026-02-12</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="clock" class="h-3 w-3"></i> 4 min read</span>
+          </div>
+
+          <h3 class="text-2xl font-playfair font-bold tracking-tight text-stone-850 dark:text-stone-100 hover:text-[var(--personality-color)] transition-colors duration-250 cursor-pointer">
+            Thinking, Fast and Slow: Applying Systems to LLM Planning
+          </h3>
+
+          <p class="font-serif italic text-base leading-relaxed text-stone-600 dark:text-stone-450 max-w-2xl">
+            Reflections on Daniel Kahneman's model of System 1 (fast, intuitive) and System 2 (slow, analytical). How we can structure Agentic planning cycles to resemble System 2 processing, and why it matters for code refactoring...
+          </p>
+
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex gap-2 font-mono text-[10px]">
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#books</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#planning</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">#agents</span>
+            </div>
+            <a href="#" class="font-sans font-semibold text-xs text-[var(--personality-color)] hover:text-[var(--personality-hover-color)] transition-colors duration-200 flex items-center gap-1 group">
+              READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between pt-6 border-t border-brand-borderLight dark:border-brand-borderDark transition-custom">
+          <span class="text-xs font-mono text-stone-400">PAGE_ID: 01 // 02</span>
+          <div class="flex gap-3">
+            <button class="px-3 py-1 bg-stone-100 dark:bg-stone-900 border border-brand-borderLight dark:border-brand-borderDark text-stone-400 dark:text-stone-600 rounded font-mono text-xs cursor-not-allowed">PREV</button>
+            <button class="px-3 py-1 bg-stone-100 dark:bg-stone-900 hover:bg-stone-200 dark:hover:bg-stone-800 border border-brand-borderLight dark:border-brand-borderDark text-stone-600 dark:text-stone-300 rounded font-mono text-xs transition-colors">NEXT</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: SIDEBAR WIDGETS -->
+      <aside class="lg:col-span-4 space-y-8">
+        
+        <!-- Search widget -->
+        <div class="p-6 bg-stone-100/20 dark:bg-stone-900/20 border border-brand-borderLight dark:border-brand-borderDark rounded-xl transition-custom">
+          <h4 class="text-xs font-mono font-bold tracking-widest text-stone-400 uppercase mb-3 flex items-center gap-2">
+            <i data-lucide="search" class="h-3.5 w-3.5"></i> Find Dossier
+          </h4>
+          <div class="relative">
+            <input type="text" placeholder="Type pattern..." class="w-full bg-transparent border-b border-brand-borderLight dark:border-brand-borderDark focus:border-[var(--personality-color,#10b981)] py-2 text-sm font-serif outline-none transition-colors">
+          </div>
+        </div>
+
+        <!-- Mindset Info Board -->
+        <div class="p-6 bg-stone-100/20 dark:bg-stone-900/20 border border-brand-borderLight dark:border-brand-borderDark rounded-xl transition-custom">
+          <h4 class="text-xs font-mono font-bold tracking-widest text-stone-400 uppercase mb-3 flex items-center gap-2">
+            <i data-lucide="info" class="h-3.5 w-3.5"></i> Profile Details
+          </h4>
+          
+          <div class="space-y-4 text-xs font-mono text-stone-500 dark:text-stone-450">
+            <div id="mindset-meta-description" class="font-serif italic text-sm text-stone-650 dark:text-stone-350 leading-relaxed border-l-2 border-[var(--personality-color,#10b981)] pl-3">
+              "When I write code, I look for elegance in variables and clean loops. The programmer mindset demands structure."
+            </div>
+            
+            <div class="space-y-2 pt-2 text-[11px]">
+              <div class="flex items-center justify-between">
+                <span>Current Location:</span>
+                <span class="text-stone-750 dark:text-stone-300 font-bold">London, UK</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Code Audited:</span>
+                <span class="text-stone-750 dark:text-stone-300 font-bold">12 commits / wk</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Core Framework:</span>
+                <span class="text-stone-750 dark:text-stone-300 font-bold">Hexo / Tailwind</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Projects Ecosystem -->
+        <div class="p-6 bg-stone-100/20 dark:bg-stone-900/20 border border-brand-borderLight dark:border-brand-borderDark rounded-xl transition-custom">
+          <h4 class="text-xs font-mono font-bold tracking-widest text-stone-400 uppercase mb-4 flex items-center gap-2">
+            <i data-lucide="git-merge" class="h-3.5 w-3.5"></i> Active Systems
+          </h4>
+          
+          <div class="space-y-4">
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-xs font-bold font-playfair">
+                <span>🌍 Dossigraphica</span>
+                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-brand-engineer/10 text-brand-engineer border border-brand-engineer/20">Active</span>
+              </div>
+              <p class="text-[11px] font-serif text-stone-500 dark:text-stone-400 leading-relaxed">
+                Visualizing corporate entities network mapping via LLM pipeline extractions.
+              </p>
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-xs font-bold font-playfair">
+                <span>📍 NearPulse</span>
+                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-brand-engineer/10 text-brand-engineer border border-brand-engineer/20">Active</span>
+              </div>
+              <p class="text-[11px] font-serif text-stone-500 dark:text-stone-400 leading-relaxed">
+                Micro-neighborhood dashboard analysis tool.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="border-t border-brand-borderLight dark:border-brand-borderDark py-12 mt-16 bg-stone-100/40 dark:bg-stone-950/20 transition-custom text-xs font-mono text-stone-500 text-center">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 Zhicheng Wang. Creative/Analytic Redesign Concept.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:underline">RSS</a>
+        <a href="#" class="hover:underline">Sitemap</a>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-[var(--personality-color,#ea580c)] font-bold hover:underline flex items-center gap-1">
+          Back to Top <i data-lucide="arrow-up" class="h-3 w-3"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- CONTROLLER SCRIPTS                         -->
+  <!-- ========================================== -->
+  <script>
+    // Light/Dark Theme management
+    let isDarkMode = false;
+    
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-btn-icon');
+      
+      if (isDarkMode) {
+        html.classList.add('dark');
+        html.classList.remove('light');
+        icon.setAttribute('data-lucide', 'moon');
+      } else {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        icon.setAttribute('data-lucide', 'sun');
+      }
+      lucide.createIcons();
+      updatePersonalityColors();
+    }
+
+    // Personality Mindset management
+    let activeMindset = 'engineer';
+    
+    const mindsets = {
+      engineer: {
+        pillText: 'Programmer',
+        light: '#059669', // emerald-600
+        dark: '#10b981', // emerald-500
+        hoverLight: '#047857', // emerald-700
+        hoverDark: '#34d399', // emerald-400
+        spanText: 'life.py',
+        desc: '"When I write code, I look for elegance in variables and clean loops. The programmer mindset demands structure."',
+        btnId: 'btn-engineer'
+      },
+      analyst: {
+        pillText: 'Analyst',
+        light: '#1d4ed8', // blue-700
+        dark: '#3b82f6', // blue-500
+        hoverLight: '#1e40af', // blue-800
+        hoverDark: '#60a5fa', // blue-400
+        spanText: 'metrics.json',
+        desc: '"Data holds the ultimate truth. Parsing, weights, completeness models: these parameters explain complex systems."',
+        btnId: 'btn-analyst'
+      },
+      designer: {
+        pillText: 'Designer',
+        light: '#c2410c', // orange-700
+        dark: '#ea580c', // orange-500
+        hoverLight: '#9a3412', // orange-800
+        hoverDark: '#f97316', // orange-400
+        spanText: 'pixels.css',
+        desc: '"Balance, typography, white space, and letter-spacing tell a story before the text is even read. Esthetics are function."',
+        btnId: 'btn-designer'
+      }
+    };
+
+    function updatePersonalityColors() {
+      const config = mindsets[activeMindset];
+      const primaryColor = isDarkMode ? config.dark : config.light;
+      const hoverColor = isDarkMode ? config.hoverDark : config.hoverLight;
+      
+      document.documentElement.style.setProperty('--personality-color', primaryColor);
+      document.documentElement.style.setProperty('--personality-hover-color', hoverColor);
+      
+      // Update Pill Text
+      const pill = document.getElementById('active-mindset-pill');
+      if (pill) {
+        pill.innerText = config.pillText;
+        pill.style.color = primaryColor;
+      }
+      
+      // Update active toggle button style
+      ['engineer', 'analyst', 'designer'].forEach(m => {
+        const btn = document.getElementById(`btn-${m}`);
+        if (btn) {
+          const btnPrimary = isDarkMode ? mindsets[m].dark : mindsets[m].light;
+          if (m === activeMindset) {
+            btn.style.backgroundColor = `${btnPrimary}15`;
+            btn.style.borderColor = btnPrimary;
+            btn.style.color = btnPrimary;
+          } else {
+            btn.style.backgroundColor = 'transparent';
+            btn.style.borderColor = '';
+            btn.style.color = '';
+            btn.className = "px-4 py-2 border border-brand-borderLight dark:border-brand-borderDark rounded font-mono text-xs transition-custom font-semibold text-stone-450 hover:text-[var(--personality-hover-color)] hover:border-[var(--personality-color)]/50 flex items-center gap-1.5";
+          }
+        }
+      });
+
+      // Update article indicator badges colors
+      for (let i = 1; i <= 4; i++) {
+        const cat = document.getElementById(`cat-indicator-${i}`);
+        if (cat) {
+          cat.style.color = primaryColor;
+        }
+      }
+      
+      // Update mindset card state
+      ['engineer', 'analyst', 'designer'].forEach(m => {
+        const cardEl = document.getElementById(`card-${m}`);
+        if (cardEl) {
+          const cardPrimary = isDarkMode ? mindsets[m].dark : mindsets[m].light;
+          if (m === activeMindset) {
+            cardEl.style.borderColor = cardPrimary;
+            cardEl.style.boxShadow = `0 20px 25px -5px ${cardPrimary}15, 0 10px 10px -5px ${cardPrimary}15`;
+            cardEl.classList.remove('opacity-0', 'pointer-events-none', 'scale-95', 'translate-y-2');
+            cardEl.classList.add('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0', 'z-10');
+          } else {
+            cardEl.style.borderColor = '';
+            cardEl.style.boxShadow = '';
+            cardEl.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0', 'z-10');
+            cardEl.classList.add('opacity-0', 'pointer-events-none', 'scale-95', 'translate-y-2');
+          }
+        }
+      });
+    }
+
+    // Typing and Scrambling animations state
+    let typingTimer = null;
+    let scrambleTimer = null;
+
+    function setMindset(type) {
+      activeMindset = type;
+      const config = mindsets[type];
+
+      // Update all CSS variables and colors
+      updatePersonalityColors();
+
+      // Update Descriptions
+      const descEl = document.getElementById('mindset-meta-description');
+      if (descEl) {
+        descEl.innerText = config.desc;
+      }
+
+      // Trigger custom animations on subtitle span
+      triggerMindsetAnimation(type, config.spanText);
+    }
+
+    function triggerMindsetAnimation(type, targetText) {
+      const span = document.getElementById('interactive-span');
+      const cursor = document.getElementById('interactive-cursor');
+      
+      // Clear previous running timers
+      clearTimeout(typingTimer);
+      clearInterval(scrambleTimer);
+      
+      span.innerText = '';
+      cursor.style.display = 'inline-block';
+
+      if (type === 'engineer') {
+        // --- Typist Animation (Programmer Mode) ---
+        let index = 0;
+        function typeWriter() {
+          if (index < targetText.length) {
+            span.innerText += targetText.charAt(index);
+            index++;
+            typingTimer = setTimeout(typeWriter, 90);
+          }
+        }
+        typeWriter();
+      } 
+      else if (type === 'analyst') {
+        // --- Random Scramble / Decoder Animation (Analyst Mode) ---
+        const chars = '0123456789%#@$*[]+=&?';
+        let iterations = 0;
+        
+        scrambleTimer = setInterval(() => {
+          span.innerText = targetText
+            .split('')
+            .map((char, index) => {
+              if (index < iterations) {
+                return targetText[index];
+              }
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+          
+          if (iterations >= targetText.length) {
+            clearInterval(scrambleTimer);
+          }
+          iterations += 1/3;
+        }, 30);
+      } 
+      else if (type === 'designer') {
+        // --- Smooth Fade-In and tracking spread (Designer Mode) ---
+        cursor.style.display = 'none'; // hide cursor for designer flow
+        span.innerText = targetText;
+        span.style.opacity = '0';
+        span.style.letterSpacing = '0.3em';
+        
+        let opacityVal = 0;
+        let spacingVal = 0.3;
+        
+        function smoothSpread() {
+          opacityVal += 0.1;
+          spacingVal -= 0.02;
+          
+          span.style.opacity = opacityVal;
+          span.style.letterSpacing = `${Math.max(0.05, spacingVal)}em`;
+          
+          if (opacityVal < 1) {
+            typingTimer = setTimeout(smoothSpread, 25);
+          } else {
+            span.style.letterSpacing = '0.05em';
+          }
+        }
+        smoothSpread();
+      }
+    }
+
+    // Initialize Lucide icons on start
+    lucide.createIcons();
+    
+    // Set initial active state
+    setMindset('designer');
+  </script>
+</body>
+</html>

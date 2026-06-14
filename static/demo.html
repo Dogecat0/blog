@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zhicheng's Blog Redesign Concepts</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (loaded via ES modules) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+            outfit: ['Outfit', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            // Debugger Theme Colors (Neon & Cyber)
+            cyber: {
+              bg: '#09090b',
+              panel: '#121214',
+              border: '#27272a',
+              text: '#e4e4e7',
+              accent: '#10b981', // emerald
+              secondary: '#06b6d4', // cyan
+              alert: '#f59e0b', // amber
+            },
+            // Dashboard Theme Colors (Data & Geo)
+            dash: {
+              bg: '#0f172a', // slate-900
+              card: '#1e293b', // slate-800
+              border: '#334155', // slate-700
+              accent: '#3b82f6', // blue
+              accentLight: '#60a5fa',
+              sage: '#14b8a6', // teal
+            },
+            // Editorial Theme Colors (Designer Warmth)
+            edit: {
+              bgLight: '#fafaf9', // stone-50
+              cardLight: '#ffffff',
+              borderLight: '#e7e5e4', // stone-200
+              textLight: '#1c1917', // stone-900
+              accentLight: '#c2410c', // burnt orange
+              
+              bgDark: '#1c1917', // stone-900
+              cardDark: '#292524', // stone-800
+              borderDark: '#44403c', // stone-700
+              textDark: '#f5f5f4', // stone-100
+              accentDark: '#ea580c', // orange-600
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'terminal-cursor': 'blink 1s step-end infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'glow-pulse': 'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            blink: {
+              'from, to': { borderColor: 'transparent' },
+              '50%': { borderColor: 'currentColor' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' }
+            },
+            glow: {
+              'from': { boxShadow: '0 0 4px rgba(16, 185, 129, 0.2), 0 0 10px rgba(16, 185, 129, 0.1)' },
+              'to': { boxShadow: '0 0 12px rgba(16, 185, 129, 0.6), 0 0 22px rgba(16, 185, 129, 0.3)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbars and styling tweaks */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    .theme-debugger ::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+    .theme-debugger ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+    .theme-debugger ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+
+    .theme-dashboard ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    .theme-dashboard ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    .theme-dashboard ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    .theme-editorial ::-webkit-scrollbar-track {
+      background: #fafaf9;
+    }
+    .theme-editorial.dark ::-webkit-scrollbar-track {
+      background: #1c1917;
+    }
+    .theme-editorial ::-webkit-scrollbar-thumb {
+      background: #d6d3d1;
+      border-radius: 4px;
+    }
+    .theme-editorial.dark ::-webkit-scrollbar-thumb {
+      background: #44403c;
+    }
+
+    /* Transition for theme switching */
+    .transition-theme {
+      transition: background-color 0.5s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-start infinite;
+    }
+  </style>
+</head>
+<body class="theme-debugger bg-zinc-950 text-zinc-100 min-h-screen transition-theme font-sans antialiased overflow-x-hidden" id="app-body">
+
+  <!-- ========================================== -->
+  <!-- REDESIGN CONTROL PANEL (PERSISTENT TOP BAR)-->
+  <!-- ========================================== -->
+  <div class="sticky top-0 z-50 bg-zinc-900 border-b border-zinc-800 text-zinc-300 py-3.5 px-4 shadow-xl select-none backdrop-blur-md bg-opacity-90">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-8.5 w-8.5 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
+          <i data-lucide="layers" class="h-4.5 w-4.5"></i>
+        </div>
+        <div>
+          <h1 class="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+            Cosmetic Surgery Preview
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30 font-mono">v2.0-mock</span>
+          </h1>
+          <p class="text-xs text-zinc-400">Toggle themes below to preview layouts for your blog site</p>
+        </div>
+      </div>
+      
+      <!-- Theme Selector Switches -->
+      <div class="flex flex-wrap gap-2 items-center">
+        <button onclick="switchTheme('debugger')" id="btn-theme-debugger" class="px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="terminal" class="h-3.5 w-3.5"></i>
+          1. The Debugger
+        </button>
+        <button onclick="switchTheme('dashboard')" id="btn-theme-dashboard" class="px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5">
+          <i data-lucide="layout-dashboard" class="h-3.5 w-3.5"></i>
+          2. Analytical Dashboard
+        </button>
+        <button onclick="switchTheme('editorial')" id="btn-theme-editorial" class="px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5">
+          <i data-lucide="feather" class="h-3.5 w-3.5"></i>
+          3. Minimalist Editorial
+        </button>
+        
+        <div class="h-6 w-px bg-zinc-800 mx-1 hidden sm:block"></div>
+        
+        <!-- Theme Spec Details / Context -->
+        <span id="theme-badge-desc" class="text-[11px] text-zinc-400 font-mono bg-zinc-950/80 px-2.5 py-1.5 rounded border border-zinc-800 max-w-[200px] text-ellipsis overflow-hidden whitespace-nowrap">
+          Vibe: Cyber Monospace & Logs
+        </span>
+        
+        <button onclick="toggleDarkMode()" id="mode-toggle-btn" class="p-1.5 rounded border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 transition-colors" title="Toggle Light/Dark Mode (Editorial only)">
+          <i data-lucide="sun" id="mode-icon" class="h-4 w-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- MAIN LAYOUT WRAPPER                        -->
+  <!-- ========================================== -->
+  <div class="w-full transition-theme" id="theme-wrapper">
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <header class="w-full relative transition-theme border-b" id="section-hero">
+      
+      <!-- Theme 1: Debugger Hero -->
+      <div id="hero-debugger" class="block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 font-mono">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800 text-xs text-zinc-400">
+              <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>system_status: compiled_successfully</span>
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">
+              Zhicheng's Blog<span class="text-emerald-400">.exe</span>
+            </h1>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed border-l-2 border-emerald-500/40 pl-4 py-1">
+              A Chronicles of a <span class="text-zinc-200">👨‍💻 Programmer</span> <span class="line-through text-zinc-600">(with 📊 📈 Analytical Mindset Who was Once a 🎨 🖌️ Designer)</span>: <span class="text-emerald-400">Learn to Debug Life</span>
+            </p>
+            
+            <div class="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-2xl">
+              Welcome to my blog! This space chronicles my personal exploration into the worlds of building <span class="text-cyan-400 font-semibold">&lt;with LLMs ofc /&gt;</span> and life itself. 
+              Think of it as me trying to debug life while getting better at debugging programs.
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#projects" class="px-4 py-2 rounded bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-xs transition-colors flex items-center gap-1.5 shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                <i data-lucide="terminal" class="h-3.5 w-3.5"></i> RUN DOSSIER_AUDITS.SH
+              </a>
+              <a href="#posts" class="px-4 py-2 rounded bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 font-semibold text-xs transition-all flex items-center gap-1.5">
+                <i data-lucide="file-code" class="h-3.5 w-3.5"></i> CAT RECENT_POSTS.LOG
+              </a>
+            </div>
+          </div>
+          
+          <!-- Interactive Terminal Widget -->
+          <div class="lg:col-span-5 bg-black rounded-lg border border-zinc-800 shadow-2xl overflow-hidden text-xs">
+            <div class="bg-zinc-900 px-4 py-2 border-b border-zinc-800 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-500/80"></span>
+                <span class="h-3 w-3 rounded-full bg-green-500/80"></span>
+              </div>
+              <span class="text-zinc-500 text-[10px] tracking-widest font-bold">ZSH - life-debugger</span>
+              <i data-lucide="settings" class="h-3.5 w-3.5 text-zinc-600"></i>
+            </div>
+            <div class="p-4 space-y-3 font-mono min-h-[200px]" id="terminal-screen">
+              <div>
+                <span class="text-emerald-400">guest@zhicheng-wang:~$</span> <span class="text-zinc-100">cat current_status.json</span>
+              </div>
+              <div class="text-zinc-400 leading-normal bg-zinc-950 p-2.5 rounded border border-zinc-900">
+                {
+                  "building": ["Geo Intelligence", "AperilexLabs"],
+                  "curiosity": "insatiable",
+                  "ai_patience": "endless",
+                  "est_completion": "end-of-this-century"
+                }
+              </div>
+              <div id="terminal-active-line">
+                <span class="text-emerald-400">guest@zhicheng-wang:~$</span> <span class="text-zinc-100 select-all" id="terminal-input-text">npm run dev:life</span><span class="inline-block w-1.5 h-3.5 bg-emerald-400 ml-0.5 cursor-blink align-middle"></span>
+              </div>
+              <div id="terminal-interactive-btns" class="pt-2 flex flex-wrap gap-1.5 border-t border-zinc-900 mt-2">
+                <button onclick="runTerminalCmd('help')" class="px-2 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border border-zinc-800 rounded font-mono text-[10px] transition-colors">help</button>
+                <button onclick="runTerminalCmd('about')" class="px-2 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border border-zinc-800 rounded font-mono text-[10px] transition-colors">cat about.txt</button>
+                <button onclick="runTerminalCmd('projects')" class="px-2 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border border-zinc-800 rounded font-mono text-[10px] transition-colors">list-projects</button>
+                <button onclick="runTerminalCmd('clear')" class="px-2 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border border-zinc-800 rounded font-mono text-[10px] transition-colors">clear</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Theme 2: Analytical Dashboard Hero -->
+      <div id="hero-dashboard" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 font-outfit">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-5">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs text-blue-400 font-semibold">
+              <i data-lucide="bar-chart-2" class="h-3 w-3"></i>
+              <span>ANALYSIS &amp; AI DEVELOPMENT PORTAL</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              Zhicheng Wang <span class="text-blue-500 bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">Geo-Intelligence</span>
+            </h1>
+            
+            <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+              Chronicles of a developer and former designer at the intersection of AI agent architectures, corporate network graphs, and spatial data systems.
+            </p>
+            
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center gap-2 text-xs text-slate-400 bg-slate-800/50 border border-slate-700/50 px-3 py-1.5 rounded-lg">
+                <span class="h-2 w-2 rounded-full bg-teal-400"></span>
+                <span>Active: Dossigraphica</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-400 bg-slate-800/50 border border-slate-700/50 px-3 py-1.5 rounded-lg">
+                <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+                <span>Active: NearPulse</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Mini Dashboard Widget -->
+          <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+            
+            <div class="bg-slate-800/30 backdrop-blur-sm p-4 rounded-xl border border-slate-700/60 shadow-lg hover:border-slate-600 transition-colors">
+              <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
+                <span>Dossiers Audited</span>
+                <i data-lucide="file-text" class="h-3.5 w-3.5 text-blue-400"></i>
+              </div>
+              <div class="text-2xl font-bold text-white">124</div>
+              <div class="text-[10px] text-teal-400 mt-1 flex items-center gap-1">
+                <i data-lucide="trending-up" class="h-3 w-3"></i> +12% this month
+              </div>
+            </div>
+
+            <div class="bg-slate-800/30 backdrop-blur-sm p-4 rounded-xl border border-slate-700/60 shadow-lg hover:border-slate-600 transition-colors">
+              <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
+                <span>Supply Chain Nodes</span>
+                <i data-lucide="network" class="h-3.5 w-3.5 text-teal-400"></i>
+              </div>
+              <div class="text-2xl font-bold text-white">2,841</div>
+              <div class="text-[10px] text-slate-400 mt-1">Cross-company mapping</div>
+            </div>
+
+            <div class="bg-slate-800/30 backdrop-blur-sm p-4 rounded-xl border border-slate-700/60 shadow-lg hover:border-slate-600 transition-colors">
+              <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
+                <span>AMD Completeness</span>
+                <i data-lucide="check-circle-2" class="h-3.5 w-3.5 text-emerald-400"></i>
+              </div>
+              <div class="text-2xl font-bold text-emerald-400">75.8%</div>
+              <div class="w-full bg-slate-700 h-1 rounded-full mt-2 overflow-hidden">
+                <div class="bg-emerald-400 h-full rounded-full" style="width: 75.8%"></div>
+              </div>
+            </div>
+
+            <div class="bg-slate-800/30 backdrop-blur-sm p-4 rounded-xl border border-slate-700/60 shadow-lg hover:border-slate-600 transition-colors">
+              <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
+                <span>Amazon Completeness</span>
+                <i data-lucide="check-circle-2" class="h-3.5 w-3.5 text-sky-400"></i>
+              </div>
+              <div class="text-2xl font-bold text-sky-400">72.4%</div>
+              <div class="w-full bg-slate-700 h-1 rounded-full mt-2 overflow-hidden">
+                <div class="bg-sky-400 h-full rounded-full" style="width: 72.4%"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Theme 3: Minimalist Editorial Hero -->
+      <div id="hero-editorial" class="hidden max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+        <div class="flex flex-col items-center text-center space-y-6">
+          <div class="h-20 w-20 rounded-full border border-stone-200 dark:border-stone-800 p-1 bg-white dark:bg-stone-900 shadow-sm relative group overflow-hidden">
+            <div class="h-full w-full rounded-full bg-stone-100 dark:bg-stone-800 flex items-center justify-center text-stone-500 dark:text-stone-400 group-hover:scale-105 transition-transform duration-300">
+              <!-- SVG Designer Initial Graphic -->
+              <svg viewBox="0 0 100 100" class="h-10 w-10 fill-current opacity-70">
+                <path d="M30,20 C45,20 55,30 55,45 C55,60 45,70 30,70 L30,20 Z" />
+                <circle cx="65" cy="50" r="10" />
+              </svg>
+            </div>
+          </div>
+          
+          <div class="space-y-3">
+            <h1 class="text-4xl md:text-6xl font-playfair font-extrabold tracking-tight" id="editorial-title">
+              Zhicheng Wang
+            </h1>
+            <p class="font-serif italic text-xl md:text-2xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">
+              "Chronicles of a Programmer, once a Designer. Learning to Debug Life."
+            </p>
+          </div>
+          
+          <div class="h-px w-20 bg-stone-300 dark:bg-stone-700 my-4"></div>
+          
+          <p class="max-w-2xl text-stone-600 dark:text-stone-300 font-sans text-sm md:text-base leading-relaxed">
+            Welcome to my digital journal. Here, I write about building LLM agents, geographic systems, company dossiers, and reflecting on engineering patterns and the design of software.
+          </p>
+          
+          <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+            <a href="#posts" class="hover:text-stone-900 dark:hover:text-white transition-colors">Read Articles</a>
+            <span>•</span>
+            <a href="#projects" class="hover:text-stone-900 dark:hover:text-white transition-colors">Explore Side Projects</a>
+            <span>•</span>
+            <a href="mailto:zcmmwang@gmail.com" class="hover:text-stone-900 dark:hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT SECTION                       -->
+    <!-- ========================================== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Post Loop List (8 cols on lg) -->
+        <section class="lg:col-span-8 space-y-8" id="posts">
+          
+          <div class="flex items-center justify-between pb-4 border-b border-zinc-800" id="post-section-header">
+            <h2 class="text-lg font-bold font-mono tracking-tight text-white flex items-center gap-2" id="post-header-text">
+              <i data-lucide="file-text" class="h-4.5 w-4.5 text-emerald-400"></i>
+              FILES_LISTING (/posts)
+            </h2>
+            <div class="text-xs text-zinc-500 font-mono" id="post-header-count">
+              Total: 7 objects
+            </div>
+          </div>
+
+          <!-- POST CARD 1 -->
+          <article class="p-6 rounded-lg transition-theme border" id="post-card-1">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-500 mb-3" id="post-meta-1">
+              <span class="flex items-center gap-1 text-emerald-400" id="post-cat-tag-1">
+                <i data-lucide="folder" class="h-3 w-3"></i>
+                AI Development
+              </span>
+              <span>•</span>
+              <span id="post-date-1">2026-05-24</span>
+              <span>•</span>
+              <span class="flex items-center gap-1" id="post-read-1">
+                <i data-lucide="clock" class="h-3 w-3"></i> 6 min read
+              </span>
+            </div>
+            
+            <h3 class="text-xl md:text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-3 cursor-pointer" id="post-title-1">
+              Completeness Audits of Dossigraphica: DeepSeek V4 Flash on AMD and Amazon
+            </h3>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4" id="post-excerpt-1">
+              Finished a refactor of the Dossigraphica research pipeline, switching the model from Gemini 3 Flash Lite to DeepSeek V4 Flash. Run first two audits on AMD and Amazon. Here is how they stack up...
+            </p>
+            
+            <!-- Dashboard specific mockup widget (only shows in Dashboard mode) -->
+            <div class="mb-4 hidden" id="dashboard-metric-panel-1">
+              <div class="p-3 bg-slate-900/40 rounded-lg border border-slate-700/50 flex items-center justify-around gap-4 text-xs font-mono">
+                <div>
+                  <span class="text-slate-500">AMD Score:</span>
+                  <span class="text-emerald-400 font-bold ml-1">75.8%</span>
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div>
+                  <span class="text-slate-500">AMZN Score:</span>
+                  <span class="text-sky-400 font-bold ml-1">72.4%</span>
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div>
+                  <span class="text-slate-500">Model:</span>
+                  <span class="text-teal-400 font-bold ml-1">DeepSeek V4</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between" id="post-footer-1">
+              <div class="flex gap-1.5" id="post-tags-1">
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#deepseek</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#evaluation</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#geoint</span>
+              </div>
+              <a href="#" class="text-emerald-400 hover:text-emerald-300 font-mono text-xs flex items-center gap-1 group" id="post-link-1">
+                READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- POST CARD 2 -->
+          <article class="p-6 rounded-lg transition-theme border" id="post-card-2">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-500 mb-3" id="post-meta-2">
+              <span class="flex items-center gap-1 text-emerald-400" id="post-cat-tag-2">
+                <i data-lucide="folder" class="h-3 w-3"></i>
+                AI Development
+              </span>
+              <span>•</span>
+              <span id="post-date-2">2026-04-18</span>
+              <span>•</span>
+              <span class="flex items-center gap-1" id="post-read-2">
+                <i data-lucide="clock" class="h-3 w-3"></i> 8 min read
+              </span>
+            </div>
+            
+            <h3 class="text-xl md:text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-3 cursor-pointer" id="post-title-2">
+              Anatomy of an AI Financial Analyst
+            </h3>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4" id="post-excerpt-2">
+              Building a multi-agent system to digest EDGAR filings, extract geographic linkages, and automatically construct corporate risks. In this post, we map out the complete pipeline schema and prompt constraints...
+            </p>
+
+            <div class="flex items-center justify-between" id="post-footer-2">
+              <div class="flex gap-1.5" id="post-tags-2">
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#sec-filings</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#agents</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#fastapi</span>
+              </div>
+              <a href="#" class="text-emerald-400 hover:text-emerald-300 font-mono text-xs flex items-center gap-1 group" id="post-link-2">
+                READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- POST CARD 3 -->
+          <article class="p-6 rounded-lg transition-theme border" id="post-card-3">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-500 mb-3" id="post-meta-3">
+              <span class="flex items-center gap-1 text-emerald-400" id="post-cat-tag-3">
+                <i data-lucide="folder" class="h-3 w-3"></i>
+                Geo Intelligence
+              </span>
+              <span>•</span>
+              <span id="post-date-3">2026-03-05</span>
+              <span>•</span>
+              <span class="flex items-center gap-1" id="post-read-3">
+                <i data-lucide="clock" class="h-3 w-3"></i> 5 min read
+              </span>
+            </div>
+            
+            <h3 class="text-xl md:text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-3 cursor-pointer" id="post-title-3">
+              Building Dossigraphica: Mapping Macro-Scale Corporate Networks
+            </h3>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4" id="post-excerpt-3">
+              An interactive geo intelligence tool exploring where tech giants place data centers, offices, and where they draw resources. Why visualizing geography and corporate concentration is a designer's play space...
+            </p>
+
+            <div class="flex items-center justify-between" id="post-footer-3">
+              <div class="flex gap-1.5" id="post-tags-3">
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#geography</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#visuals</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#dossigraphica</span>
+              </div>
+              <a href="#" class="text-emerald-400 hover:text-emerald-300 font-mono text-xs flex items-center gap-1 group" id="post-link-3">
+                READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- POST CARD 4 -->
+          <article class="p-6 rounded-lg transition-theme border" id="post-card-4">
+            <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-500 mb-3" id="post-meta-4">
+              <span class="flex items-center gap-1 text-emerald-400" id="post-cat-tag-4">
+                <i data-lucide="folder" class="h-3 w-3"></i>
+                Reading
+              </span>
+              <span>•</span>
+              <span id="post-date-4">2026-02-12</span>
+              <span>•</span>
+              <span class="flex items-center gap-1" id="post-read-4">
+                <i data-lucide="clock" class="h-3 w-3"></i> 4 min read
+              </span>
+            </div>
+            
+            <h3 class="text-xl md:text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-3 cursor-pointer" id="post-title-4">
+              Thinking, Fast and Slow: Applying Systems to LLM Planning
+            </h3>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4" id="post-excerpt-4">
+              Reflections on Daniel Kahneman's model of System 1 (fast, intuitive) and System 2 (slow, analytical). How we can structure Agentic planning cycles to resemble System 2 processing, and why it matters for code refactoring...
+            </p>
+
+            <div class="flex items-center justify-between" id="post-footer-4">
+              <div class="flex gap-1.5" id="post-tags-4">
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#books</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#planning</span>
+                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-mono">#agents</span>
+              </div>
+              <a href="#" class="text-emerald-400 hover:text-emerald-300 font-mono text-xs flex items-center gap-1 group" id="post-link-4">
+                READ_MORE <span class="group-hover:translate-x-1 transition-transform">-&gt;</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Pagination Mock -->
+          <div class="flex items-center justify-between pt-6 border-t border-zinc-900" id="pagination-panel">
+            <span class="text-xs text-zinc-500 font-mono">PAGE: 1 OF 2</span>
+            <div class="flex gap-2">
+              <button class="px-3 py-1.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-500 cursor-not-allowed text-xs font-mono">PREV</button>
+              <button class="px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-350 text-xs font-mono hover:text-white transition-colors">NEXT</button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Sidebar (4 cols on lg) -->
+        <aside class="lg:col-span-4 space-y-6" id="sidebar">
+          
+          <!-- Search Block -->
+          <div class="p-5 rounded-lg border transition-theme" id="search-card">
+            <h3 class="text-sm font-bold font-mono text-white mb-3 tracking-wider uppercase flex items-center gap-2" id="search-card-title">
+              <i data-lucide="search" class="h-4 w-4 text-emerald-400"></i>
+              SEARCH_DATABASE
+            </h3>
+            <div class="relative">
+              <input type="text" placeholder="Type keywords..." class="w-full pl-9 pr-4 py-2 bg-black border border-zinc-800 rounded font-mono text-xs text-zinc-200 focus:outline-none focus:border-emerald-500 transition-colors" id="search-input">
+              <div class="absolute left-3 top-2.5 text-zinc-600">
+                <i data-lucide="search" class="h-3.5 w-3.5"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio / Details Card -->
+          <div class="p-5 rounded-lg border transition-theme" id="bio-card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold" id="bio-avatar">
+                ZW
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white" id="bio-name">Zhicheng Wang</h3>
+                <span class="text-[10px] text-zinc-500 font-mono" id="bio-loc">London, UK / Timezone: GMT</span>
+              </div>
+            </div>
+            
+            <p class="text-zinc-400 text-xs leading-relaxed mb-4" id="bio-text">
+              Passionate about building LLM powered features, with a particular interest in the intersection of geography, corporate intelligence, and financial analysis.
+            </p>
+
+            <div class="space-y-2 text-xs font-mono" id="bio-links">
+              <a href="https://github.com/Dogecat0" target="_blank" class="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors">
+                <i data-lucide="github" class="h-3.5 w-3.5"></i> Dogecat0
+              </a>
+              <a href="https://x.com/ZhichengWang87" target="_blank" class="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors">
+                <i data-lucide="twitter" class="h-3.5 w-3.5"></i> @ZhichengWang87
+              </a>
+              <a href="mailto:zcmmwang@gmail.com" class="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors">
+                <i data-lucide="mail" class="h-3.5 w-3.5"></i> zcmmwang@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="p-5 rounded-lg border transition-theme" id="categories-card">
+            <h3 class="text-sm font-bold font-mono text-white mb-3 tracking-wider uppercase flex items-center gap-2" id="categories-title">
+              <i data-lucide="folder-open" class="h-4 w-4 text-emerald-400"></i>
+              CATEGORIES
+            </h3>
+            <ul class="space-y-2.5 font-mono text-xs" id="categories-list">
+              <li class="flex items-center justify-between">
+                <a href="#" class="text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="chevron-right" class="h-3 w-3"></i> AI Development
+                </a>
+                <span class="text-zinc-600 bg-zinc-900 border border-zinc-850 px-1.5 py-0.5 rounded text-[10px]">22</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <a href="#" class="text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="chevron-right" class="h-3 w-3"></i> Geo Intelligence
+                </a>
+                <span class="text-zinc-600 bg-zinc-900 border border-zinc-850 px-1.5 py-0.5 rounded text-[10px]">5</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <a href="#" class="text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="chevron-right" class="h-3 w-3"></i> journal-app
+                </a>
+                <span class="text-zinc-600 bg-zinc-900 border border-zinc-850 px-1.5 py-0.5 rounded text-[10px]">5</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <a href="#" class="text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="chevron-right" class="h-3 w-3"></i> inomad-diary
+                </a>
+                <span class="text-zinc-600 bg-zinc-900 border border-zinc-850 px-1.5 py-0.5 rounded text-[10px]">4</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <a href="#" class="text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                  <i data-lucide="chevron-right" class="h-3 w-3"></i> Reading
+                </a>
+                <span class="text-zinc-600 bg-zinc-900 border border-zinc-850 px-1.5 py-0.5 rounded text-[10px]">1</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Active Projects (The Designer Portfolio Touch) -->
+          <div class="p-5 rounded-lg border transition-theme" id="projects-card">
+            <h3 class="text-sm font-bold font-mono text-white mb-4 tracking-wider uppercase flex items-center gap-2" id="projects-title">
+              <i data-lucide="git-branch" class="h-4 w-4 text-emerald-400"></i>
+              SIDE_PROJECTS
+            </h3>
+            
+            <div class="space-y-4" id="projects-list">
+              <!-- Project 1 -->
+              <div class="space-y-1.5 bg-zinc-900/30 p-3 rounded border border-zinc-800/80 hover:border-zinc-700/80 transition-colors" id="project-item-1">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-white flex items-center gap-1">
+                    🌍 Dossigraphica
+                  </h4>
+                  <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-mono">active</span>
+                </div>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Macro scale corporate analysis and company mapping network built with LLM graphs.
+                </p>
+                <a href="https://zhicheng-wang.com/Dossigraphica" target="_blank" class="text-[10px] text-emerald-400 font-mono flex items-center gap-1 pt-1.5 hover:underline">
+                  OPEN_PROJECT <i data-lucide="external-link" class="h-2.5 w-2.5"></i>
+                </a>
+              </div>
+
+              <!-- Project 2 -->
+              <div class="space-y-1.5 bg-zinc-900/30 p-3 rounded border border-zinc-800/80 hover:border-zinc-700/80 transition-colors" id="project-item-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-white flex items-center gap-1">
+                    📍 NearPulse
+                  </h4>
+                  <span class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-mono">active</span>
+                </div>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Micro scale neighborhood insights for finding your next place to live.
+                </p>
+                <a href="https://www.nearpulse.space" target="_blank" class="text-[10px] text-emerald-400 font-mono flex items-center gap-1 pt-1.5 hover:underline">
+                  OPEN_PROJECT <i data-lucide="external-link" class="h-2.5 w-2.5"></i>
+                </a>
+              </div>
+
+              <!-- Project 3 -->
+              <div class="space-y-1.5 bg-zinc-900/30 p-3 rounded border border-zinc-800/80 hover:border-zinc-700/80 transition-colors" id="project-item-3">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-white flex items-center gap-1">
+                    📸 Shotwise
+                  </h4>
+                  <span class="text-[9px] bg-zinc-850 text-zinc-500 px-1.5 py-0.5 rounded border border-zinc-800 font-mono">stabled</span>
+                </div>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Random side hobby. Camera/lens settings & film emulator presets database tool.
+                </p>
+                <a href="https://www.shotwiseai.com" target="_blank" class="text-[10px] text-emerald-400 font-mono flex items-center gap-1 pt-1.5 hover:underline">
+                  OPEN_PROJECT <i data-lucide="external-link" class="h-2.5 w-2.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="border-t py-12 mt-16 transition-theme" id="footer">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono" id="footer-inner">
+        <div>
+          &copy; 2026 Zhicheng Wang. All rights reserved.
+        </div>
+        <div class="flex items-center gap-6" id="footer-links">
+          <a href="#" class="hover:text-emerald-400 transition-colors">RSS Feed</a>
+          <a href="#" class="hover:text-emerald-400 transition-colors">Sitemap</a>
+          <a href="#" class="hover:text-emerald-400 transition-colors">Privacy Policy</a>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center gap-1 text-emerald-400 hover:text-emerald-300">
+            <i data-lucide="arrow-up" class="h-3.5 w-3.5"></i> BACK_TO_TOP
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT CONTROLLER FOR THEME PREVIEW    -->
+  <!-- ========================================== -->
+  <script>
+    // Initial theme
+    let currentTheme = 'debugger';
+    let isDark = true;
+
+    // Terminal Commands Mockup Data
+    const terminalLogs = {
+      'help': [
+        "Available commands:",
+        "  help             - Show this helper",
+        "  cat about.txt    - Read author bio",
+        "  list-projects    - View active projects",
+        "  clear            - Clear console screen",
+        "  npm run dev:life - Simulate compiler logs"
+      ],
+      'about': [
+        "File: about.txt (254 bytes)",
+        "--------------------------",
+        "I am a programmer with a background in design.",
+        "Passionate about building agentic RAG structures,",
+        "corporate supply chains mapping (Dossigraphica),",
+        "and resolving code problems."
+      ],
+      'projects': [
+        "Scanning side_projects catalog...",
+        "  [1] Dossigraphica - Geo Corporate intelligence",
+        "  [2] NearPulse      - Neighborhood metrics RAG",
+        "  [3] Shotwise       - Camera profile calculator",
+        "  [4] AperilexLabs   - Securities caching and parser"
+      ]
+    };
+
+    function switchTheme(themeName) {
+      currentTheme = themeName;
+      const body = document.getElementById('app-body');
+      const wrapper = document.getElementById('theme-wrapper');
+      
+      // Update toggle buttons active states
+      ['debugger', 'dashboard', 'editorial'].forEach(theme => {
+        const btn = document.getElementById(`btn-theme-${theme}`);
+        if (theme === themeName) {
+          btn.className = getBtnClass(theme, true);
+        } else {
+          btn.className = getBtnClass(theme, false);
+        }
+      });
+
+      // Reset styles and switch
+      body.className = "min-h-screen transition-theme antialiased overflow-x-hidden ";
+      
+      // Hide all heroes
+      document.getElementById('hero-debugger').style.display = 'none';
+      document.getElementById('hero-dashboard').style.display = 'none';
+      document.getElementById('hero-editorial').style.display = 'none';
+
+      // Reset specific card modifications
+      document.getElementById('dashboard-metric-panel-1').classList.add('hidden');
+
+      const descBadge = document.getElementById('theme-badge-desc');
+      
+      if (themeName === 'debugger') {
+        body.classList.add('theme-debugger', 'bg-zinc-950', 'text-zinc-100');
+        document.getElementById('hero-debugger').style.display = 'block';
+        descBadge.innerText = 'Vibe: Cyber Monospace & Logs';
+        
+        applyDebuggerStyles();
+      } else if (themeName === 'dashboard') {
+        body.classList.add('theme-dashboard', 'bg-slate-950', 'text-slate-100');
+        document.getElementById('hero-dashboard').style.display = 'block';
+        descBadge.innerText = 'Vibe: Analytic Metric Cards';
+        
+        // Show dossier metric widget in the card
+        document.getElementById('dashboard-metric-panel-1').classList.remove('hidden');
+        
+        applyDashboardStyles();
+      } else if (themeName === 'editorial') {
+        body.classList.add('theme-editorial');
+        if (isDark) {
+          body.classList.add('dark', 'bg-stone-900', 'text-stone-100');
+        } else {
+          body.classList.add('bg-stone-50', 'text-stone-900');
+        }
+        document.getElementById('hero-editorial').style.display = 'block';
+        descBadge.innerText = 'Vibe: Serif Editorial Paper';
+        
+        applyEditorialStyles();
+      }
+
+      // Re-initialize lucide icons for any dynamic elements
+      lucide.createIcons();
+    }
+
+    function getBtnClass(theme, isActive) {
+      if (theme === 'debugger') {
+        return isActive 
+          ? "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 flex items-center gap-1.5 shadow-sm"
+          : "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5";
+      } else if (theme === 'dashboard') {
+        return isActive
+          ? "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border bg-blue-500/10 border-blue-500/30 text-blue-400 flex items-center gap-1.5 shadow-sm"
+          : "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5";
+      } else if (theme === 'editorial') {
+        return isActive
+          ? "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border bg-orange-500/10 border-orange-500/30 text-orange-600 dark:text-orange-400 flex items-center gap-1.5 shadow-sm"
+          : "px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-200 flex items-center gap-1.5";
+      }
+    }
+
+    function toggleDarkMode() {
+      isDark = !isDark;
+      const toggleBtn = document.getElementById('mode-toggle-btn');
+      const icon = document.getElementById('mode-icon');
+      
+      if (isDark) {
+        icon.setAttribute('data-lucide', 'sun');
+      } else {
+        icon.setAttribute('data-lucide', 'moon');
+      }
+      
+      // Re-trigger theme application if on editorial to update bg
+      if (currentTheme === 'editorial') {
+        switchTheme('editorial');
+      }
+    }
+
+    // --- Dynamic Class Applicators ---
+    
+    function applyDebuggerStyles() {
+      // Hero Border
+      document.getElementById('section-hero').className = "w-full relative transition-theme border-b border-zinc-800 bg-zinc-950/40";
+      
+      // Main Body fonts
+      const body = document.getElementById('app-body');
+      body.style.fontFamily = "Inter, sans-serif";
+
+      // Headings & Header Panels
+      document.getElementById('post-section-header').className = "flex items-center justify-between pb-4 border-b border-zinc-800";
+      document.getElementById('post-header-text').className = "text-lg font-bold font-mono tracking-tight text-white flex items-center gap-2";
+      document.getElementById('post-header-text').innerHTML = `<i data-lucide="file-text" class="h-4.5 w-4.5 text-emerald-400"></i> FILES_LISTING (/posts)`;
+      document.getElementById('post-header-count').className = "text-xs text-zinc-500 font-mono";
+
+      // Post Cards
+      for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById(`post-card-${i}`);
+        card.className = "p-6 rounded-lg transition-all duration-200 bg-zinc-900/30 border border-zinc-800 hover:border-zinc-700 font-sans group hover:bg-zinc-900/50";
+        
+        document.getElementById(`post-meta-${i}`).className = "flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-500 mb-3";
+        document.getElementById(`post-cat-tag-${i}`).className = "flex items-center gap-1 text-emerald-400 font-semibold";
+        document.getElementById(`post-title-${i}`).className = "text-xl md:text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-3 cursor-pointer font-mono tracking-tight";
+        document.getElementById(`post-excerpt-${i}`).className = "text-zinc-400 text-sm md:text-base leading-relaxed mb-4 font-sans";
+        document.getElementById(`post-footer-${i}`).className = "flex flex-wrap gap-4 items-center justify-between bg-zinc-950/30 p-3 rounded border border-zinc-900 mt-4";
+        document.getElementById(`post-link-${i}`).className = "text-emerald-400 hover:text-emerald-300 font-mono text-xs flex items-center gap-1 group";
+      }
+
+      // Sidebar widgets
+      ['search-card', 'bio-card', 'categories-card', 'projects-card'].forEach(cardId => {
+        document.getElementById(cardId).className = "p-5 rounded-lg border border-zinc-800 bg-zinc-900/20 font-mono";
+      });
+
+      // Categories
+      document.getElementById('categories-list').className = "space-y-2.5 font-mono text-xs";
+      document.getElementById('categories-title').className = "text-sm font-bold font-mono text-white mb-3 tracking-wider uppercase flex items-center gap-2";
+      document.getElementById('categories-title').innerHTML = `<i data-lucide="folder-open" class="h-4 w-4 text-emerald-400"></i> CATEGORIES`;
+
+      // Projects card header and inner elements
+      document.getElementById('projects-title').className = "text-sm font-bold font-mono text-white mb-4 tracking-wider uppercase flex items-center gap-2";
+      document.getElementById('projects-title').innerHTML = `<i data-lucide="git-branch" class="h-4 w-4 text-emerald-400"></i> SIDE_PROJECTS`;
+      
+      for (let p = 1; p <= 3; p++) {
+        document.getElementById(`project-item-${p}`).className = "space-y-1.5 bg-zinc-950/40 p-3 rounded border border-zinc-850 hover:border-zinc-800 transition-colors";
+      }
+
+      // Footer
+      document.getElementById('footer').className = "border-t border-zinc-900 py-12 mt-16 bg-zinc-950";
+      document.getElementById('footer-inner').className = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono";
+    }
+
+    function applyDashboardStyles() {
+      // Hero Border
+      document.getElementById('section-hero').className = "w-full relative transition-theme border-b border-slate-800 bg-slate-900/40";
+      
+      // Main Body font
+      const body = document.getElementById('app-body');
+      body.style.fontFamily = "Outfit, sans-serif";
+
+      // Headings & Header Panels
+      document.getElementById('post-section-header').className = "flex items-center justify-between pb-4 border-b border-slate-800";
+      document.getElementById('post-header-text').className = "text-lg font-bold tracking-tight text-white flex items-center gap-2 uppercase";
+      document.getElementById('post-header-text').innerHTML = `<i data-lucide="layers" class="h-4.5 w-4.5 text-blue-400"></i> Database Logs`;
+      document.getElementById('post-header-count').className = "text-xs text-slate-500 font-semibold";
+
+      // Post Cards
+      for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById(`post-card-${i}`);
+        card.className = "p-6 rounded-xl transition-all duration-200 bg-slate-900/30 border border-slate-800/80 hover:border-slate-700 hover:shadow-md group";
+        
+        document.getElementById(`post-meta-${i}`).className = "flex flex-wrap items-center gap-2.5 text-xs text-slate-400 mb-3";
+        document.getElementById(`post-cat-tag-${i}`).className = "flex items-center gap-1 text-teal-400 font-semibold";
+        document.getElementById(`post-title-${i}`).className = "text-xl md:text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-3 cursor-pointer tracking-tight";
+        document.getElementById(`post-excerpt-${i}`).className = "text-slate-350 text-sm md:text-base leading-relaxed mb-4";
+        document.getElementById(`post-footer-${i}`).className = "flex flex-wrap gap-4 items-center justify-between mt-4 border-t border-slate-800/60 pt-4";
+        document.getElementById(`post-link-${i}`).className = "text-blue-400 hover:text-blue-300 font-semibold text-xs flex items-center gap-1 group";
+      }
+
+      // Sidebar widgets
+      ['search-card', 'bio-card', 'categories-card', 'projects-card'].forEach(cardId => {
+        document.getElementById(cardId).className = "p-5 rounded-xl border border-slate-800/80 bg-slate-900/20";
+      });
+
+      // Categories
+      document.getElementById('categories-list').className = "space-y-2.5 text-xs text-slate-300";
+      document.getElementById('categories-title').className = "text-sm font-bold text-white mb-3 tracking-wider uppercase flex items-center gap-2";
+      document.getElementById('categories-title').innerHTML = `<i data-lucide="bar-chart-2" class="h-4 w-4 text-blue-400"></i> Analytics Distribution`;
+
+      // Projects card header and inner elements
+      document.getElementById('projects-title').className = "text-sm font-bold text-white mb-4 tracking-wider uppercase flex items-center gap-2";
+      document.getElementById('projects-title').innerHTML = `<i data-lucide="activity" class="h-4 w-4 text-blue-400"></i> System Ecosystem`;
+      
+      for (let p = 1; p <= 3; p++) {
+        document.getElementById(`project-item-${p}`).className = "space-y-1.5 bg-slate-900/40 p-3 rounded-lg border border-slate-800/50 hover:border-slate-700/50 transition-colors";
+      }
+
+      // Footer
+      document.getElementById('footer').className = "border-t border-slate-900 py-12 mt-16 bg-slate-950";
+      document.getElementById('footer-inner').className = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500";
+    }
+
+    function applyEditorialStyles() {
+      // Hero Border
+      document.getElementById('section-hero').className = isDark 
+        ? "w-full relative transition-theme border-b border-stone-850 bg-stone-900/20" 
+        : "w-full relative transition-theme border-b border-stone-200 bg-stone-50";
+      
+      // Main Body font
+      const body = document.getElementById('app-body');
+      body.style.fontFamily = "Inter, sans-serif";
+
+      // Headings & Header Panels
+      document.getElementById('post-section-header').className = isDark
+        ? "flex items-center justify-between pb-4 border-b border-stone-800"
+        : "flex items-center justify-between pb-4 border-b border-stone-200";
+      
+      const headerText = document.getElementById('post-header-text');
+      headerText.className = isDark
+        ? "text-2xl font-playfair font-bold text-stone-100"
+        : "text-2xl font-playfair font-bold text-stone-900";
+      headerText.innerHTML = `Articles`;
+      
+      document.getElementById('post-header-count').className = isDark ? "text-xs text-stone-500" : "text-xs text-stone-400";
+
+      // Post Cards
+      for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById(`post-card-${i}`);
+        card.className = isDark
+          ? "py-8 rounded-none transition-all duration-200 bg-transparent border-b border-stone-800/80 hover:opacity-95"
+          : "py-8 rounded-none transition-all duration-200 bg-transparent border-b border-stone-200 hover:opacity-95";
+        
+        document.getElementById(`post-meta-${i}`).className = isDark
+          ? "flex flex-wrap items-center gap-2 text-xs text-stone-500 font-serif mb-2"
+          : "flex flex-wrap items-center gap-2 text-xs text-stone-450 font-serif mb-2";
+        
+        const catTag = document.getElementById(`post-cat-tag-${i}`);
+        catTag.className = isDark ? "text-orange-400 font-semibold" : "text-orange-700 font-semibold";
+        
+        const postTitle = document.getElementById(`post-title-${i}`);
+        postTitle.className = isDark
+          ? "text-2xl font-playfair font-bold text-stone-100 hover:text-orange-400 transition-colors mb-2.5 cursor-pointer"
+          : "text-2xl font-playfair font-bold text-stone-900 hover:text-orange-700 transition-colors mb-2.5 cursor-pointer";
+        
+        document.getElementById(`post-excerpt-${i}`).className = isDark
+          ? "text-stone-400 text-sm md:text-base leading-relaxed mb-3 font-serif"
+          : "text-stone-600 text-sm md:text-base leading-relaxed mb-3 font-serif";
+        
+        document.getElementById(`post-footer-${i}`).className = "flex flex-wrap gap-4 items-center justify-between mt-3";
+        
+        const postLink = document.getElementById(`post-link-${i}`);
+        postLink.className = isDark
+          ? "text-orange-400 hover:text-orange-350 font-semibold text-xs flex items-center gap-1 group font-sans"
+          : "text-orange-700 hover:text-orange-850 font-semibold text-xs flex items-center gap-1 group font-sans";
+      }
+
+      // Sidebar widgets
+      ['search-card', 'bio-card', 'categories-card', 'projects-card'].forEach(cardId => {
+        document.getElementById(cardId).className = isDark
+          ? "p-5 rounded-none border-b border-stone-800 bg-transparent"
+          : "p-5 rounded-none border-b border-stone-250 bg-transparent";
+      });
+
+      // Categories
+      document.getElementById('categories-list').className = isDark
+        ? "space-y-2 text-xs text-stone-400 font-sans"
+        : "space-y-2 text-xs text-stone-600 font-sans";
+        
+      const categoriesTitle = document.getElementById('categories-title');
+      categoriesTitle.className = isDark
+        ? "text-xs font-bold text-stone-300 mb-3 tracking-widest uppercase"
+        : "text-xs font-bold text-stone-800 mb-3 tracking-widest uppercase";
+      categoriesTitle.innerHTML = `Writing Categories`;
+
+      // Projects card header and inner elements
+      const projectsTitle = document.getElementById('projects-title');
+      projectsTitle.className = isDark
+        ? "text-xs font-bold text-stone-300 mb-4 tracking-widest uppercase"
+        : "text-xs font-bold text-stone-800 mb-4 tracking-widest uppercase";
+      projectsTitle.innerHTML = `Featured Works`;
+      
+      for (let p = 1; p <= 3; p++) {
+        document.getElementById(`project-item-${p}`).className = isDark
+          ? "space-y-1 bg-stone-900/50 p-3 rounded-none border border-stone-800 hover:border-stone-750 transition-colors"
+          : "space-y-1 bg-stone-100/40 p-3 rounded-none border border-stone-200 hover:border-stone-300 transition-colors";
+      }
+
+      // Footer
+      document.getElementById('footer').className = isDark
+        ? "border-t border-stone-850 py-12 mt-16 bg-stone-900"
+        : "border-t border-stone-200 py-12 mt-16 bg-stone-100";
+      
+      document.getElementById('footer-inner').className = isDark
+        ? "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-stone-500"
+        : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-stone-600";
+    }
+
+
+    // --- Terminal Widget Simulator JS ---
+
+    function runTerminalCmd(cmd) {
+      const screen = document.getElementById('terminal-screen');
+      const activeLine = document.getElementById('terminal-active-line');
+      
+      if (cmd === 'clear') {
+        screen.innerHTML = '';
+        screen.appendChild(activeLine);
+        return;
+      }
+
+      // Re-construct line command printing
+      const prevLine = document.createElement('div');
+      prevLine.innerHTML = `<span class="text-emerald-400">guest@zhicheng-wang:~$</span> <span class="text-zinc-100">${cmd === 'help' ? 'help' : cmd === 'about' ? 'cat about.txt' : cmd === 'projects' ? 'list-projects' : 'npm run dev:life'}</span>`;
+      
+      const logDiv = document.createElement('div');
+      logDiv.className = "text-zinc-400 leading-normal pl-2 border-l border-zinc-800 my-1 font-mono";
+      
+      if (cmd === 'help' || cmd === 'about' || cmd === 'projects') {
+        logDiv.innerHTML = terminalLogs[cmd].join('<br>');
+      } else {
+        // npm run dev:life (Easter egg animation)
+        logDiv.innerHTML = "[1/3] Fetching latest experiences... OK<br>[2/3] Parsing 'debugging life' logs... FAIL (retrying, patience required)<br>[3/3] Running AI agent Dossigraphica... OK (weighted score 75.8%)";
+      }
+
+      // Insert before active input line
+      screen.insertBefore(prevLine, activeLine);
+      screen.insertBefore(logDiv, activeLine);
+
+      // Scroll terminal to bottom
+      screen.scrollTop = screen.scrollHeight;
+    }
+
+    // Set initial active styles
+    switchTheme('debugger');
+  </script>
+</body>
+</html>

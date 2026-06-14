@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
+  darkMode: 'class',
   content: [
     "./themes/**/*.ejs",
     "./themes/**/*.js",
@@ -18,9 +19,26 @@ module.exports = {
         'highlight': 'var(--color-highlight)',
         'creative': 'var(--color-creative)',
         'sage': 'var(--color-sage)',
+        brand: {
+          bgLight: '#fcfbfa', // warm paper
+          bgDark: '#171513', // warm charcoal
+          cardLight: '#ffffff',
+          cardDark: '#211e1b',
+          borderLight: '#e7e3df',
+          borderDark: '#36312c',
+          textLight: '#1c1917',
+          textDark: '#f5f5f4',
+          engineer: 'var(--brand-engineer)',
+          analyst: 'var(--brand-analyst)',
+          designer: 'var(--brand-designer)',
+        }
       },
       fontFamily: {
         'pop': ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+        serif: ['Cormorant Garamond', 'serif'],
+        playfair: ['Playfair Display', 'serif'],
       },
       textColor: {
         'primary': 'var(--color-primary)',
@@ -50,6 +68,14 @@ module.exports = {
       borderRadius: {
         'xl': '1rem',
         '2xl': '1.5rem',
+      },
+      animation: {
+        'blink': 'blink 0.8s step-end infinite',
+      },
+      keyframes: {
+        blink: {
+          '50%': { opacity: '0' }
+        }
       }
     },
   },
